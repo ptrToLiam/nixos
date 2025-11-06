@@ -7,6 +7,8 @@
   # BEGIN PACKAGES
   home.packages = with pkgs; [
     # audacity
+    android-studio
+    audacity
     bat
     brave
     brightnessctl
@@ -64,6 +66,7 @@
     wev
     wlr-randr
     wlsunset
+    zoom-us
   ];
 
   # BEGIN PROGRAMS
