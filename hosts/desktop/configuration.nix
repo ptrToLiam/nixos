@@ -55,7 +55,7 @@
         addons = with pkgs; [
           fcitx5-mozc
           fcitx5-gtk
-          fcitx5-chinese-addons
+          qt6Packages.fcitx5-chinese-addons
         ];
       };
     };
@@ -79,10 +79,6 @@
           command = "${pkgs.tuigreet}/bin/tuigreet --cmd Hyprland";
         };
       };
-    };
-
-    udev = {
-      packages = [ pkgs.android-udev-rules ];
     };
 
     libinput.enable = true;
@@ -129,7 +125,7 @@
       noto-fonts
       noto-fonts-cjk-sans
       noto-fonts-cjk-serif
-      noto-fonts-emoji
+      noto-fonts-color-emoji
       liberation_ttf
       fira-code-symbols
       mplus-outline-fonts.githubRelease

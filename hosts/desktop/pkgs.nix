@@ -48,7 +48,7 @@
     pavucontrol
     powertop
     prismlauncher
-    protonvpn-cli
+    protonvpn-gui
     pywal
     qbittorrent
     signal-desktop
