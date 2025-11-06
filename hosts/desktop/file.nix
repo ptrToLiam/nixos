@@ -22,9 +22,19 @@ in
 
     # Configs
     ".config/hypr" = {
-      source = ../../configs/hypr-desktop;
+      source = ../../configs/hypr;
       outOfStoreSymlink = true;
       recursive = true;
+    };
+    ".config/hypr/hypr-monitors.conf" = {
+      source = ../../configs/hypr-desktop/hypr-monitors.conf;
+      outOfStoreSymlink = true;
+      recursive = false;
+    };
+    ".config/hypr/hypr-colors.conf" = {
+      source = ../../configs/hypr-desktop/hypr-colors.conf;
+      outOfStoreSymlink = true;
+      recursive = false;
     };
     ".config/DankMaterialShell" = {
       source = ../../configs/dms-desktop;
