@@ -48,8 +48,7 @@
     pavucontrol
     powertop
     prismlauncher
-    protonvpn-cli
-    pywal
+    protonvpn-gui
     qbittorrent
     signal-desktop
     slurp
@@ -122,9 +121,10 @@
     git = {
       enable = true;
       lfs.enable = true;
-      diff-so-fancy.enable = true;
-      userEmail = "maloneliam@proton.me";
-      userName = "Liam Malone";
+      settings = {
+        user.email = "maloneliam@proton.me";
+        user.name = "Liam Malone";
+      };
     };
     neovim = {
       enable = true;
@@ -134,6 +134,10 @@
     };
     obs-studio = {
       enable = true;
+    };
+    diff-so-fancy = {
+      enable = true;
+      enableGitIntegration = true;
     };
     wofi.enable = true;
   };

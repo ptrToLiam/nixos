@@ -1,10 +1,5 @@
 { cfg, config, lib, pkgs, inputs, ... }:
 
-let 
-  hyprplugins = {
-    # hyprexpo_dir = "${pkgs.hyprlandPlugins.hyprexpo}";
-  };
-in
 {
   imports = [
     ./hardware-configuration.nix
@@ -23,7 +18,7 @@ in
 
     networkmanager = {
       enable = true;
-      wifi.backend = "iwd";
+      # wifi.backend = "iwd";
     };
 
     firewall = {
@@ -40,13 +35,15 @@ in
       allowPing = true;
     };
 
-    wireless.iwd = {
-      enable = true;
-      settings = {
-        IPv6.Enabled = true;
-        Settings.Autoconnect = true;
-      };
-    };
+    # wireless.iwd = {
+    #   enable = true;
+    #   settings = {
+    #     driverQuirks.defaultInterface = "wlan0";
+    #     IPv6.Enabled = true;
+    #     Settings.Autoconnect = true;
+    #     General.EnableNetworkConfiguration = true;
+    #   };
+    # };
   };
 
   time.timeZone = "Europe/Dublin";
@@ -62,7 +59,7 @@ in
         addons = with pkgs; [
           fcitx5-mozc
           fcitx5-gtk
-          fcitx5-chinese-addons
+          qt6Packages.fcitx5-chinese-addons
         ];
       };
     };
@@ -87,18 +84,16 @@ in
         };
       };
     };
-    udev = {
-      packages = [ pkgs.android-udev-rules ];
-    };
 
+    auto-cpufreq.enable = true;
     libinput.enable = true;
     blueman.enable = true;
     gvfs.enable = true;
-    auto-cpufreq.enable = true;
 
     thermald.enable = true;
     power-profiles-daemon.enable = false;
     pulseaudio.enable = false;
+    # tailscale.enable = true;
     upower.enable = true;
   };
 
@@ -129,7 +124,7 @@ in
       noto-fonts
       noto-fonts-cjk-sans
       noto-fonts-cjk-serif
-      noto-fonts-emoji
+      noto-fonts-color-emoji
       liberation_ttf
       fira-code-symbols
       mplus-outline-fonts.githubRelease
@@ -207,7 +202,7 @@ in
 
   home-manager = {
     useGlobalPkgs = true;
-    extraSpecialArgs = { inherit inputs; inherit cfg; inherit hyprplugins; };
+    extraSpecialArgs = { inherit inputs; inherit cfg; };
     users = {
       "${cfg.username}" = import ./home.nix;
     };

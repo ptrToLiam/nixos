@@ -44,6 +44,7 @@
   - [[#enabling-table-of-contents][Enabling table of contents]]
   - [[#enabling-org-bullets][Enabling org bullets]]
   - [[#source-code-block-tag-expansion][SOURCE CODE BLOCK TAG EXPANSION]]
+  - [[#pdf-links][Pdf links]]
 - [[#which-key][WHICH-KEY]]
 
 * IMPORTANT PROGRAMS TO LOAD FIRST
@@ -117,8 +118,6 @@
 #+begin_src emacs-lisp
   ;; Expands to: (elpaca evil (use-package evil :demand t))
   (use-package evil
-      :bind (:map evil-normal-state-map
-                  ("<C-u>" . evil-scroll-page-up))
       :init      ;; tweak evil's configuration before loading it
       (setq evil-want-integration t) ;; This is optional since it's already set to t by default.
       (setq evil-respect-visual-line-mode t)
@@ -131,6 +130,8 @@
       :config
       (setq evil-collection-mode-list '(dashboard dired ibuffer))
       (evil-collection-init))
+  ;; set C-u for scrolling up... not sure why this has to be manual
+  (global-set-key (kbd "C-u") 'evil-scroll-up)
 #+end_src
 
 
@@ -187,6 +188,7 @@
 
       (lm/leader-keys
           "t" '(:ignore t :wk "Toggle")
+          "t n" '(tab-bar-new-tab :wk "New tab")
           "t l" '(display-line-numbers-mode :wk "Toggle line numbers")
           "t i" '(org-toggle-inline-images :wk "Toggle inline images")
           "t t" '(visual-line-mode :wk "Toggle truncated lines"))
@@ -469,7 +471,7 @@ Pulse highlight a line on certain actions
 #+begin_src emacs-lisp
   (use-package pulse
     :ensure nil
-    :defer
+    :defer nil
     :init
     (defun pulse-line (&rest _)
       "pulse the current line"
@@ -482,14 +484,61 @@ Pulse highlight a line on certain actions
                        windmove-up
                        windmove-down
                        move-to-window-line-top-bottom
+                       other-window
                        recenter-top-bottom
-                       other-window))
-    (advice-add command :after #'pulse-line)))
+                       evil-scroll-up
+                       evil-scroll-down
+                       evil-scroll-page-up
+                       evil-scroll-page-down
+                       ))
+    (advice-add command :after #'pulse-line))
+
+    (setq pulse-flag t)
+    (global-set-key (kbd "M-p") (lambda ()
+                              (interactive)
+                              (pulse-line))))   ;; (global-set-key (kbd "M-p") 'pulse-line) 
 #+end_src
 
 * PDF TOOLS
 #+begin_src emacs-lisp
-  (use-package pdf-tools)
+  (use-package pdf-tools
+     :defer t
+     :config
+         (pdf-tools-install)
+         (setq-default pdf-view-display-size 'fit-page)
+     :bind (:map pdf-view-mode
+           ("\\" . hydra-pdftools/body)
+           ("<s-spc>" .  pdf-view-scroll-down-or-next-page)
+           ("g"  . pdf-view-first-page)
+           ("G"  . pdf-view-last-page)
+           ("l"  . image-forward-hscroll)
+           ("h"  . image-backward-hscroll)
+           ("j"  . pdf-view-next-page)
+           ("k"  . pdf-view-previous-page)
+           ("e"  . pdf-view-goto-page)
+           ("u"  . pdf-view-revert-buffer)
+           ("al" . pdf-annot-list-annotations)
+           ("ad" . pdf-annot-delete)
+           ("aa" . pdf-annot-attachment-dired)
+           ("am" . pdf-annot-add-markup-annotation)
+           ("at" . pdf-annot-add-text-annotation)
+           ("y"  . pdf-view-kill-ring-save)
+           ("i"  . pdf-misc-display-metadata)
+           ("s"  . pdf-occur)
+           ("b"  . pdf-view-set-slice-from-bounding-box)
+           ("r"  . pdf-view-reset-slice)))
+
+     (use-package org-pdfview
+         :config 
+                 (add-to-list 'org-file-apps
+                 '("\\.pdf\\'" . (lambda (file link)
+                 (org-pdfview-open link)))))
+
+  (with-eval-after-load 'pdf-view
+    (define-key pdf-view-mode-map (kbd "j") #'pdf-view-next-page)
+    (define-key pdf-view-mode-map (kbd "k") #'pdf-view-previous-page)
+    (define-key pdf-view-mode-map (kbd "C-j") #'pdf-view-next-line-or-next-page)
+    (define-key pdf-view-mode-map (kbd "C-k") #'pdf-view-previous-line-or-previous-page))
 #+end_src
 
 
@@ -607,6 +656,7 @@ Making the ui look nicer
   ;; (setq display-line-numbers-mode-relative 't)
 
   (global-visual-line-mode t)
+  (column-number-mode)
 #+end_src
 
 * IVY (COUNSEL)
@@ -650,7 +700,9 @@ Making the ui look nicer
     :config
     (ivy-set-display-transformer 'ivy-switch-buffer
                                  'ivy-rich-switch-buffer-transformer))
-
+  (with-eval-after-load 'ivy
+    (define-key ivy-minibuffer-map (kbd "C-k") #'ivy-previous-line)
+    (define-key ivy-minibuffer-map (kbd "C-j") #'ivy-next-line))
 #+end_src
 
 * LANGUAGE SUPPORT
@@ -706,6 +758,14 @@ Org-tempo is not a separate package but a module within org that can be enabled.
 #+begin_src emacs-lisp
   (require 'org-tempo)
 #+end_src
+** Pdf links
+#+begin_src emacs-lisp
+;; (eval-after-load 'org '(require 'org-pdfview))
+;; 
+;; (add-to-list 'org-file-apps 
+;;              '("\\.pdf\\'" . (lambda (file link)
+;;                                      (org-pdfview-open link))))
+#+end_src emacs-lisp
 
 * WHICH-KEY
 

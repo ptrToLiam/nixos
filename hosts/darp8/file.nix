@@ -22,9 +22,19 @@ in
 
     # Configs
     ".config/hypr" = {
-      source = ../../configs/hypr-darp8;
+      source = ../../configs/hypr;
       outOfStoreSymlink = true;
       recursive = true;
+    };
+    ".config/hypr/hypr-monitors.conf" = {
+      source = ../../configs/hypr-darp8/hypr-monitors.conf;
+      outOfStoreSymlink = true;
+      recursive = false;
+    };
+    ".config/hypr/hypr-colors.conf" = {
+      source = ../../configs/hypr-darp8/hypr-colors.conf;
+      outOfStoreSymlink = true;
+      recursive = false;
     };
     ".config/DankMaterialShell" = {
       source = ../../configs/dms-darp8;
