@@ -36,6 +36,11 @@ in
       outOfStoreSymlink = true;
       recursive = false;
     };
+    ".config/matugen" = {
+      source = ../../configs/matugen;
+      outOfStoreSymlink = true;
+      recursive = true;
+    };
     ".config/DankMaterialShell" = {
       source = ../../configs/dms-darp8;
       outOfStoreSymlink = true;

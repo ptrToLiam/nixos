@@ -26,15 +26,10 @@ in
       outOfStoreSymlink = true;
       recursive = true;
     };
-    ".config/hypr/hypr-monitors.conf" = {
-      source = ../../configs/hypr-desktop/hypr-monitors.conf;
+    ".config/matugen" = {
+      source = ../../configs/matugen;
       outOfStoreSymlink = true;
-      recursive = false;
-    };
-    ".config/hypr/hypr-colors.conf" = {
-      source = ../../configs/hypr-desktop/hypr-colors.conf;
-      outOfStoreSymlink = true;
-      recursive = false;
+      recursive = true;
     };
     ".config/DankMaterialShell" = {
       source = ../../configs/dms-desktop;
