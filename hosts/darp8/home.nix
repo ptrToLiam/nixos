@@ -64,11 +64,6 @@
   # ENV SETTINGS
   xdg.enable = true;
   xdg.configFile = {
-    # "emacs" = {
-    #   source = ../../configs/emacs;
-    #   recursive = true;
-    # };
-
     "user-dirs.dirs".source = ../../configs/user-dirs.dirs;
     "user-dirs.locale".source = ../../configs/user-dirs.locale;
   };

@@ -1,0 +1,140 @@
+{
+  pkgs,
+  ...
+}:
+
+{
+  # BEGIN PACKAGES
+  home.packages = with pkgs; [
+    audacity
+    android-studio
+    bat
+    brave
+    brightnessctl
+    btop
+    comma
+    emacs-all-the-icons-fonts
+    emacsPackages.pdf-tools
+    exfatprogs
+    fastfetch
+    ffmpeg
+    filezilla
+    floorp-bin
+    fuzzel
+    fzf
+    genymotion
+    gimp
+    grim
+    gtk4
+    gvfs
+    grimblast
+    htop
+    hyprpicker
+    imagemagick
+    kdePackages.kdenlive
+    kdePackages.polkit-kde-agent-1
+    keepassxc
+    libreoffice
+    localsend
+    mpv
+    mupdf
+    networkmanagerapplet
+    nwg-look
+    openvpn
+    pamixer
+    pavucontrol
+    powertop
+    prismlauncher
+    protonvpn-gui
+    qbittorrent
+    signal-desktop
+    slurp
+    teams-for-linux
+    texliveFull
+    xfce.thunar
+    xfce.thunar-volman
+    tree
+    waybar
+    wev
+    wlr-randr
+    wlsunset
+    zoom-us
+  ];
+
+  # BEGIN PROGRAMS
+  programs = {
+    bash = {
+      enable = true;
+      enableCompletion = true;
+      enableVteIntegration = true;
+      initExtra =''
+        if [[ -z $ORIG_SHLVL ]]; then
+            export ORIG_SHLVL=$SHLVL
+        fi;
+        if [[ $SHLVL -gt $ORIG_SHLVL ]]; then
+            export PS1='\[\e[1;m\e[1;33m\e[1;m\] ($(($SHLVL - $ORIG_SHLVL))) \W\[\e[m\e[m\] 🐧 \[\e[1;32m\]~> \[\e[m\e[m\]'
+        else
+            export PS1='\[\e[1;m\e[1;33m\e[1;m\] \W\[\e[m\e[m\] 🐧 \[\e[1;32m\]~> \[\e[m\e[m\]'
+        fi;
+        export PATH="$HOME/.local/bin:$PATH"
+        set -o vi
+        fastfetch
+      '';
+      shellAliases = {
+        build = "./build.sh";
+        emacsd = "emacs --daemon";
+        emacsc = "emacsclient -c -a 'emacs'";
+        gap = "git add -p";
+        gcp = "git commit -p";
+        kpx = "keepassxc-cli open";
+        ls = "ls --color=auto";
+        ll = "ls -l";
+        la = "ls -lA";
+        fastfetch = "fastfetch -c $HOME/.config/fastfetch/config.json";
+        nixrebuild = "nixos-rebuild build --flake ~/personal/nixos#darp8 && sudo nixos-rebuild switch --flake ~/personal/nixos#darp8";
+        nixbuild = "sudo nixos-rebuild switch --flake";
+        nixtest = "sudo nixos-rebuild test --flake";
+        new = "source $HOME/.bashrc";
+        newbar = "pkill waybar; waybar &disown";
+        ping = "ping -c 5";
+        vi = "\\vim";
+        work = "nix develop --impure";
+        ".." = "cd ..";
+      };
+    };
+    dankMaterialShell = {
+      enable = true;
+    };
+    emacs = {
+      enable = true;
+      package = pkgs.emacs-gtk;
+      extraPackages = epkgs: [
+        epkgs.pdf-tools 
+        epkgs.org-pdftools
+      ];
+    };
+    feh.enable = true;
+    git = {
+      enable = true;
+      lfs.enable = true;
+      settings = {
+        user.email = "maloneliam@proton.me";
+        user.name = "Liam Malone";
+      };
+    };
+    neovim = {
+      enable = true;
+      package = pkgs.neovim-unwrapped;
+      vimAlias = true;
+      vimdiffAlias = true;
+    };
+    obs-studio = {
+      enable = true;
+    };
+    diff-so-fancy = {
+      enable = true;
+      enableGitIntegration = true;
+    };
+  };
+}
+
