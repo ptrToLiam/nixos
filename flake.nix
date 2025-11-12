@@ -35,20 +35,20 @@
             # Hyprland & Plugins Overlays
             (final: prev: {
                hyprlandPlugins = prev.hyprlandPlugins // {
-                 hyprexpo = inputs.hyprland-plugins.packages.${prev.system}.hyprexpo;
-                 hyprbars = inputs.hyprland-plugins.packages.${prev.system}.hyprbars;
+                 hyprexpo = inputs.hyprland-plugins.packages.${prev.stdenv.hostPlatform.system}.hyprexpo;
+                 hyprbars = inputs.hyprland-plugins.packages.${prev.stdenv.hostPlatform.system}.hyprbars;
                };
             })
             (final: prev: {
-              hyprland = inputs.hyprland.packages.${prev.system}.hyprland;
+              hyprland = inputs.hyprland.packages.${prev.stdenv.hostPlatform.system}.hyprland;
             })
             (final: prev: {
-              xdg-desktop-portal-hyprland = inputs.hyprland.packages.${prev.system}.xdg-desktop-portal-hyprland;
+              xdg-desktop-portal-hyprland = inputs.hyprland.packages.${prev.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
             })
 
             # Quickshell Overlays
             (final: prev: {
-              quickshell = inputs.quickshell.packages.${prev.system}.quickshell;
+              quickshell = inputs.quickshell.packages.${prev.stdenv.hostPlatform.system}.quickshell;
             })
           ];
       };

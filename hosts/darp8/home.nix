@@ -43,13 +43,6 @@
 
   # THEMING
 
-  ## QT SECTION
-  qt = {
-    enable = true;
-    platformTheme.name = "gtk";
-    style.name = "adwaita-dark";
-  };
-
   ## GTK SECTION
   gtk = {
     enable = true;
