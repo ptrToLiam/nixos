@@ -12,8 +12,6 @@
   time.timeZone = "Europe/Dublin";
   # time.timeZone = "America/New_York";
 
-  services.tailscale.enable = false;
-
   hardware = {
     bluetooth.enable = true;
     graphics = {
@@ -25,6 +23,41 @@
     };
     system76.enableAll = true;
   };
+  swapDevices = [ {
+    device = "/var/swapfile";
+    size = 24 * 1024;
+  } ];
+
+  boot.resumeDevice = "/dev/disk/by-uuid/c7704142-d0b9-4a85-af1c-ce776b895c0f";
+  boot.kernelParams = [
+    "resume_offset=13629440"
+    "mem_sleep_default=deep"
+  ];
+  boot.initrd.postMountCommands = lib.mkAfter ''
+    swapon /mnt-root/var/swapfile
+  '';
+
+  services.system76-scheduler.enable = true;
+  services.tailscale.enable = false;
+  services.power-profiles-daemon.enable = false;
+  services.auto-cpufreq.enable = false;
+  services.thermald.enable = true;
+
+  systemd.services.charge-thresholds = {
+    description = "Set System76 battery charge thresholds";
+    wantedBy = [ "multi-user.target" ];
+    after = [ "network.target" ];  # Ensure daemon is ready
+    serviceConfig = {
+      Type = "oneshot";
+      ExecStart = "${pkgs.system76-power}/bin/system76-power charge-thresholds --profile balanced";
+      RemainAfterExit = true;
+    };
+  };
+  services.logind.lidSwitch = "suspend-then-hibernate";
+  systemd.sleep.extraConfig = ''
+    HibernateDelaySec=20m
+    SuspendState=mem
+  '';
 
   nixpkgs.config.allowUnfree = true;
 

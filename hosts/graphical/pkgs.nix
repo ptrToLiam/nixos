@@ -6,9 +6,11 @@
 {
   # BEGIN PACKAGES
   home.packages = with pkgs; [
+    arc-icon-theme
     audacity
     android-studio
     bat
+    bibata-cursors
     brave
     brightnessctl
     btop
@@ -36,6 +38,7 @@
     keepassxc
     libreoffice
     localsend
+    materia-theme
     mpv
     mupdf
     networkmanagerapplet

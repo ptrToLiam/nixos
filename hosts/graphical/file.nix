@@ -76,5 +76,15 @@ in
       outOfStoreSymlink = true;
       recursive = true;
     };
+    ".config/user-dirs.dirs" = {
+      source = ../../configs/user-dirs.dirs;
+      outOfStoreSymlink = true;
+      recursive = false;
+    };
+    ".config/user-dirs.locale" = {
+      source = ../../configs/user-dirs.locale;
+      outOfStoreSymlink = true;
+      recursive = false;
+    };
   };
 }

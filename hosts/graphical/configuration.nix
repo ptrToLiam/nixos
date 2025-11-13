@@ -62,13 +62,10 @@
       };
     };
 
-    auto-cpufreq.enable = true;
     libinput.enable = true;
     blueman.enable = true;
     gvfs.enable = true;
 
-    thermald.enable = true;
-    power-profiles-daemon.enable = false;
     pulseaudio.enable = false;
     upower.enable = true;
   };
