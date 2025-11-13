@@ -32,7 +32,9 @@
     grimblast
     htop
     hyprpicker
+    hyprpwcenter
     imagemagick
+    hyprsysteminfo
     kdePackages.kdenlive
     kdePackages.polkit-kde-agent-1
     keepassxc

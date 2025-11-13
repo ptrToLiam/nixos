@@ -59,8 +59,6 @@
     SuspendState=mem
   '';
 
-  nixpkgs.config.allowUnfree = true;
-
   home-manager = {
     useGlobalPkgs = true;
     extraSpecialArgs = { inherit inputs; inherit cfg; };

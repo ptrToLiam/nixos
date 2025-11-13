@@ -19,6 +19,12 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    hyprsysteminfo = {
+      url = "github:hyprwm/hyprsysteminfo";
+    };
+    hyprpwcenter = {
+      url = "github:hyprwm/hyprpwcenter";
+    };
     hyprland-plugins = {
       url = "github:hyprwm/hyprland-plugins";
       inputs.hyprland.follows = "hyprland";
@@ -29,26 +35,16 @@
     let
       system = "x86_64-linux";
       # pkgs = nixpkgs.legacyPackages.${system};
-      pkgs = import nixpkgs.legacyPackages {
+      pkgs = import nixpkgs {
           inherit system;
+          config.allowUnfree = true;
           overlays = [
-            # Hyprland & Plugins Overlays
             (final: prev: {
-               hyprlandPlugins = prev.hyprlandPlugins // {
-                 hyprexpo = inputs.hyprland-plugins.packages.${prev.stdenv.hostPlatform.system}.hyprexpo;
-                 hyprbars = inputs.hyprland-plugins.packages.${prev.stdenv.hostPlatform.system}.hyprbars;
-               };
-            })
-            (final: prev: {
-              hyprland = inputs.hyprland.packages.${prev.stdenv.hostPlatform.system}.hyprland;
-            })
-            (final: prev: {
-              xdg-desktop-portal-hyprland = inputs.hyprland.packages.${prev.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
-            })
-
-            # Quickshell Overlays
-            (final: prev: {
-              quickshell = inputs.quickshell.packages.${prev.stdenv.hostPlatform.system}.quickshell;
+              hyprland = inputs.hyprland.packages.${system}.hyprland;
+              hyprsysteminfo = inputs.hyprsysteminfo.packages.${system}.hyprsysteminfo;
+              hyprpwcenter = inputs.hyprpwcenter.packages.${system}.hyprpwcenter;
+              xdg-desktop-portal-hyprland = inputs.hyprland.packages.${system}.xdg-desktop-portal-hyprland;
+              quickshell = inputs.quickshell.packages.${system}.quickshell;
             })
           ];
       };
@@ -66,6 +62,7 @@
           modules = [
             hyprland.nixosModules.default
             ./hosts/darp8/configuration.nix
+            { nixpkgs.pkgs = pkgs; }
           ];
         };
         desktop = nixpkgs.lib.nixosSystem {
@@ -73,6 +70,7 @@
           modules = [
             hyprland.nixosModules.default
             ./hosts/desktop/configuration.nix
+            { nixpkgs.pkgs = pkgs; }
           ];
         };
       };
