@@ -159,6 +159,7 @@
 
   environment.systemPackages = with pkgs; [
     bat
+    bolt
     discord
     fd
     file
