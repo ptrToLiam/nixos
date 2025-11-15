@@ -170,7 +170,6 @@
     libnotify
     mesa
     neovim
-    quickshell
     ripgrep
     spotify
     unzip

@@ -34,7 +34,7 @@
     hyprpicker
     hyprpwcenter
     imagemagick
-    hyprsysteminfo
+    # hyprsysteminfo
     kdePackages.kdenlive
     kdePackages.polkit-kde-agent-1
     keepassxc
