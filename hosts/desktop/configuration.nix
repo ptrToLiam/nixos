@@ -3,107 +3,13 @@
 {
   imports = [
     ./hardware-configuration.nix
+    ../graphical/configuration.nix
     inputs.home-manager.nixosModules.default
   ];
 
-  boot = {
-    loader.systemd-boot.enable = true;
-    loader.efi.canTouchEfiVariables = true;
-    plymouth.enable = true;
-  };
-
-  networking = {
-    hostName = "lmdesktop";
-
-    networkmanager = {
-      enable = true;
-      wifi.backend = "iwd";
-    };
-
-    firewall = {
-      enable = true;
-
-      # Open ports in the firewall.
-      allowedTCPPorts = [ 21 22 80 443 4070 5037 ];
-      allowedUDPPorts = [ 4070 ];
-
-      allowedTCPPortRanges = [
-        { from = 8000; to = 8010; }
-      ];
-
-      allowPing = true;
-    };
-
-    wireless.iwd = {
-      enable = true;
-      settings = {
-        IPv6.Enabled = true;
-        Settings.Autoconnect = true;
-      };
-    };
-  };
+  networking.hostName = "lmdesktop";
 
   time.timeZone = "Europe/Dublin";
-
-  i18n= {
-    defaultLocale = "en_US.UTF-8";
-    inputMethod = {
-      enable = true;
-      type = "fcitx5";
-      fcitx5 = {
-        waylandFrontend = true;
-        addons = with pkgs; [
-          fcitx5-mozc
-          fcitx5-gtk
-          qt6Packages.fcitx5-chinese-addons
-        ];
-      };
-    };
-  };
-
-  services = {
-    avahi = {
-      enable = true;
-      nssmdns4 = true;
-      publish = {
-        enable = true;
-        userServices = true;
-      };
-    };
-
-    greetd = {
-      enable = true;
-      restart = true;
-      settings = {
-        default_session = {
-          command = "${pkgs.tuigreet}/bin/tuigreet --cmd Hyprland";
-        };
-      };
-    };
-
-    libinput.enable = true;
-    blueman.enable = true;
-    gvfs.enable = true;
-    auto-cpufreq.enable = true;
-
-    thermald.enable = true;
-    power-profiles-daemon.enable = false;
-    pulseaudio.enable = false;
-    upower.enable = true;
-
-    xserver.videoDrivers = [ "nvidia" ];
-  };
-
-  security.pam.services.hyprlock = {};
-
-  environment = {
-    etc = {
-      "greetd/environments".text = ''
-        Hyprland
-        river
-      '';
-    };
-  };
 
   hardware = {
     bluetooth.enable = true;
@@ -120,85 +26,23 @@
     };
   };
 
-  fonts = {
-    packages = with pkgs; [
-      noto-fonts
-      noto-fonts-cjk-sans
-      noto-fonts-cjk-serif
-      noto-fonts-color-emoji
-      liberation_ttf
-      fira-code-symbols
-      mplus-outline-fonts.githubRelease
-      dina-font
-      nerd-fonts.fira-code
-      nerd-fonts.droid-sans-mono
-    ];
+  boot.kernelPackages = pkgs.linuxPackages_latest;
 
-    fontconfig = {
+  services = {
+    thermald.enable = true;
+    power-profiles-daemon.enable = false;
+    pulseaudio.enable = false;
+    upower.enable = true;
+
+    xserver.videoDrivers = [ "nvidia" ];
+    openssh = {
       enable = true;
-      includeUserConf = true;
+      settings = {
+        PasswordAuthentication = false;
+        PermitRootLogin = "no";
+      };
     };
   };
-
-  nixpkgs.config.allowUnfree = true;
-
-  nix.settings = {
-    substituters = [ "https://hyprland.cachix.org" ];
-    trusted-public-keys = [ "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc=" ];
-    trusted-users = [ "root" "@wheel" ];
-    allowed-users = [ "root" "@wheel" ];
-  };
-
-  nix.gc = {
-      automatic = true;
-      dates = "weekly";
-      options = "--delete-older-than 10d";
-  };
-
-  nix.optimise = {
-    automatic = true;
-    dates = [ "00:00" ];
-  };
-
-  users.users.liamm = {
-    isNormalUser = true;
-    description = "liamm";
-    extraGroups = [ "networkmanager" "wheel" "disk" "power" "video" "davfs2" "input" ];
-  };
-
-  programs = {
-    steam = {
-      enable = true;
-      remotePlay.openFirewall = true;
-      dedicatedServer.openFirewall = true;
-    };
-
-    hyprland = {
-      enable = true;
-      package = pkgs.hyprland;
-      portalPackage = pkgs.xdg-desktop-portal-hyprland;
-      xwayland.enable = true;
-      withUWSM = false;
-      plugins = [ ];
-    };
-
-    river-classic = {
-      enable = true;
-      xwayland.enable = true;
-    };
-
-    gnupg.agent = {
-      enable = true;
-      enableSSHSupport = true;
-    };
-
-    hyprlock.enable = true;
-    dconf.enable = true;
-    nix-ld.enable = true;
-    mtr.enable = true;
-  };
-
-  lib.inputMethod.fcitx5.waylandFrontend = true;
 
   home-manager = {
     useGlobalPkgs = true;
@@ -207,62 +51,6 @@
       "${cfg.username}" = import ./home.nix;
     };
     backupFileExtension = ".bak";
-  };
- 
-  environment.systemPackages = with pkgs; [
-    bat
-    discord
-    fd
-    file
-    ghostty
-    glib
-    gnome-keyring
-    libdrm
-    libnotify
-    mesa
-    neovim
-    quickshell
-    ripgrep
-    spotify
-    unzip
-    usbutils
-    uxplay
-    vim
-    waypipe
-    wget
-    wl-clipboard
-    xdg-user-dirs
-    zip
-  ];
-
-  zramSwap = {
-    enable = true;
-    algorithm = "zstd";
-  };
-
-  xdg = {
-    mime.enable = true;
-    portal = {
-      enable = true;
-      wlr.enable = true;
-      extraPortals = with pkgs;[ 
-        xdg-desktop-portal-gtk 
-        xdg-desktop-portal-wlr
-      ];
-      config = {
-        common = {
-            default = [ "gtk" ];
-        };
-      };
-    };
-  };
-
-  services.openssh = {
-    enable = true;
-    settings = {
-      PasswordAuthentication = false;
-      PermitRootLogin = "no";
-    };
   };
 
   # This option defines the first version of NixOS you have installed on this particular machine

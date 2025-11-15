@@ -40,32 +40,8 @@
   ];
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
-  # THEMING
-
-  ## GTK SECTION
-  gtk = {
-    enable = true;
-    cursorTheme = {
-      package = pkgs.bibata-cursors;
-      name = "Bibata-Modern-Ice";
-    };
-    theme = {
-      name = "Materia-dark";
-      package = pkgs.materia-theme;
-    };
-    iconTheme = {
-      package = pkgs.arc-icon-theme;
-      name = "arc-icon-theme";
-    };
-  };
-
-
   # ENV SETTINGS
   xdg.enable = true;
-  xdg.configFile = {
-    "user-dirs.dirs".source = ../../configs/user-dirs.dirs;
-    "user-dirs.locale".source = ../../configs/user-dirs.locale;
-  };
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;

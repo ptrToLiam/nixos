@@ -8,11 +8,11 @@
     ../graphical/pkgs.nix #import shared packages
   ];
 
-  # BEGIN PACKAGES
+  # BEGIN PER-HOST PACKAGES
   home.packages = with pkgs; [
   ];
 
-  # BEGIN PROGRAMS
+  # BEGIN PER-HOST PROGRAMS
   programs = {
   };
 }

@@ -15,7 +15,7 @@ in
     ../graphical/file.nix # import shared configs
   ];
 
-  # Symlink dotfiles
+  # Symlink per-host dotfiles
   home.file = mkSymlinkAttrs {
     ".config/hypr/hypr-monitors.conf" = {
       source = ../../configs/hypr-darp8/hypr-monitors.conf;

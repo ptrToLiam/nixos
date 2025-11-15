@@ -11,7 +11,7 @@ let
 
 in
 {
-  # Symlink dotfiles
+  # Symlink shared dotfiles
   home.file = mkSymlinkAttrs {
     # Fonts
     ".local/share/fonts" = {
@@ -28,11 +28,6 @@ in
     };
     ".config/matugen" = {
       source = ../../configs/matugen;
-      outOfStoreSymlink = true;
-      recursive = true;
-    };
-    ".config/DankMaterialShell" = {
-      source = ../../configs/dms-darp8;
       outOfStoreSymlink = true;
       recursive = true;
     };
