@@ -23,59 +23,52 @@
     };
     system76.enableAll = true;
   };
+
   swapDevices = [ {
     device = "/var/swapfile";
     size = 24 * 1024;
   } ];
 
-  boot.resumeDevice = "/dev/disk/by-uuid/c7704142-d0b9-4a85-af1c-ce776b895c0f";
-  boot.kernelParams = [
-    "resume_offset=13629440"
-    "mem_sleep_default=s2idle"
-  ];
-  boot.initrd.postMountCommands = lib.mkAfter ''
-    swapon /mnt-root/var/swapfile
-  '';
-  boot.kernelPackages = pkgs.linuxPackages_latest;
-
-  services.system76-scheduler.enable = true;
-  services.tailscale.enable = false;
-  services.power-profiles-daemon.enable = false;
-  services.thermald.enable = true;
-
-  systemd.services.charge-thresholds = {
-    description = "Set System76 battery charge thresholds";
-    wantedBy = [ "multi-user.target" "post-resume.target" ];
-    after = [ "network.target" "suspend.target" "hibernate.target" "hybrid-sleep.target" ];  # Ensures it runs post-resume
-    serviceConfig = {
-      Type = "oneshot";
-      ExecStart = "${pkgs.system76-power}/bin/system76-power charge-thresholds --profile balanced";
-      RemainAfterExit = true;
-    };
+  boot = {
+    resumeDevice = "/dev/disk/by-uuid/c7704142-d0b9-4a85-af1c-ce776b895c0f";
+    kernelParams = [
+      "resume_offset=13629440"
+      "mem_sleep_default=s2idle"
+    ];
+    kernelPackages = pkgs.linuxPackages_latest;
+    initrd.postMountCommands = lib.mkAfter ''
+      swapon /mnt-root/var/swapfile
+    '';
   };
-  systemd.services.thunderbolt-suspend = {
-    description = "Disable Thunderbolt on suspend";
-    wantedBy = [ "suspend.target" "hibernate.target" "hybrid-sleep.target" ];
-    serviceConfig = {
-      Type = "oneshot";
-      ExecStart = "${pkgs.bolt}/bin/boltctl forget --all";  # Or echo 1 > /sys/bus/thunderbolt/devices/*/authorized if no bolt
-    };
-  };
-  systemd.services.thunderbolt-resume = {
-    description = "Re-enable Thunderbolt on resume";
-    wantedBy = [ "post-resume.target" ];
-    serviceConfig = {
-      Type = "oneshot";
-      ExecStart = "${pkgs.bolt}/bin/boltctl authorize --all";  # Adjust as needed
-    };
-  };
-  systemd.sleep.extraConfig = ''
-    HibernateDelaySec=20m
-    SuspendState=mem
-  '';
 
-  services.logind.lidSwitch = "suspend-then-hibernate";
-  services.hardware.bolt.enable = true;
+  services = {
+    system76-scheduler.enable = true;
+    tailscale.enable = false;
+    power-profiles-daemon.enable = false;
+    thermald.enable = true;
+    logind.settings.Login.HandleLidSwitch = "suspend-then-hibernate";
+    hardware.bolt.enable = true;
+  };
+
+  systemd = {
+    services = {
+      charge-thresholds = {
+        description = "Set System76 battery charge thresholds";
+        wantedBy = [ "multi-user.target" "post-resume.target" ];
+        after = [ "network.target" "suspend.target" "hibernate.target" "hybrid-sleep.target" ];
+        serviceConfig = {
+          Type = "oneshot";
+          ExecStart = "${pkgs.system76-power}/bin/system76-power charge-thresholds --profile balanced";
+          RemainAfterExit = true;
+        };
+      };
+    };
+
+    sleep.extraConfig = ''
+      HibernateDelaySec=20m
+      SuspendState=mem
+      '';
+  };
 
   home-manager = {
     useGlobalPkgs = true;
