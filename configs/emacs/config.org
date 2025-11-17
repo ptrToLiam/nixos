@@ -189,6 +189,8 @@
       (lm/leader-keys
           "t" '(:ignore t :wk "Toggle")
           "t n" '(tab-bar-new-tab :wk "New tab")
+          "t m" '(tab-bar-mode :wk "Toggle tab bar")
+          "t c" '(tab-close :wk "Close tab")
           "t l" '(display-line-numbers-mode :wk "Toggle line numbers")
           "t i" '(org-toggle-inline-images :wk "Toggle inline images")
           "t t" '(visual-line-mode :wk "Toggle truncated lines"))

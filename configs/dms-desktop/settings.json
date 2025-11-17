@@ -149,7 +149,7 @@
   "soundPluggedIn": true,
   "acMonitorTimeout": 900,
   "acLockTimeout": 300,
-  "acSuspendTimeout": 3600,
+  "acSuspendTimeout": 1800,
   "acSuspendBehavior": 0,
   "batteryMonitorTimeout": 0,
   "batteryLockTimeout": 0,
