@@ -62,12 +62,23 @@
       };
     };
 
+    udev = {
+      packages = with pkgs; [
+        qmk-udev-rules
+      ];
+      extraRules = ''
+      # Explicit Vial rule – this is the only one that reliably works
+      KERNEL=="hidraw*", SUBSYSTEM=="hidraw", ATTRS{serial}=="*vial:f64c2b3c*", MODE="0660", GROUP="users", TAG+="uaccess", TAG+="udev-acl"
+      '';
+    };
+
     libinput.enable = true;
     blueman.enable = true;
     gvfs.enable = true;
 
     pulseaudio.enable = false;
     upower.enable = true;
+
   };
 
   security.pam.services.hyprlock = {};
@@ -170,11 +181,13 @@
     libnotify
     mesa
     neovim
+    qmk
     ripgrep
     spotify
     unzip
     usbutils
     uxplay
+    vial
     vim
     waypipe
     wget

@@ -20,13 +20,16 @@
     	modesetting.enable = true;
     	powerManagement.enable = true;
 
-    	open = false;
+    	open = true;
     	nvidiaSettings = true;
       package = config.boot.kernelPackages.nvidiaPackages.latest;
     };
   };
 
-  boot.kernelPackages = pkgs.linuxPackages_latest;
+  boot = {
+    kernelPackages = pkgs.linuxPackages_latest;
+  };
+
 
   services = {
     thermald.enable = true;
