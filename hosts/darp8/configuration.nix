@@ -65,7 +65,7 @@
     };
 
     sleep.extraConfig = ''
-      HibernateDelaySec=20m
+      HibernateDelaySec=15m
       SuspendState=mem
       '';
   };
