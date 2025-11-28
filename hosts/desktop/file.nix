@@ -27,6 +27,16 @@ in
       outOfStoreSymlink = true;
       recursive = false;
     };
+    ".config/hypr/monitors.conf" = {
+      source = ../../configs/hypr-desktop/monitors.conf;
+      outOfStoreSymlink = true;
+      recursive = false;
+    };
+    ".config/hypr/workspaces.conf" = {
+      source = ../../configs/hypr-desktop/workspaces.conf;
+      outOfStoreSymlink = true;
+      recursive = false;
+    };
     ".config/DankMaterialShell" = {
       source = ../../configs/dms-desktop;
       outOfStoreSymlink = true;
