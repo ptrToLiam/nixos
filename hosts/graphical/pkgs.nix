@@ -44,6 +44,7 @@
     mpv
     mupdf
     networkmanagerapplet
+    nwg-displays
     nwg-look
     openvpn
     pamixer

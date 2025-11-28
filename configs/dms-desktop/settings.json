@@ -14,7 +14,7 @@
   "useFahrenheit": false,
   "nightModeEnabled": false,
   "animationSpeed": 4,
-  "customAnimationDuration": 350,
+  "customAnimationDuration": 275,
   "wallpaperFillMode": "Fill",
   "blurredWallpaperLayer": false,
   "blurWallpaperOnOverview": false,
@@ -127,9 +127,9 @@
   "soundNewNotification": true,
   "soundVolumeChanged": true,
   "soundPluggedIn": true,
-  "acMonitorTimeout": 1800,
+  "acMonitorTimeout": 3600,
   "acLockTimeout": 300,
-  "acSuspendTimeout": 1800,
+  "acSuspendTimeout": 5400,
   "acSuspendBehavior": 0,
   "batteryMonitorTimeout": 0,
   "batteryLockTimeout": 0,
@@ -225,7 +225,10 @@
       "enabled": true,
       "position": 3,
       "screenPreferences": [
-        "all"
+        {
+          "name": "DP-1",
+          "model": "M27Q3"
+        }
       ],
       "showOnLastDisplay": true,
       "leftWidgets": [
