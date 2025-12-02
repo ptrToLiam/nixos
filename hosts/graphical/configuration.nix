@@ -1,4 +1,4 @@
-{ cfg, config, lib, pkgs, inputs, ... }:
+{ cfg, config, lib, pkgs, inputs, hypr-plugin-dir, ... }:
 {
   boot = {
     loader.systemd-boot.enable = true;
@@ -195,6 +195,10 @@
     xdg-user-dirs
     zip
   ];
+
+  environment.sessionVariables = {
+    HYPR_PLUGIN_DIR = hypr-plugin-dir;
+  };
  
   zramSwap = {
     enable = true;

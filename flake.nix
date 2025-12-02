@@ -45,9 +45,19 @@
               hyprpwcenter = inputs.hyprpwcenter.packages.${system}.hyprpwcenter;
               xdg-desktop-portal-hyprland = inputs.hyprland.packages.${system}.xdg-desktop-portal-hyprland;
               quickshell = inputs.quickshell.packages.${system}.quickshell;
+              hyprPluginPkgs = inputs.hyprland-plugins.packages.${system};
             })
           ];
       };
+
+      hypr-plugin-dir = pkgs.symlinkJoin {
+        name = "hyprland-plugins";
+        paths = with pkgs.hyprPluginPkgs; [
+          hyprexpo
+          hyprscrolling
+        ];
+      };
+
       defaultCfg = rec {
         username = "liamm";
         homeDirectory = "/home/${username}";
@@ -58,7 +68,7 @@
     {
       nixosConfigurations = {
         darp8 = nixpkgs.lib.nixosSystem {
-          specialArgs = { inherit inputs; cfg = defaultCfg; };
+          specialArgs = { inherit inputs; cfg = defaultCfg; hypr-plugin-dir = hypr-plugin-dir; };
           modules = [
             hyprland.nixosModules.default
             ./hosts/darp8/configuration.nix
@@ -66,7 +76,7 @@
           ];
         };
         desktop = nixpkgs.lib.nixosSystem {
-          specialArgs = { inherit inputs; cfg = defaultCfg; };
+          specialArgs = { inherit inputs; cfg = defaultCfg; hypr-plugin-dir = hypr-plugin-dir; };
           modules = [
             hyprland.nixosModules.default
             ./hosts/desktop/configuration.nix
