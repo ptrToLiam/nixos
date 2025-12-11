@@ -27,6 +27,16 @@ in
       outOfStoreSymlink = true;
       recursive = false;
     };
+    ".config/hypr/monitors.conf" = {
+      source = ../../configs/hypr-darp8/monitors.conf;
+      outOfStoreSymlink = true;
+      recursive = false;
+    };
+    ".config/hypr/workspaces.conf" = {
+      source = ../../configs/hypr-darp8/workspaces.conf;
+      outOfStoreSymlink = true;
+      recursive = false;
+    };
     ".config/DankMaterialShell" = {
       source = ../../configs/dms-darp8;
       outOfStoreSymlink = true;
