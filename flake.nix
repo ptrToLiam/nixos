@@ -5,20 +5,18 @@
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     hyprland.url = "github:hyprwm/Hyprland";
 
-    home-manager = {
-      url = "github:nix-community/home-manager";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     dankMaterialShell = {
       url = "github:AvengeMedia/DankMaterialShell";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
-    quickshell = {
-      url = "github:quickshell-mirror/quickshell";
+    focus-editor = {
+      url = "path:./pkgs/focus";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
+    home-manager = {
+      url = "github:nix-community/home-manager";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     hyprsysteminfo = {
       url = "github:hyprwm/hyprsysteminfo";
     };
@@ -28,6 +26,10 @@
     hyprland-plugins = {
       url = "github:hyprwm/hyprland-plugins";
       inputs.hyprland.follows = "hyprland";
+    };
+    quickshell = {
+      url = "github:quickshell-mirror/quickshell";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
   };
 
@@ -40,12 +42,13 @@
           config.allowUnfree = true;
           overlays = [
             (final: prev: {
+              focus = inputs.focus-editor.packages.${system};
               hyprland = inputs.hyprland.packages.${system}.hyprland;
               hyprsysteminfo = inputs.hyprsysteminfo.packages.${system}.hyprsysteminfo;
               hyprpwcenter = inputs.hyprpwcenter.packages.${system}.hyprpwcenter;
-              xdg-desktop-portal-hyprland = inputs.hyprland.packages.${system}.xdg-desktop-portal-hyprland;
-              quickshell = inputs.quickshell.packages.${system}.quickshell;
               hyprPluginPkgs = inputs.hyprland-plugins.packages.${system};
+              quickshell = inputs.quickshell.packages.${system}.quickshell;
+              xdg-desktop-portal-hyprland = inputs.hyprland.packages.${system}.xdg-desktop-portal-hyprland;
             })
           ];
       };
