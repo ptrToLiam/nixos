@@ -121,6 +121,22 @@
         "type": "github"
       }
     },
+    "focus-editor": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "path": "./pkgs/focus",
+        "type": "path"
+      },
+      "original": {
+        "path": "./pkgs/focus",
+        "type": "path"
+      },
+      "parent": []
+    },
     "gitignore": {
       "inputs": {
         "nixpkgs": [
@@ -923,6 +939,7 @@
     "root": {
       "inputs": {
         "dankMaterialShell": "dankMaterialShell",
+        "focus-editor": "focus-editor",
         "home-manager": "home-manager",
         "hyprland": "hyprland",
         "hyprland-plugins": "hyprland-plugins",

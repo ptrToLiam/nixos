@@ -42,7 +42,7 @@
           config.allowUnfree = true;
           overlays = [
             (final: prev: {
-              focus = inputs.focus-editor.packages.${system};
+              focus = inputs.focus-editor.packages.${system}.focus;
               hyprland = inputs.hyprland.packages.${system}.hyprland;
               hyprsysteminfo = inputs.hyprsysteminfo.packages.${system}.hyprsysteminfo;
               hyprpwcenter = inputs.hyprpwcenter.packages.${system}.hyprpwcenter;

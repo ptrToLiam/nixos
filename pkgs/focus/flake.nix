@@ -42,6 +42,27 @@
 
           wrapProgram $out/bin/focus \
             --prefix LD_LIBRARY_PATH : ${pkgs.lib.makeLibraryPath buildInputs}
+
+          # .desktop file
+          mkdir -p $out/share/applications
+          cat > $out/share/applications/focus-editor.desktop <<EOF
+          [Desktop Entry]
+          Name=Focus
+          Comment=A simple, fast, privacy-friendly text editor
+          Exec=$out/bin/focus %F
+          Icon=focus
+          Terminal=false
+          Type=Application
+          Categories=Utility;TextEditor;
+          MimeType=text/plain;text/markdown;text/x-rust;text/x-python;text/x-c;text/x-c++;
+          StartupWMClass=focus
+          EOF
+
+          # Icon (Focus ships a 256×256 PNG inside the binary as a resource, but also includes one in the repo)
+          # We'll just extract the embedded one at runtime or ship a fallback.
+          # Easiest: download the official icon once and install it.
+          install -Dm644 ${./focus.png} $out/share/icons/hicolor/256x256/apps/focus.png
+          install -Dm644 ${./focus.png} $out/share/icons/hicolor/512x512/apps/focus.png
         '';
 
         meta = with pkgs.lib; {

@@ -31,6 +31,11 @@ in
       outOfStoreSymlink = true;
       recursive = true;
     };
+    ".config/focus-editor" = {
+      source = ../../configs/focus-editor;
+      outOfStoreSymlink = true;
+      recursive = true;
+    };
     ".config/river" = {
       source = ../../configs/river;
       outOfStoreSymlink = true;
