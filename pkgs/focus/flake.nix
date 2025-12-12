@@ -1,5 +1,5 @@
 {
-  description = "Focus editor – binary flake";
+  description = "Focus editor – binary package";
 
   inputs.nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
 
@@ -14,7 +14,6 @@
 
         src = pkgs.fetchurl {
           url = "https://github.com/focus-editor/focus/releases/download/${version}/focus-linux";
-          # Run once → Nix will tell you the correct hash and you paste it here
           hash = "sha256-rjA8TtXL+hJSmIVsv24M3wC1vBMFZURGTIVauzueaZE=";
           executable = true;
         };
@@ -45,7 +44,7 @@
 
           # .desktop file
           mkdir -p $out/share/applications
-          cat > $out/share/applications/focus-editor.desktop <<EOF
+          cat > $out/share/applications/focus.desktop <<EOF
           [Desktop Entry]
           Name=Focus
           Comment=A simple, fast, privacy-friendly text editor
@@ -54,15 +53,17 @@
           Terminal=false
           Type=Application
           Categories=Utility;TextEditor;
-          MimeType=text/plain;text/markdown;text/x-rust;text/x-python;text/x-c;text/x-c++;
+          MimeType=text/plain;text/markdown;text/x-rust;text/x-python;text/x-c;text/x-c++;text/x-zig;
           StartupWMClass=focus
           EOF
 
-          # Icon (Focus ships a 256×256 PNG inside the binary as a resource, but also includes one in the repo)
-          # We'll just extract the embedded one at runtime or ship a fallback.
-          # Easiest: download the official icon once and install it.
-          install -Dm644 ${./focus.png} $out/share/icons/hicolor/256x256/apps/focus.png
-          install -Dm644 ${./focus.png} $out/share/icons/hicolor/512x512/apps/focus.png
+          # icon install (image is 1024x1024, but conventions are 256, 512)
+          for size in 256 512; do
+            mkdir -p $out/share/icons/hicolor/''${size}x''${size}/apps
+            install -Dm644 ${./focus.png} $out/share/icons/hicolor/''${size}x''${size}/apps/focus.png
+          done
+
+          runHook postInstall
         '';
 
         meta = with pkgs.lib; {
