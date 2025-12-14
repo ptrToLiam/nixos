@@ -5,7 +5,7 @@
 # Example:
 # C:/projects/my-project  # <- the first directory in the list becomes the working directory
 # C:/jai
-# src  # <- this would be relative to the config file location
+# src  # <- this would be relative to the config file location.
 
 [ignore]
 # Files and directories matching the following wildcards will not be loaded or descended into
@@ -26,7 +26,9 @@
 # Example:
 # *.hpp *.hh *.h : cpp
 # todo.txt : todo
-
+*.h : c
+*.hpp *.hh : cpp
+*.frag *.vert : glsl
 
 [[settings]]
 
@@ -53,7 +55,7 @@ show_line_numbers:                                  false
 show_ruler_at_column:                               0
 colored_titlebar:                                   true   # Windows 11+ only
 dark_titlebar:                                      false  # Windows only
-hide_mouse_when_typing:                             false
+hide_mouse_when_typing:                             true
 draw_indent_guides:                                 false
 auto_surround_with_brackets_and_quotes:             false
 auto_close_brackets:                                false
@@ -75,13 +77,13 @@ search_is_case_sensitive_when_uppercase_present:    true
 
 detect_indentation:                                 true
 indent_using:                                       spaces
-tab_size:                                           4
+tab_size:                                           2
 
 status_bar_position:                                bottom   # options: top, bottom
 status_bar_show_cursors_off_screen:                 true
 status_bar_show_line_col:                           true
 status_bar_show_indentation:                        true
-status_bar_show_selected_text_length:               false
+status_bar_show_selected_text_length:               true
 
 show_scrollbar_marks:                               true
 scrollbar_width_scale:                              1.0
