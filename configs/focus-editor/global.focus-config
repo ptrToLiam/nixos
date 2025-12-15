@@ -157,6 +157,7 @@ draw_indent_guides:                                 false
 
 # Key combination           Action
 Alt-F4                      quit
+Ctrl-Alt-Q                  quit
 
 Ctrl-D                      select_word_or_create_another_cursor
 Ctrl-R                      revert_select_word_or_create_another_cursor
@@ -169,11 +170,17 @@ Ctrl-Shift-D                duplicate_lines
 # Shift-Backspace             delete_line_and_go_up
 # Shift-Delete                delete_line
 
+Ctrl-H                      move_left
+Ctrl-J                      move_down
+Ctrl-K                      move_up
+Ctrl-L                      move_right
+Ctrl-Alt-K                  move_selected_lines_up
+Ctrl-Alt-J                  move_selected_lines_down
 Alt-ArrowUp                 move_selected_lines_up
 Alt-ArrowDown               move_selected_lines_down
 
-Ctrl-J                      join_lines
-Ctrl-Shift-J                join_lines_no_spaces_in_between
+Ctrl-Shift-J                join_lines
+Alt-Ctrl-Shift-J            join_lines_no_spaces_in_between
 
 Ctrl-U                      change_case_cycle
 
@@ -193,7 +200,7 @@ Ctrl-PageUp                 move_to_previous_buffer
 Ctrl-PageDown               move_to_next_buffer
 
 Ctrl-/                      toggle_comment
-Ctrl-L                      select_line
+Alt-Ctrl-Shift-L            select_line
 
 Alt-K                       scroll_viewport_up
 Alt-E                       scroll_viewport_up_fast  # for some reason Alt-U didn't reach the window at all, so using Alt-E instead
@@ -252,6 +259,8 @@ Ctrl-Enter                  open_entry_on_the_side
 Ctrl-1                      open_entry_on_the_left
 Ctrl-2                      open_entry_on_the_right
 Shift-Enter                 open_entry_in_explorer
+Ctrl-K                      move_up
+Ctrl-J                      move_down
 
 Tab                         open_directory
 
@@ -265,6 +274,9 @@ Ctrl-1                      open_entry_on_the_left
 Ctrl-2                      open_entry_on_the_right
 
 Shift-Enter                 move_up  # an alternative way to move
+
+Ctrl-K                      move_up
+Ctrl-J                      move_down
 
 Alt-C                       toggle_case_sensitive
 Alt-W                       toggle_whole_word
@@ -293,7 +305,8 @@ Ctrl-Tab                    switch_between_open_files
 Ctrl-G                      go_to_line
 
 Ctrl-C                      copy
-Ctrl-X                      cut
+Ctrl-shift-X                cut
+Ctrl-X                      delete_left_char
 Ctrl-V                      paste
 
 Ctrl-Z                      undo
@@ -302,12 +315,12 @@ Ctrl-Shift-Z                redo
 Ctrl-D                      select_word
 Ctrl-A                      select_all
 
-Ctrl-K                      cut_to_end_of_line
+Ctrl-Shift-K                cut_to_end_of_line
 Ctrl-Shift-Delete           delete_to_end_of_line
 Ctrl-Shift-Backspace        delete_to_start_of_line
 
-Ctrl-W                      close_current_editor
-Ctrl-Shift-W                close_other_editor
+Ctrl-Q                      close_current_editor
+Ctrl-Shift-Q                close_other_editor
 
 Escape                      escape  # combines close_dialog and remove_additional_cursors
 
@@ -356,6 +369,8 @@ Shift-Tab                   focus_previous_ui_element
 {Shift}-Meta-Delete         delete_right_through_word
 Ctrl-Backspace              delete_left_by_character_type_fast
 Ctrl-Delete                 delete_right_by_character_type_fast
+Ctrl-W                      delete_left_through_word
+Ctrl-Shift-W                delete_right_through_word
 
 Ctrl-Plus                   increase_font_size
 Ctrl-Minus                  decrease_font_size
