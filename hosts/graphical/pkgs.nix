@@ -8,63 +8,63 @@
   home.packages = with pkgs; [
     arc-icon-theme
     audacity
-    android-studio
-    bat
+    # android-studio
     bibata-cursors
     brave
-    brightnessctl
+    # brightnessctl
     btop
-    comma
+    # comma
     emacs-all-the-icons-fonts
+    emacs-gtk
     emacsPackages.pdf-tools
     exfatprogs
     fastfetch
     ffmpeg
-    filezilla
+    # filezilla
     floorp-bin
     focus
     fuzzel
     fzf
-    genymotion
+    # genymotion
     gimp
-    grim
+    # grim
     gtk4
     gvfs
     grimblast
-    htop
+    # htop
     hyprpicker
     hyprpwcenter
     imagemagick
     # hyprsysteminfo
-    kdePackages.kdenlive
-    kdePackages.polkit-kde-agent-1
+    # kdePackages.kdenlive
+    # kdePackages.polkit-kde-agent-1
     keepassxc
-    libreoffice
+    # libreoffice
     localsend
     materia-theme
     mpv
     mupdf
-    networkmanagerapplet
+    # networkmanagerapplet
     nwg-displays
     nwg-look
     openvpn
-    pamixer
-    pavucontrol
-    powertop
-    prismlauncher
-    protonvpn-gui
-    qbittorrent
+    # pamixer
+    # pavucontrol
+    # powertop
+    # prismlauncher
+    # protonvpn-gui
+    # qbittorrent
     signal-desktop
-    slurp
-    teams-for-linux
+    # slurp
+    # teams-for-linux
     texliveFull
     xfce.thunar
     xfce.thunar-volman
     tree
-    waybar
+    # waybar
     wev
-    wlr-randr
-    wlsunset
+    # wlr-randr
+    # wlsunset
     zoom-us
   ];
 
@@ -105,20 +105,13 @@
         newbar = "pkill waybar; waybar &disown";
         ping = "ping -c 5";
         vi = "\\vim";
+        vim = "nvim";
         work = "nix develop --impure";
         ".." = "cd ..";
       };
     };
-    dankMaterialShell = {
+    dank-material-shell = {
       enable = true;
-    };
-    emacs = {
-      enable = true;
-      package = pkgs.emacs-gtk;
-      extraPackages = epkgs: [
-        epkgs.pdf-tools 
-        epkgs.org-pdftools
-      ];
     };
     feh.enable = true;
     git = {
@@ -128,12 +121,6 @@
         user.email = "maloneliam@proton.me";
         user.name = "Liam Malone";
       };
-    };
-    neovim = {
-      enable = true;
-      package = pkgs.neovim-unwrapped;
-      vimAlias = true;
-      vimdiffAlias = true;
     };
     obs-studio = {
       enable = true;

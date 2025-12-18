@@ -3,9 +3,8 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-    hyprland.url = "github:hyprwm/Hyprland";
 
-    dankMaterialShell = {
+    dms = {
       url = "github:AvengeMedia/DankMaterialShell";
       inputs.nixpkgs.follows = "nixpkgs";
     };
@@ -17,19 +16,26 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    hyprsysteminfo = {
-      url = "github:hyprwm/hyprsysteminfo";
-    };
-    hyprpwcenter = {
-      url = "github:hyprwm/hyprpwcenter";
+
+    hyprland = {
+      url = "github:hyprwm/Hyprland";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
     hyprland-plugins = {
       url = "github:hyprwm/hyprland-plugins";
       inputs.hyprland.follows = "hyprland";
+      inputs.systems.follows = "hyprland/systems";
     };
+    hyprpwcenter = {
+      url = "github:hyprwm/hyprpwcenter";
+      inputs.hyprgraphics.follows = "hyprland/hyprgraphics";
+      inputs.aquamarine.follows = "hyprland/aquamarine";
+      inputs.hyprutils.follows = "hyprland/hyprutils";
+      inputs.systems.follows = "hyprland/systems";
+    };
+
     quickshell = {
-      url = "github:quickshell-mirror/quickshell";
-      inputs.nixpkgs.follows = "nixpkgs";
+      follows = "dms/quickshell";
     };
   };
 

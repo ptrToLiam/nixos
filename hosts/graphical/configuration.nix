@@ -1,5 +1,9 @@
 { cfg, config, lib, pkgs, inputs, hypr-plugin-dir, ... }:
 {
+  imports = [
+    inputs.dms.nixosModules.greeter
+  ];
+
   boot = {
     loader.systemd-boot.enable = true;
     loader.efi.canTouchEfiVariables = true;
@@ -43,33 +47,24 @@
   };
 
   services = {
-    avahi = {
-      enable = true;
-      nssmdns4 = true;
-      publish = {
-        enable = true;
-        userServices = true;
-      };
-    };
+    # for iphone screencasting
+    # avahi = {
+    #   enable = true;
+    #   nssmdns4 = true;
+    #   publish = {
+    #     enable = true;
+    #     userServices = true;
+    #   };
+    # };
 
     greetd = {
       enable = true;
       restart = true;
-      settings = {
-        default_session = {
-          command = "${pkgs.tuigreet}/bin/tuigreet --cmd Hyprland";
-        };
-      };
-    };
-
-    udev = {
-      packages = with pkgs; [
-        qmk-udev-rules
-      ];
-      extraRules = ''
-      # Explicit Vial rule – this is the only one that reliably works
-      KERNEL=="hidraw*", SUBSYSTEM=="hidraw", ATTRS{serial}=="*vial:f64c2b3c*", MODE="0660", GROUP="users", TAG+="uaccess", TAG+="udev-acl"
-      '';
+      # settings = {
+      #   default_session = {
+      #     command = "${pkgs.tuigreet}/bin/tuigreet --cmd start-hyprland";
+      #   };
+      # };
     };
 
     libinput.enable = true;
@@ -78,18 +73,16 @@
 
     pulseaudio.enable = false;
     upower.enable = true;
-
   };
 
   security.pam.services.hyprlock = {};
-  environment = {
-    etc = {
-      "greetd/environments".text = ''
-        Hyprland
-        river
-      '';
-    };
-  };
+  # environment = {
+  #   etc = {
+  #     "greetd/environments".text = ''
+  #       Hyprland
+  #     '';
+  #   };
+  # };
 
   fonts = {
     packages = with pkgs; [
@@ -150,17 +143,22 @@
       plugins = [ ];
     };
 
-    river-classic = {
+    dank-material-shell.greeter = {
       enable = true;
-      xwayland.enable = true;
+      compositor.name = "hyprland";
+      configHome = "${cfg.homeDirectory}/.config";
     };
+    # river-classic = {
+    #   enable = true;
+    #   xwayland.enable = true;
+    # };
 
     gnupg.agent = {
       enable = true;
       enableSSHSupport = true;
     };
 
-    hyprlock.enable = true;
+    # hyprlock.enable = true;
     dconf.enable = true;
     nix-ld.enable = true;
     mtr.enable = true;
@@ -170,24 +168,25 @@
 
   environment.systemPackages = with pkgs; [
     bat
-    bolt
+    # bolt
     discord
     fd
     file
     ghostty
+    git
     glib
     gnome-keyring
     libdrm
     libnotify
     mesa
     neovim
-    qmk
+    # qmk
     ripgrep
     spotify
     unzip
-    usbutils
-    uxplay
-    vial
+    # usbutils
+    # uxplay
+    # vial
     vim
     waypipe
     wget
@@ -209,10 +208,10 @@
     mime.enable = true;
     portal = {
       enable = true;
-      wlr.enable = true;
+      # wlr.enable = true;
       extraPortals = with pkgs;[ 
         xdg-desktop-portal-gtk 
-        xdg-desktop-portal-wlr
+        # xdg-desktop-portal-wlr
       ];
       config = {
         common = {

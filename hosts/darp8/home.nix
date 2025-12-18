@@ -19,9 +19,8 @@
     ./services.nix # system services
 
     # general modules
-    ../../modules/home-manager/tmux.nix
-
-    inputs.dankMaterialShell.homeModules.dankMaterialShell.default
+    # ../../modules/home-manager/tmux.nix
+    inputs.dms.homeModules.dank-material-shell
   ];
 
   # You should not change this value, even if you update Home Manager. If you do
