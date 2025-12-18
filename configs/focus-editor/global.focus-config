@@ -38,7 +38,7 @@ cursor_as_block:                                    true
 cursor_blink_time_in_seconds:                       5
 highlight_selection_occurrences:                    true
 highlight_line_with_cursor:                         false
-highlight_matching_brackets:                        false
+highlight_matching_brackets:                        true
 show_paste_effect:                                  true
 disable_file_open_close_animations:                 false
 double_shift_to_search_in_workspace:                false
@@ -50,7 +50,7 @@ max_editor_width:                                   -1
 can_cancel_go_to_line:                              true
 copy_whole_line_without_selection:                  false
 editor_history_size:                                1024
-line_wrap_is_on_by_default:                         false
+line_wrap_is_on_by_default:                         true
 show_line_numbers:                                  false
 show_ruler_at_column:                               0
 colored_titlebar:                                   true   # Windows 11+ only
@@ -170,17 +170,17 @@ Ctrl-Shift-D                duplicate_lines
 # Shift-Backspace             delete_line_and_go_up
 # Shift-Delete                delete_line
 
-Ctrl-H                      move_left
-Ctrl-J                      move_down
-Ctrl-K                      move_up
-Ctrl-L                      move_right
+{Shift}-Ctrl-H              move_left
+{Shift}-Ctrl-J              move_down
+{Shift}-Ctrl-K              move_up
+{Shift}-Ctrl-L              move_right
 Ctrl-Alt-K                  move_selected_lines_up
 Ctrl-Alt-J                  move_selected_lines_down
 Alt-ArrowUp                 move_selected_lines_up
 Alt-ArrowDown               move_selected_lines_down
 
-Ctrl-Shift-J                join_lines
-Alt-Ctrl-Shift-J            join_lines_no_spaces_in_between
+Ctrl-Shift-:                join_lines
+Alt-Ctrl-Shift-:            join_lines_no_spaces_in_between
 
 Ctrl-U                      change_case_cycle
 
@@ -200,7 +200,7 @@ Ctrl-PageUp                 move_to_previous_buffer
 Ctrl-PageDown               move_to_next_buffer
 
 Ctrl-/                      toggle_comment
-Alt-Ctrl-Shift-L            select_line
+Alt-Shift-R                 select_line
 
 Alt-K                       scroll_viewport_up
 Alt-E                       scroll_viewport_up_fast  # for some reason Alt-U didn't reach the window at all, so using Alt-E instead
@@ -245,6 +245,9 @@ Ctrl-Shift-N                create_new_file_on_the_side
 
 Alt-Shift-ArrowUp           create_cursor_above
 Alt-Shift-ArrowDown         create_cursor_below
+
+Alt-Shift-Ctrl-K            create_cursor_above
+Alt-Shift-Ctrl-J            create_cursor_below
 
 Alt-A                       align_cursors
 
@@ -305,8 +308,8 @@ Ctrl-Tab                    switch_between_open_files
 Ctrl-G                      go_to_line
 
 Ctrl-C                      copy
-Ctrl-shift-X                cut
-Ctrl-X                      delete_left_char
+Ctrl-X                      cut
+Ctrl-Shift-X                delete_left_char
 Ctrl-V                      paste
 
 Ctrl-Z                      undo
@@ -315,7 +318,7 @@ Ctrl-Shift-Z                redo
 Ctrl-D                      select_word
 Ctrl-A                      select_all
 
-Ctrl-Shift-K                cut_to_end_of_line
+Ctrl-Shift-$                cut_to_end_of_line
 Ctrl-Shift-Delete           delete_to_end_of_line
 Ctrl-Shift-Backspace        delete_to_start_of_line
 
@@ -324,7 +327,7 @@ Ctrl-Shift-Q                close_other_editor
 
 Escape                      escape  # combines close_dialog and remove_additional_cursors
 
-Ctrl-Shift-L                toggle_expand
+Ctrl-Shift-E                toggle_expand
 
 Ctrl-B                      build_panel_toggle
 
@@ -372,6 +375,7 @@ Ctrl-Delete                 delete_right_by_character_type_fast
 Ctrl-W                      delete_left_through_word
 Ctrl-Shift-W                delete_right_through_word
 
+Ctrl-=                      increase_font_size
 Ctrl-Plus                   increase_font_size
 Ctrl-Minus                  decrease_font_size
 Ctrl-0                      reset_font_size_to_default
