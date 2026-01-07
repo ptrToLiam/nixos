@@ -21,6 +21,7 @@
         nativeBuildInputs = with pkgs; [ autoPatchelfHook makeWrapper ];
 
         buildInputs = with pkgs; [
+          fontconfig
           libxkbcommon
           xorg.libxcb
           xorg.libX11
@@ -69,7 +70,7 @@
         meta = with pkgs.lib; {
           description = "Focus – a simple, fast, privacy-friendly text editor";
           homepage    = "https://github.com/focus-editor/focus";
-          license     = licenses.mit;
+          license     = licenses.gpl3Only;
           platforms   = platforms.linux;
           mainProgram = "focus";
         };

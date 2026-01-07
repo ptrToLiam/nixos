@@ -403,6 +403,13 @@
     "all"
   ],
   "systemMonitorVariants": [],
-  "desktopWidgetPositions": {},
+  "desktopWidgetPositions": {
+    "systemMonitor": {
+      "eDP-1": {
+        "x": 1600,
+        "y": 44.6015625
+      }
+    }
+  },
   "configVersion": 3
 }

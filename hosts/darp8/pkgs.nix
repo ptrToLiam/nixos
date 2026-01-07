@@ -10,6 +10,8 @@
 
   # BEGIN PER-HOST PACKAGES
   home.packages = with pkgs; [
+    prismlauncher
+    mcpelauncher-ui-qt
   ];
 
   # BEGIN PER-HOST PROGRAMS

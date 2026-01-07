@@ -390,9 +390,9 @@ Shift-Ctrl-F8               go_to_previous_build_error_on_the_side
 [[style]]
 
 [fonts]
-font:          default
-font_ui:       default
-font_ui_bold:  default
+font:          M PLUS Latin Code 60 Semibold
+font_ui:       M PLUS Latin Code 60 Semibold
+font_ui_bold:  M PLUS Latin Code 60 Bold
 font_size:     14
 font_ui_size:  15
 anti_aliasing: lcd  # options: lcd, normal

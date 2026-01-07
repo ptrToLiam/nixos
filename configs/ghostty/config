@@ -24,7 +24,8 @@ gtk-single-instance = true
 
 # Font
 font-size = 12
-font-family = Kelmscott Mono
+# font-family = Kelmscott Mono
+font-family = M PLUS Code Latin 60
 
 # Theme
 theme = Obsidian
