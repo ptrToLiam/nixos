@@ -10,6 +10,8 @@
 
   # BEGIN PER-HOST PACKAGES
   home.packages = with pkgs; [
+    android-studio
+    genymotion
     prismlauncher
     mcpelauncher-ui-qt
   ];
