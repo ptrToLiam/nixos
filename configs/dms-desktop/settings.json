@@ -264,9 +264,13 @@
   "niriOutputSettings": {},
   "hyprlandOutputSettings": {
     "DP-1": {
+      "colorManagement": "wide",
       "bitdepth": 10
     },
-    "HDMI-A-2": {}
+    "HDMI-A-2": {
+      "colorManagement": "wide",
+      "bitdepth": 10
+    }
   },
   "barConfigs": [
     {

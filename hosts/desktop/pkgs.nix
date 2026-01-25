@@ -10,6 +10,8 @@
 
   # BEGIN PER-HOST PACKAGES
   home.packages = with pkgs; [
+    genymotion
+    android-studio
   ];
 
   # BEGIN PER-HOST PROGRAMS

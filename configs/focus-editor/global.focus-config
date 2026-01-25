@@ -161,6 +161,7 @@ Ctrl-Alt-Q                  quit
 
 Ctrl-D                      select_word_or_create_another_cursor
 Ctrl-R                      revert_select_word_or_create_another_cursor
+Ctrl-Shift-R                reload_from_disk
 Ctrl-Y                      move_selection_to_next_word
 Ctrl-Shift-A                select_all_occurrences
 
