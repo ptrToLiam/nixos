@@ -10,8 +10,9 @@
 
   # BEGIN PER-HOST PACKAGES
   home.packages = with pkgs; [
-    genymotion
     android-studio
+    genymotion
+    nvtopPackages.nvidia
   ];
 
   # BEGIN PER-HOST PROGRAMS

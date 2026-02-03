@@ -312,9 +312,9 @@
           "enabled": true
         }
       ],
-      "spacing": 3,
+      "spacing": 1,
       "innerPadding": 4,
-      "bottomGap": 0,
+      "bottomGap": -2,
       "transparency": 0,
       "widgetTransparency": 1,
       "squareCorners": false,
@@ -332,7 +332,8 @@
       "openOnOverview": false,
       "visible": true,
       "popupGapsAuto": true,
-      "popupGapsManual": 4
+      "popupGapsManual": 4,
+      "widgetOutlineEnabled": false
     }
   ],
   "desktopClockEnabled": false,
