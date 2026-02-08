@@ -56,7 +56,7 @@ show_ruler_at_column:                               0
 colored_titlebar:                                   true   # Windows 11+ only
 dark_titlebar:                                      false  # Windows only
 hide_mouse_when_typing:                             true
-draw_indent_guides:                                 true
+draw_indent_guides:                                 false
 auto_surround_with_brackets_and_quotes:             false
 auto_close_brackets:                                false
 prefer_system_file_dialogs:                         false  # Windows only
@@ -393,9 +393,9 @@ Shift-Ctrl-F8               go_to_previous_build_error_on_the_side
 theme: steel-breeze
 
 [fonts]
-font:          M PLUS Code Latin 60 Medium
-font_ui:       M PLUS Code Latin 60 Semibold
-font_ui_bold:  M PLUS Code Latin 60 Bold
+font:          M PLUS Code 60 Medium
+font_ui:       M PLUS Code 60 Semibold
+font_ui_bold:  M PLUS Code 60 Bold
 font_size:     14
 font_ui_size:  15
 anti_aliasing: lcd  # options: lcd, normal

@@ -58,8 +58,8 @@
     # slurp
     # teams-for-linux
     texliveFull
-    xfce.thunar
-    xfce.thunar-volman
+    thunar
+    thunar-volman
     tree
     # waybar
     wev
