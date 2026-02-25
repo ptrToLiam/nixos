@@ -8,7 +8,7 @@ keybind = ctrl+shift+n=new_window
 keybind = ctrl+shift+o=ignore
 
 # Window Stuff
-background-opacity=0.9
+background-opacity=0.8
 confirm-close-surface = false
 window-theme = system
 window-decoration = true
@@ -28,12 +28,13 @@ font-size = 12
 font-family = M PLUS Code Latin 60 Medium
 
 # Theme
-theme = Obsidian
+# theme = Obsidian
 # theme = Relaxed
-
+theme = Nord
+background-blur = true
 # Cursor And Mouse
 cursor-style = block
-cursor-color = #ffffff
+# cursor-color = #ffffff
 mouse-hide-while-typing = true
 
 config-file = ./config-dankcolors

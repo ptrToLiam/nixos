@@ -23,11 +23,11 @@
         buildInputs = with pkgs; [
           fontconfig
           libxkbcommon
-          xorg.libxcb
-          xorg.libX11
-          xorg.libXcursor
-          xorg.libXrandr
-          xorg.libXi
+          libxcb
+          libX11
+          libXcursor
+          libXrandr
+          libXi
           libGL
           vulkan-loader
           wayland
