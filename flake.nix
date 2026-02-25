@@ -12,6 +12,10 @@
       url = "path:./pkgs/focus";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    fred = {
+      url = "path:/home/liamm/nix-pkgs/fred";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -48,6 +52,7 @@
           config.allowUnfree = true;
           overlays = [
             (final: prev: {
+              fred = inputs.fred.packages.${system}.fred;
               focus = inputs.focus-editor.packages.${system}.focus;
               hyprland = inputs.hyprland.packages.${system}.hyprland;
               hyprsysteminfo = inputs.hyprsysteminfo.packages.${system}.hyprsysteminfo;
