@@ -68,7 +68,6 @@
         name = "hyprland-plugins";
         paths = with pkgs.hyprPluginPkgs; [
           hyprexpo
-          hyprscrolling
         ];
       };
 
