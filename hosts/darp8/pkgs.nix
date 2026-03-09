@@ -13,7 +13,6 @@
     android-studio
     genymotion
     praat
-    prismlauncher
     mcpelauncher-ui-qt
   ];
 

@@ -90,12 +90,12 @@
       noto-fonts-cjk-sans
       noto-fonts-cjk-serif
       noto-fonts-color-emoji
-      liberation_ttf
-      fira-code-symbols
+      # liberation_ttf
+      # fira-code-symbols
       mplus-outline-fonts.githubRelease
-      dina-font
-      nerd-fonts.fira-code
-      nerd-fonts.droid-sans-mono
+      # dina-font
+      # nerd-fonts.fira-code
+      # nerd-fonts.droid-sans-mono
     ];
 
     fontconfig = {
@@ -160,7 +160,14 @@
 
     # hyprlock.enable = true;
     dconf.enable = true;
-    nix-ld.enable = true;
+    nix-ld = {
+      enable = true;
+      libraries = with pkgs; [
+        fontconfig
+        libxkbcommon
+        vulkan-loader
+      ];
+    };
     mtr.enable = true;
   };
 

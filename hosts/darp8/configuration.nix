@@ -23,22 +23,8 @@
     };
     system76.enableAll = true;
   };
-
-  swapDevices = [ {
-    device = "/var/swapfile";
-    size = 24 * 1024;
-  } ];
-
   boot = {
-    resumeDevice = "/dev/disk/by-uuid/c7704142-d0b9-4a85-af1c-ce776b895c0f";
-    kernelParams = [
-      "resume_offset=13629440"
-      "mem_sleep_default=s2idle"
-    ];
     kernelPackages = pkgs.linuxPackages_latest;
-    initrd.postMountCommands = lib.mkAfter ''
-      swapon /mnt-root/var/swapfile
-    '';
   };
 
   services = {
@@ -64,10 +50,10 @@
       };
     };
 
-    sleep.extraConfig = ''
-      HibernateDelaySec=15m
-      SuspendState=mem
-      '';
+    sleep.settings.Sleep = {
+      HibernateDelaySec="15m";
+      SuspendState="mem";
+    };
   };
 
   home-manager = {
@@ -78,7 +64,7 @@
     };
     backupFileExtension = ".bak";
   };
- 
+
   # This option defines the first version of NixOS you have installed on this particular machine
   # Do NOT change this value unless you have manually inspected all the changes it would make to your configuration,
   # and migrated your data accordingly.

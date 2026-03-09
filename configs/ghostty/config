@@ -37,5 +37,5 @@ cursor-style = block
 # cursor-color = #ffffff
 mouse-hide-while-typing = true
 
-config-file = ./config-dankcolors
+config-file = ./themes/dankcolors
 app-notifications = no-clipboard-copy,no-config-reload

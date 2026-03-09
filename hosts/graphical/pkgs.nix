@@ -6,65 +6,49 @@
 {
   # BEGIN PACKAGES
   home.packages = with pkgs; [
+    adw-gtk3
     arc-icon-theme
     audacity
-    # android-studio
     bibata-cursors
     brave
-    # brightnessctl
     btop
-    # comma
     emacs-all-the-icons-fonts
     emacs-gtk
     emacsPackages.pdf-tools
     exfatprogs
     fastfetch
     ffmpeg
-    # filezilla
     floorp-bin
     focus
     fuzzel
     fzf
-    # genymotion
     gimp
-    # grim
     gtk4
     gvfs
     grimblast
-    # htop
     hyprpicker
     hyprpwcenter
     imagemagick
-    # hyprsysteminfo
-    # kdePackages.kdenlive
-    # kdePackages.polkit-kde-agent-1
+    kdePackages.kdenlive
+    kdePackages.qt6ct
     keepassxc
-    # libreoffice
+    libsForQt5.qt5ct
     localsend
     materia-theme
     mpv
     mupdf
-    # networkmanagerapplet
     nwg-displays
     nwg-look
     openvpn
-    # pamixer
-    # pavucontrol
-    # powertop
-    # prismlauncher
-    # protonvpn-gui
-    # qbittorrent
+    prismlauncher
     signal-desktop
-    # slurp
-    # teams-for-linux
+    tela-icon-theme
+    tela-circle-icon-theme
     texliveFull
     thunar
     thunar-volman
     tree
-    # waybar
     wev
-    # wlr-randr
-    # wlsunset
     zoom-us
   ];
 
