@@ -25,11 +25,6 @@
       url = "github:hyprwm/Hyprland";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    hyprland-plugins = {
-      url = "github:hyprwm/hyprland-plugins";
-      inputs.hyprland.follows = "hyprland";
-      inputs.systems.follows = "hyprland/systems";
-    };
     hyprpwcenter = {
       url = "github:hyprwm/hyprpwcenter";
       inputs.hyprgraphics.follows = "hyprland/hyprgraphics";
@@ -57,18 +52,10 @@
               hyprland = inputs.hyprland.packages.${system}.hyprland;
               hyprsysteminfo = inputs.hyprsysteminfo.packages.${system}.hyprsysteminfo;
               hyprpwcenter = inputs.hyprpwcenter.packages.${system}.hyprpwcenter;
-              hyprPluginPkgs = inputs.hyprland-plugins.packages.${system};
               quickshell = inputs.quickshell.packages.${system}.quickshell;
               xdg-desktop-portal-hyprland = inputs.hyprland.packages.${system}.xdg-desktop-portal-hyprland;
             })
           ];
-      };
-
-      hypr-plugin-dir = pkgs.symlinkJoin {
-        name = "hyprland-plugins";
-        paths = with pkgs.hyprPluginPkgs; [
-          hyprexpo
-        ];
       };
 
       defaultCfg = rec {
@@ -81,7 +68,7 @@
     {
       nixosConfigurations = {
         darp8 = nixpkgs.lib.nixosSystem {
-          specialArgs = { inherit inputs; cfg = defaultCfg; hypr-plugin-dir = hypr-plugin-dir; };
+          specialArgs = { inherit inputs; cfg = defaultCfg; };
           modules = [
             hyprland.nixosModules.default
             ./hosts/darp8/configuration.nix
@@ -89,7 +76,7 @@
           ];
         };
         desktop = nixpkgs.lib.nixosSystem {
-          specialArgs = { inherit inputs; cfg = defaultCfg; hypr-plugin-dir = hypr-plugin-dir; };
+          specialArgs = { inherit inputs; cfg = defaultCfg; };
           modules = [
             hyprland.nixosModules.default
             ./hosts/desktop/configuration.nix

@@ -1,4 +1,4 @@
-{ cfg, config, lib, pkgs, inputs, hypr-plugin-dir, ... }:
+{ cfg, config, lib, pkgs, inputs, ... }:
 {
   imports = [
     inputs.dms.nixosModules.greeter
@@ -202,9 +202,7 @@
     zip
   ];
 
-  environment.sessionVariables = {
-    HYPR_PLUGIN_DIR = hypr-plugin-dir;
-  };
+  environment.sessionVariables = {};
  
   zramSwap = {
     enable = true;
