@@ -94,7 +94,7 @@
       },
       "locked": {
         "lastModified": 1772373854,
-        "narHash": "sha256-SC7GkiWtYBxDzlHFsQErmSsk5SGWCLNyDTcCnbUpjzU=",
+        "narHash": "sha256-4VumE5iTZ6Lsx4r+vNXHJwnbdBDQOMy07ZHsLnS9SoA=",
         "path": "/home/liamm/nix-pkgs/fred",
         "type": "path"
       },

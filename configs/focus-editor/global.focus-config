@@ -398,7 +398,7 @@ font_ui:       M PLUS Code 60 Semibold
 font_ui_bold:  M PLUS Code 60 Bold
 font_size:     14
 font_ui_size:  15
-anti_aliasing: normal  # options: lcd, normal
+anti_aliasing: lcd  # options: lcd, normal
 hinting:       true
 
 [colors]
