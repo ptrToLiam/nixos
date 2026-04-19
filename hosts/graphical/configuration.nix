@@ -57,14 +57,20 @@
     #   };
     # };
 
-    greetd = {
+    # greetd = {
+    #   enable = true;
+    #   restart = true;
+    #   # settings = {
+    #   #   default_session = {
+    #   #     command = "${pkgs.tuigreet}/bin/tuigreet --cmd start-hyprland";
+    #   #   };
+    #   # };
+    # };
+    displayManager.dms-greeter = {
       enable = true;
-      restart = true;
-      # settings = {
-      #   default_session = {
-      #     command = "${pkgs.tuigreet}/bin/tuigreet --cmd start-hyprland";
-      #   };
-      # };
+      compositor.name = "hyprland";
+      configHome = "${cfg.homeDirectory}";
+      package = inputs.dms.packages.${pkgs.stdenv.hostPlatform.system}.default;
     };
 
     libinput.enable = true;
@@ -124,7 +130,10 @@
   users.users.liamm = {
     isNormalUser = true;
     description = "liamm";
-    extraGroups = [ "networkmanager" "wheel" "disk" "power" "video" "davfs2" "input" ];
+    extraGroups = [
+      "networkmanager" "wheel" "disk" "power"
+      "video" "davfs2" "input" "greeter"
+    ];
   };
 
   programs = {
@@ -143,11 +152,11 @@
       plugins = [ ];
     };
 
-    dank-material-shell.greeter = {
-      enable = true;
-      compositor.name = "hyprland";
-      configHome = "${cfg.homeDirectory}/.config";
-    };
+    # dank-material-shell.greeter = {
+    #   enable = true;
+    #   compositor.name = "hyprland";
+    #   configHome = "${cfg.homeDirectory}";
+    # };
     # river-classic = {
     #   enable = true;
     #   xwayland.enable = true;

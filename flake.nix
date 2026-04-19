@@ -61,7 +61,7 @@
       defaultCfg = rec {
         username = "liamm";
         homeDirectory = "/home/${username}";
-        runtimeRoot = "${homeDirectory}/personal/nixos";
+        runtimeRoot = "${homeDirectory}/nixos";
         context = self;
       };
     in

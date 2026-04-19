@@ -32,7 +32,7 @@
     EDITOR = "emacsclient";
     GIT_EDITOR = "nvim";
     NIX_SHELL_PRESERVE_PROMPT = 1;
-    NIX_CONFIG_DIR = "${cfg.homeDirectory}/personal/nixos";
+    NIX_CONFIG_DIR = "${cfg.homeDirectory}/nixos";
   };
 
   nix.settings.extra-trusted-substituters = [

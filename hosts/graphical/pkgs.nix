@@ -82,15 +82,11 @@
         ll = "ls -l";
         la = "ls -lA";
         fastfetch = "fastfetch -c $HOME/.config/fastfetch/config.json";
-        nixrebuild = "nixos-rebuild build --flake ~/personal/nixos#darp8 && sudo nixos-rebuild switch --flake ~/personal/nixos#darp8";
-        nixbuild = "sudo nixos-rebuild switch --flake";
-        nixtest = "sudo nixos-rebuild test --flake";
         new = "source $HOME/.bashrc";
         newbar = "pkill waybar; waybar &disown";
         ping = "ping -c 5";
         vi = "\\vim";
         vim = "nvim";
-        work = "nix develop --impure";
         ".." = "cd ..";
       };
     };
@@ -101,6 +97,7 @@
     git = {
       enable = true;
       lfs.enable = true;
+      signing.format = "openpgp";
       settings = {
         user.email = "maloneliam@proton.me";
         user.name = "Liam Malone";
