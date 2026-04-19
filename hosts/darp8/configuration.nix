@@ -4,7 +4,9 @@
   imports = [
     ./hardware-configuration.nix
     ../graphical/configuration.nix
-    inputs.home-manager.nixosModules.default
+    ./file.nix
+    ./pkgs.nix
+    ./services.nix
   ];
 
   networking.hostName = "darp8";
@@ -58,15 +60,6 @@
       HibernateDelaySec="15m";
       SuspendState="mem";
     };
-  };
-
-  home-manager = {
-    useGlobalPkgs = true;
-    extraSpecialArgs = { inherit inputs; inherit cfg; };
-    users = {
-      "${cfg.username}" = import ./home.nix;
-    };
-    backupFileExtension = ".bak";
   };
 
   # This option defines the first version of NixOS you have installed on this particular machine

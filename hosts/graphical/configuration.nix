@@ -2,6 +2,7 @@
 {
   imports = [
     inputs.dms.nixosModules.greeter
+    inputs.dms.nixosModules.dank-material-shell
   ];
 
   boot = {
@@ -47,31 +48,15 @@
   };
 
   services = {
-    # for iphone screencasting
-    # avahi = {
-    #   enable = true;
-    #   nssmdns4 = true;
-    #   publish = {
-    #     enable = true;
-    #     userServices = true;
-    #   };
-    # };
-
-    # greetd = {
-    #   enable = true;
-    #   restart = true;
-    #   # settings = {
-    #   #   default_session = {
-    #   #     command = "${pkgs.tuigreet}/bin/tuigreet --cmd start-hyprland";
-    #   #   };
-    #   # };
-    # };
     displayManager.dms-greeter = {
       enable = true;
       compositor.name = "hyprland";
       configHome = "${cfg.homeDirectory}";
       package = inputs.dms.packages.${pkgs.stdenv.hostPlatform.system}.default;
     };
+
+    gnome.gnome-keyring.enable = true;
+
 
     libinput.enable = true;
     blueman.enable = true;
@@ -82,13 +67,7 @@
   };
 
   security.pam.services.hyprlock = {};
-  # environment = {
-  #   etc = {
-  #     "greetd/environments".text = ''
-  #       Hyprland
-  #     '';
-  #   };
-  # };
+  security.pam.services.login.enableGnomeKeyring = true;
 
   fonts = {
     packages = with pkgs; [
@@ -96,12 +75,7 @@
       noto-fonts-cjk-sans
       noto-fonts-cjk-serif
       noto-fonts-color-emoji
-      # liberation_ttf
-      # fira-code-symbols
       mplus-outline-fonts.githubRelease
-      # dina-font
-      # nerd-fonts.fira-code
-      # nerd-fonts.droid-sans-mono
     ];
 
     fontconfig = {
@@ -137,6 +111,21 @@
   };
 
   programs = {
+    bash = {
+      completion.enable = true;
+      promptInit = ''
+        if [[ -z $ORIG_SHLVL ]]; then
+          export ORIG_SHLVL=$SHLVL
+        fi
+        
+        if [[ $SHLVL -gt $ORIG_SHLVL ]]; then
+          export PS1='\[\e[1;m\e[1;33m\e[1;m\] ($(($SHLVL - $ORIG_SHLVL))) \W\[\e[m\e[m\] 🐧 \[\e[1;32m\]~> \[\e[m\e[m\]'
+        else
+          export PS1='\[\e[1;m\e[1;33m\e[1;m\] \W\[\e[m\e[m\] 🐧 \[\e[1;32m\]~> \[\e[m\e[m\]'
+        fi
+      '';
+    };
+
     steam = {
       enable = true;
       remotePlay.openFirewall = true;
@@ -152,15 +141,9 @@
       plugins = [ ];
     };
 
-    # dank-material-shell.greeter = {
-    #   enable = true;
-    #   compositor.name = "hyprland";
-    #   configHome = "${cfg.homeDirectory}";
-    # };
-    # river-classic = {
-    #   enable = true;
-    #   xwayland.enable = true;
-    # };
+    dank-material-shell = {
+      enable = true;
+    };
 
     gnupg.agent = {
       enable = true;
@@ -180,11 +163,11 @@
     mtr.enable = true;
   };
 
+  # maybe delete?
   lib.inputMethod.fcitx5.waylandFrontend = true;
 
   environment.systemPackages = with pkgs; [
     bat
-    # bolt
     discord
     fd
     file
@@ -196,13 +179,9 @@
     libnotify
     mesa
     neovim
-    # qmk
     ripgrep
     spotify
     unzip
-    # usbutils
-    # uxplay
-    # vial
     vim
     waypipe
     wget
@@ -211,7 +190,12 @@
     zip
   ];
 
-  environment.sessionVariables = {};
+  environment.sessionVariables = {
+    EDITOR = "focus";
+    GIT_EDITOR = "nvim";
+    NIX_SHELL_PRESERVE_PROMPT = "1";
+    NIX_CONFIG_DIR = "/home/liamm/nixos";
+  };
  
   zramSwap = {
     enable = true;

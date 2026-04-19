@@ -1,0 +1,22 @@
+[user]
+  email = "maloneliam@proton.me"
+  name = "Liam Malone"
+
+[core]
+  pager = "diff-so-fancy | less --tabs=4 -RFX"
+
+[interactive]
+  diffFilter = "diff-so-fancy --patch"
+
+[filter "lfs"]
+	clean = "git-lfs clean -- %f"
+	process = "git-lfs filter-process"
+	required = true
+	smudge = "git-lfs smudge -- %f"
+
+[gpg]
+  format = "openpgp"
+
+[color]
+  ui = true
+

@@ -1,18 +1,14 @@
 { cfg, config, context, pkgs, ... }:
 
 let
-  inherit (config.home) username homeDirectory;
-
   mkSymlinkAttrs = import ../../utils/mkSymlinkAttrs.nix {
     inherit pkgs;
     inherit (cfg) context runtimeRoot;
-    hm = config.lib; # same as: cfg.context.inputs.home-manager.lib.hm;
   };
 
 in
 {
-  # Symlink shared dotfiles
-  home.file = mkSymlinkAttrs {
+  systemd.user.tmpfiles.rules = mkSymlinkAttrs {
     # Fonts
     ".local/share/fonts" = {
         source = ../../fonts;
@@ -76,6 +72,12 @@ in
       outOfStoreSymlink = true;
       recursive = true;
     };
+    ".config/git" = {
+      source = ../../configs/git;
+      outOfStoreSymlink = true;
+      recursive = true;
+    };
+
     ".config/user-dirs.dirs" = {
       source = ../../configs/user-dirs.dirs;
       outOfStoreSymlink = true;
@@ -83,6 +85,16 @@ in
     };
     ".config/user-dirs.locale" = {
       source = ../../configs/user-dirs.locale;
+      outOfStoreSymlink = true;
+      recursive = false;
+    };
+    ".bashrc" = {
+      source = ../../configs/bash/bashrc;
+      outOfStoreSymlink = true;
+      recursive = false;
+    };
+    ".gnupg/gpg-agent.conf" = {
+      source = ../../configs/gnupg/gpg-agent.conf;
       outOfStoreSymlink = true;
       recursive = false;
     };

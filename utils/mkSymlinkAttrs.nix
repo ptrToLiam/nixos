@@ -1,69 +1,48 @@
-# Taken from: https://github.com/urob/dotfiles/blob/main/lib/mkSymlinkAttrs.nix
+# Original taken from: https://github.com/urob/dotfiles/blob/main/lib/mkSymlinkAttrs.nix
 
-# This function adds and interpretes outOfStoreSymlink option to home.file attribute sets.
+# Rewritten for systemd.user.tmpfiles.rules — no home-manager dependency.
+# Output: flat list of tmpfiles rule strings, assign to systemd.user.tmpfiles.rules
 #
-# Usage:
-#   home.file = mkSymlinkAttrs {
-#     .foo = { source = "foo"; outOfStoreSymlink = true; recursive = true; };
-#     .bar = { source = "foo/bar"; outOfStoreSymlink = true; };
+# Usage (unchanged from before):
+#   systemd.user.tmpfiles.rules = mkSymlinkAttrs {
+#     ".config/hypr" = { source = ./configs/hypr; outOfStoreSymlink = true; recursive = true; };
+#     ".config/ghostty/config" = { source = ./configs/ghostty/config; outOfStoreSymlink = true; };
 #   };
-{ pkgs, hm, context, runtimeRoot, ... }:
+
+{ pkgs, context, runtimeRoot, ... }:
 
 let
   inherit (pkgs) lib;
 
-  # Swap a path inside the nix store with the same path in runtimeRoot
+  # Quote a path if it contains spaces so tmpfiles.d parses it as a single token
+  q = p: if builtins.match ".* .*" p != null then "\"${p}\"" else p;
+
+  # Translate a store path back to its runtimeRoot equivalent
   runtimePath = path:
     let
-      rootStr = toString context; # context is the `self` passed to flake outputs
+      rootStr = toString context;
       pathStr = toString path;
     in
     assert lib.assertMsg (lib.hasPrefix rootStr pathStr)
       "${pathStr} does not start with ${rootStr}";
     runtimeRoot + lib.removePrefix rootStr pathStr;
 
-  # Make outOfStoreSymlink against runtimeRoot. This replicates
-  # config.lib.file.mkOutOfStoreSymlink as_mkOutOfStoreSymlink and wraps it to
-  # replace the target path in the nix store with the original target path
-  # inside runtimeRoot. This is necessary because flakes live in the nix store.
-  mkOutOfStoreSymlink =
-    let
-      _mkOutOfStoreSymlink = path:
-        let
-          pathStr = toString path;
-          name = hm.strings.storeFileName (baseNameOf pathStr);
-        in
-        pkgs.runCommandLocal name { } ''ln -s ${lib.strings.escapeShellArg pathStr} $out'';
-    in
-    file: _mkOutOfStoreSymlink (runtimePath file);
+  rule = dest: src: "L+ ${q dest} - - - - ${q src}";
 
-  # Recursively make OutOfStoreSymlinks for all files inside path.
-  mkRecursiveOutOfStoreSymlink = path: link:
-    builtins.listToAttrs (
-      map
-        (file: {
-          name = link + "${lib.removePrefix (toString path) (toString file)}";
-          value = { source = mkOutOfStoreSymlink file; };
-        })
-        (lib.filesystem.listFilesRecursive path)
-    );
-
-  # Remove custom attributes from attribute set.
-  rmopts = attrs: builtins.removeAttrs attrs [ "source" "recursive" "outOfStoreSymlink" ];
-
-in fileAttrs: lib.attrsets.concatMapAttrs
-  (
-    name: value:
-    # Make outOfStoreSymlinks
-    if value.outOfStoreSymlink or false
-    then
-      if value.recursive or false
+in fileAttrs:
+  lib.flatten (lib.mapAttrsToList
+    (name: value:
+      if value.outOfStoreSymlink or false
       then
-        lib.attrsets.mapAttrs
-          (_: attrs: attrs // rmopts value)
-          (mkRecursiveOutOfStoreSymlink value.source name)
-      else { "${name}" = { source = mkOutOfStoreSymlink value.source; } // rmopts value; }
-    # Handle all other cases as usual
-    else { "${name}" = value; }
-  )
-  fileAttrs
+        if value.recursive or false
+        then
+          map (file:
+            let rel = lib.removePrefix (toString value.source) (toString file);
+            in rule "%h/${name}${rel}" (runtimePath file)
+          ) (lib.filesystem.listFilesRecursive value.source)
+        else
+          [ (rule "%h/${name}" (runtimePath value.source)) ]
+      else
+        lib.warn "mkSymlinkAttrs: ${name} is not outOfStoreSymlink, skipping" []
+    )
+    fileAttrs)

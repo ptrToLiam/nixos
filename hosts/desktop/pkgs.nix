@@ -9,7 +9,7 @@
   ];
 
   # BEGIN PER-HOST PACKAGES
-  home.packages = with pkgs; [
+  users.users.liamm.packages = with pkgs; [
     android-studio
     genymotion
     fred
@@ -19,9 +19,5 @@
     shotcut
     nvtopPackages.nvidia
   ];
-
-  # BEGIN PER-HOST PROGRAMS
-  programs = {
-  };
 }
 

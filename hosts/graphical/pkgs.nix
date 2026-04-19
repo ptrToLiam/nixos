@@ -5,18 +5,20 @@
 
 {
   # BEGIN PACKAGES
-  home.packages = with pkgs; [
+  users.users.liamm.packages = with pkgs; [
     adw-gtk3
     arc-icon-theme
     audacity
     bibata-cursors
     brave
     btop
+    diff-so-fancy
     emacs-all-the-icons-fonts
     emacs-gtk
     emacsPackages.pdf-tools
     exfatprogs
     fastfetch
+    feh
     ffmpeg
     floorp-bin
     focus
@@ -39,6 +41,7 @@
     mupdf
     nwg-displays
     nwg-look
+    obs-studio
     openvpn
     prismlauncher
     signal-desktop
@@ -51,65 +54,5 @@
     wev
     zoom-us
   ];
-
-  # BEGIN PROGRAMS
-  programs = {
-    bash = {
-      enable = true;
-      enableCompletion = true;
-      enableVteIntegration = true;
-      initExtra =''
-        if [[ -z $ORIG_SHLVL ]]; then
-            export ORIG_SHLVL=$SHLVL
-        fi;
-        if [[ $SHLVL -gt $ORIG_SHLVL ]]; then
-            export PS1='\[\e[1;m\e[1;33m\e[1;m\] ($(($SHLVL - $ORIG_SHLVL))) \W\[\e[m\e[m\] 🐧 \[\e[1;32m\]~> \[\e[m\e[m\]'
-        else
-            export PS1='\[\e[1;m\e[1;33m\e[1;m\] \W\[\e[m\e[m\] 🐧 \[\e[1;32m\]~> \[\e[m\e[m\]'
-        fi;
-        export PATH="$HOME/.local/bin:$PATH"
-        set -o vi
-        fastfetch
-      '';
-      shellAliases = {
-        build = "./build.sh";
-        emacsd = "emacs --daemon";
-        emacsc = "emacsclient -c -a 'emacs'";
-        gap = "git add -p";
-        gcp = "git commit -p";
-        kpx = "keepassxc-cli open";
-        ls = "ls --color=auto";
-        ll = "ls -l";
-        la = "ls -lA";
-        fastfetch = "fastfetch -c $HOME/.config/fastfetch/config.json";
-        new = "source $HOME/.bashrc";
-        newbar = "pkill waybar; waybar &disown";
-        ping = "ping -c 5";
-        vi = "\\vim";
-        vim = "nvim";
-        ".." = "cd ..";
-      };
-    };
-    dank-material-shell = {
-      enable = true;
-    };
-    feh.enable = true;
-    git = {
-      enable = true;
-      lfs.enable = true;
-      signing.format = "openpgp";
-      settings = {
-        user.email = "maloneliam@proton.me";
-        user.name = "Liam Malone";
-      };
-    };
-    obs-studio = {
-      enable = true;
-    };
-    diff-so-fancy = {
-      enable = true;
-      enableGitIntegration = true;
-    };
-  };
 }
 

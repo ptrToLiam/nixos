@@ -16,11 +16,6 @@
       url = "path:/home/liamm/nix-pkgs/fred";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    home-manager = {
-      url = "github:nix-community/home-manager";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     hyprland = {
       url = "github:hyprwm/Hyprland";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -50,7 +45,7 @@
               fred = inputs.fred.packages.${system}.fred;
               focus = inputs.focus-editor.packages.${system}.focus;
               hyprland = inputs.hyprland.packages.${system}.hyprland;
-              hyprsysteminfo = inputs.hyprsysteminfo.packages.${system}.hyprsysteminfo;
+              # hyprsysteminfo = inputs.hyprsysteminfo.packages.${system}.hyprsysteminfo;
               hyprpwcenter = inputs.hyprpwcenter.packages.${system}.hyprpwcenter;
               quickshell = inputs.quickshell.packages.${system}.quickshell;
               xdg-desktop-portal-hyprland = inputs.hyprland.packages.${system}.xdg-desktop-portal-hyprland;
