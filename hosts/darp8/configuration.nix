@@ -8,6 +8,10 @@
   ];
 
   networking.hostName = "darp8";
+  networking.networkmanager = {
+    enable = true;
+    wifi.backend = "iwd";
+  };
 
   time.timeZone = "Europe/Dublin";
   # time.timeZone = "America/New_York";

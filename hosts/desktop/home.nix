@@ -29,7 +29,7 @@
   home.stateVersion = "24.11"; # Please read the comment before changing.
 
   home.sessionVariables = {
-    EDITOR = "emacsclient";
+    EDITOR = "focus";
     GIT_EDITOR = "nvim";
     NIX_SHELL_PRESERVE_PROMPT = 1;
     NIX_CONFIG_DIR = "${cfg.homeDirectory}/nixos";
