@@ -20,7 +20,7 @@
       enable = true;
 
       # Open ports in the firewall.
-      allowedTCPPorts = [ 21 22 80 443 4070 5037 ];
+      allowedTCPPorts = [ 22 80 443 4070 5037 ];
       allowedUDPPorts = [ 4070 ];
 
       allowedTCPPortRanges = [
@@ -89,6 +89,7 @@
     trusted-public-keys = ["hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="];
     trusted-users = [ "root" "@wheel" ];
     allowed-users = [ "root" "@wheel" ];
+    experimental-features = [ "nix-command" "flakes" ];
   };
 
   nix.gc = {
