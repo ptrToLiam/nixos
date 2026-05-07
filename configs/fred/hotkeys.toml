@@ -1,0 +1,388 @@
+[[binding]]
+name = 'GLB_ShowHelp'
+key = 'F1'
+mods = []
+
+[[binding]]
+name = 'GLB_ToggleShowFPS'
+key = 'F5'
+mods = []
+
+[[binding]]
+name = 'GLB_ReloadShaders'
+key = 'F6'
+mods = []
+
+[[binding]]
+name = 'GLB_LoadFont'
+key = 'F8'
+mods = []
+
+[[binding]]
+name = 'GLB_LoadDefaultFont'
+key = 'F8'
+mods = ['Ctrl']
+
+[[binding]]
+name = 'GLB_ReloadConfig'
+key = 'F9'
+mods = []
+
+[[binding]]
+name = 'GLB_RecompilePlugins'
+key = 'F1'
+mods = ['Shift']
+
+[[binding]]
+name = 'GLB_OpenConfig'
+key = 'F9'
+mods = ['Ctrl']
+
+[[binding]]
+name = 'GLB_ToggleFullscreen'
+key = 'F11'
+mods = ['Ctrl','Shift']
+
+[[binding]]
+name = 'GLB_OpenTreeSitter'
+key = 'F11'
+mods = []
+
+[[binding]]
+name = 'GLB_OpenArenaTracker'
+key = 'F11'
+mods = ['Shift']
+
+[[binding]]
+name = 'GLB_SplitEditor'
+key = '\'
+mods = ['Ctrl']
+
+[[binding]]
+name = 'GLB_FileExplorer'
+key = 'O'
+mods = ['Ctrl']
+
+[[binding]]
+name = 'GLB_ConfigExplorer'
+key = 'P'
+mods = ['Ctrl']
+
+[[binding]]
+name = 'GLB_SimpleCommand'
+key = 'K'
+mods = ['Ctrl','Shift']
+
+[[binding]]
+name = 'GLB_ToggleVim'
+key = 'I'
+mods = ['Ctrl']
+
+[[binding]]
+name = 'GLB_PluginAPITemplate'
+key = 'F1'
+mods = ['Ctrl','Shift']
+
+[[binding]]
+name = 'ED_ToggleLineNumbers'
+key = 'F2'
+mods = []
+
+[[binding]]
+name = 'ED_ToggleSyntaxHL'
+key = 'F4'
+mods = []
+
+[[binding]]
+name = 'ED_ToggleCRLF'
+key = 'F7'
+mods = []
+
+[[binding]]
+name = 'ED_ToggleSpellcheck'
+key = 'F10'
+mods = []
+
+[[binding]]
+name = 'ED_ToggleLineGuides'
+key = 'G'
+mods = ['Ctrl','Shift']
+
+[[binding]]
+name = 'ED_ToggleRenderWhitespace'
+key = 'F3'
+mods = []
+
+[[binding]]
+name = 'ED_UnifyLineEndings'
+key = 'F7'
+mods = ['Ctrl']
+
+[[binding]]
+name = 'ED_TrimLineEndings'
+key = 'T'
+mods = ['Ctrl','Shift']
+
+[[binding]]
+name = 'ED_GotoLine'
+key = 'G'
+mods = ['Ctrl']
+
+[[binding]]
+name = 'ED_Find'
+key = 'F'
+mods = ['Ctrl']
+
+[[binding]]
+name = 'ED_FindAll'
+key = 'F'
+mods = ['Ctrl','Shift']
+
+[[binding]]
+name = 'ED_FindReplace'
+key = 'F'
+mods = ['Ctrl','Shift']
+
+[[binding]]
+name = 'ED_JumpMatching'
+key = 'M'
+mods = ['Ctrl']
+
+[[binding]]
+name = 'ED_NewFile'
+key = 'N'
+mods = ['Ctrl']
+
+[[binding]]
+name = 'ED_NewFileSplit'
+key = 'N'
+mods = ['Ctrl','Shift']
+
+[[binding]]
+name = 'ED_Save'
+key = 'S'
+mods = ['Ctrl']
+
+[[binding]]
+name = 'ED_SaveAll'
+key = 'S'
+mods = ['Ctrl','Shift']
+
+[[binding]]
+name = 'ED_SaveAs'
+key = 'S'
+mods = ['Ctrl','Alt']
+
+[[binding]]
+name = 'ED_Undo'
+key = 'Z'
+mods = ['Ctrl']
+
+[[binding]]
+name = 'ED_Redo'
+key = 'R'
+mods = ['Ctrl']
+
+[[binding]]
+name = 'ED_UndoTree'
+key = 'Z'
+mods = ['Ctrl','Shift']
+
+[[binding]]
+name = 'ED_IncreaseFontSize'
+key = '='
+mods = ['Ctrl']
+
+[[binding]]
+name = 'ED_DecreaseFontSize'
+key = '-'
+mods = ['Ctrl']
+
+[[binding]]
+name = 'ED_CloseEditor'
+key = 'W'
+mods = ['Ctrl']
+
+[[binding]]
+name = 'ED_PreviousCursor'
+key = 'Left'
+mods = ['Alt']
+
+[[binding]]
+name = 'ED_FutureCursor'
+key = 'Right'
+mods = ['Alt']
+
+[[binding]]
+name = 'ED_NewlineBelow'
+key = 'Return'
+mods = ['Ctrl']
+
+[[binding]]
+name = 'ED_NewlineAbove'
+key = 'Return'
+mods = ['Ctrl','Shift']
+
+[[binding]]
+name = 'ED_OutdentLine'
+key = 'Tab'
+mods = ['Shift']
+
+[[binding]]
+name = 'ED_ChangeLang'
+key = 'L'
+mods = ['Ctrl','Shift']
+
+[[binding]]
+name = 'ED_RefreshSuggestions'
+key = 'Spacebar'
+mods = ['Ctrl']
+
+[[binding]]
+name = 'ED_DupCursorUp'
+key = 'Up'
+mods = ['Ctrl','Alt']
+
+[[binding]]
+name = 'ED_DupCursorDown'
+key = 'Down'
+mods = ['Ctrl','Alt']
+
+[[binding]]
+name = 'ED_NewCursor'
+key = 'Left Mouse'
+mods = ['Alt']
+
+[[binding]]
+name = 'ED_TrailCursors'
+key = 'Left Mouse'
+mods = ['Alt','Shift']
+
+[[binding]]
+name = 'ED_MoveLineUp'
+key = 'Up'
+mods = ['Alt']
+
+[[binding]]
+name = 'ED_MoveLineDown'
+key = 'Down'
+mods = ['Alt']
+
+[[binding]]
+name = 'ED_SelectionToCursor'
+key = 'D'
+mods = ['Ctrl','Shift']
+
+[[binding]]
+name = 'ED_EmptyBlockUp'
+key = 'Up'
+mods = ['Ctrl']
+
+[[binding]]
+name = 'ED_EmptyBlockDown'
+key = 'Down'
+mods = ['Ctrl']
+
+[[binding]]
+name = 'ED_EmptyBlockUpSel'
+key = 'Up'
+mods = ['Ctrl','Shift']
+
+[[binding]]
+name = 'ED_EmptyBlockDownSel'
+key = 'Down'
+mods = ['Ctrl','Shift']
+
+[[binding]]
+name = 'ED_CyclePanelForward'
+key = 'PgDn'
+mods = ['Ctrl']
+
+[[binding]]
+name = 'ED_CyclePanelBack'
+key = 'PgUp'
+mods = ['Ctrl']
+
+[[binding]]
+name = 'ED_CycleOnlyPanelForward'
+key = 'PgDn'
+mods = ['Ctrl','Shift']
+
+[[binding]]
+name = 'ED_CycleOnlyPanelBack'
+key = 'PgUp'
+mods = ['Ctrl','Shift']
+
+[[binding]]
+name = 'ED_SortSelectedLines'
+key = 'Y'
+mods = ['Ctrl','Shift']
+
+[[binding]]
+name = 'ED_CenterViewToCursor'
+key = 'V'
+mods = ['Alt']
+
+[[binding]]
+name = 'FILE_EXP_FileNewPanel'
+key = 'Return'
+mods = ['Ctrl']
+
+[[binding]]
+name = 'FILE_EXP_PathInExplorer'
+key = 'O'
+mods = ['Ctrl','Shift']
+
+[[binding]]
+name = 'FILE_EXP_ToggleDirRoot'
+key = ']'
+mods = ['Ctrl']
+
+[[binding]]
+name = 'FILE_EXP_RootToParent'
+key = 'Backspace'
+mods = ['Ctrl','Shift']
+
+[[binding]]
+name = 'FIND_NextResult'
+key = 'Return'
+mods = []
+
+[[binding]]
+name = 'FIND_PrevResult'
+key = 'Return'
+mods = ['Shift']
+
+[[binding]]
+name = 'FIND_Replace'
+key = 'Return'
+mods = ['Ctrl']
+
+[[binding]]
+name = 'SMCLI_KillCommand'
+key = 'Delete'
+mods = ['Ctrl','Shift']
+
+[[binding.custom]]
+group = 'ED'
+fn = 'cursor_left'
+key = 'H'
+mods = ['Ctrl']
+
+[[binding.custom]]
+group = 'ED'
+fn = 'cursor_right'
+key = 'L'
+mods = ['Ctrl']
+
+[[binding.custom]]
+group = 'ED'
+fn = 'cursor_up'
+key = 'K'
+mods = ['Ctrl']
+
+[[binding.custom]]
+group = 'ED'
+fn = 'cursor_down'
+key = 'J'
+mods = ['Ctrl']
