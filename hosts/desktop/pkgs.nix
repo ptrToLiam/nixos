@@ -12,7 +12,6 @@
   users.users.liamm.packages = with pkgs; [
     android-studio
     genymotion
-    fred
     hexchat
     krita
     paper-icon-theme

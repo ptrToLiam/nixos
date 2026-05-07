@@ -24,6 +24,7 @@
     ffmpeg
     floorp-bin
     focus
+    fred
     fuzzel
     fzf
     gimp
