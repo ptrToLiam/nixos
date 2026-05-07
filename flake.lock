@@ -103,23 +103,6 @@
       },
       "parent": []
     },
-    "fred": {
-      "inputs": {
-        "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1776613974,
-        "narHash": "sha256-q6eKhs6IEwRmytxzGazY08TYp1JiPS4BgxfuNWzMcks=",
-        "path": "/home/liamm/nix-pkgs/fred",
-        "type": "path"
-      },
-      "original": {
-        "path": "/home/liamm/nix-pkgs/fred",
-        "type": "path"
-      }
-    },
     "gitignore": {
       "inputs": {
         "nixpkgs": [
@@ -596,6 +579,26 @@
         "type": "github"
       }
     },
+    "lmpkgs": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1778180954,
+        "narHash": "sha256-Iwcm0ZzIb13+633z7cP6dTjVlTas7Nvmpc54IUlo/uE=",
+        "ref": "refs/heads/master",
+        "rev": "0bfcbe5d5336eda05c1c79420772d3d1a3cf1de9",
+        "revCount": 3,
+        "type": "git",
+        "url": "ssh://git@ssh.git.ptrtoliam.dev:2222/liam/nix-pkgs.git"
+      },
+      "original": {
+        "type": "git",
+        "url": "ssh://git@ssh.git.ptrtoliam.dev:2222/liam/nix-pkgs.git"
+      }
+    },
     "nixpkgs": {
       "locked": {
         "lastModified": 1772433332,
@@ -677,9 +680,9 @@
       "inputs": {
         "dms": "dms",
         "focus-editor": "focus-editor",
-        "fred": "fred",
         "hyprland": "hyprland",
         "hyprpwcenter": "hyprpwcenter",
+        "lmpkgs": "lmpkgs",
         "nixpkgs": "nixpkgs_2",
         "quickshell": [
           "dms",

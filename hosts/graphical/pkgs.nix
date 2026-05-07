@@ -8,6 +8,8 @@
   users.users.liamm.packages = with pkgs; [
     adw-gtk3
     arc-icon-theme
+    ark
+    ark-cli
     audacity
     bibata-cursors
     brave

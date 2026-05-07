@@ -12,8 +12,8 @@
       url = "path:./pkgs/focus";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    fred = {
-      url = "path:/home/liamm/nix-pkgs/fred";
+    lmpkgs = {
+      url = "git+ssh://git@ssh.git.ptrtoliam.dev:2222/liam/nix-pkgs.git";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     hyprland = {
@@ -42,10 +42,11 @@
           config.allowUnfree = true;
           overlays = [
             (final: prev: {
-              fred = inputs.fred.packages.${system}.fred;
+              fred = inputs.lmpkgs.packages.${system}.fred;
+              ark = inputs.lmpkgs.packages.${system}.ark;
+              ark-cli = inputs.lmpkgs.packages.${system}.ark-cli;
               focus = inputs.focus-editor.packages.${system}.focus;
               hyprland = inputs.hyprland.packages.${system}.hyprland;
-              # hyprsysteminfo = inputs.hyprsysteminfo.packages.${system}.hyprsysteminfo;
               hyprpwcenter = inputs.hyprpwcenter.packages.${system}.hyprpwcenter;
               quickshell = inputs.quickshell.packages.${system}.quickshell;
               xdg-desktop-portal-hyprland = inputs.hyprland.packages.${system}.xdg-desktop-portal-hyprland;
