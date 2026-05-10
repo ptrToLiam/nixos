@@ -1,4 +1,3 @@
-
 -- Binds :: General
 hl.bind("ALT + Return",            hl.dsp.exec_cmd("ghostty"))
 hl.bind("ALT + SHIFT + Return",    hl.dsp.exec_cmd("foot"))
@@ -22,7 +21,6 @@ hl.bind(mainMod .. " + CTRL + C",  hl.dsp.exec_cmd("dms ipc call control-center 
 hl.bind(mainMod .. " + N",         hl.dsp.exec_cmd("dms ipc call notifications toggle"))
 hl.bind(mainMod .. " + SHIFT + N", hl.dsp.exec_cmd("dms ipc call night toggle"))
 hl.bind(mainMod .. " + CTRL + B",  hl.dsp.exec_cmd("dms ipc call bar toggle"))
-hl.bind(mainMod .. " + CTRL + S",  hl.dsp.exec_cmd("$HOME/.config/hypr/ws-layout-toggle.sh"))
 hl.bind(mainMod .. " + CTRL + Q",  hl.dsp.exec_cmd(lock))
 
 hl.bind(mainMod .. " + C",         hl.dsp.window.kill())
@@ -32,8 +30,8 @@ hl.bind(mainMod .. " + CTRL + F",  hl.dsp.window.fullscreen({ action = "toggle" 
 hl.bind(mainMod .. " + F4",        hl.dsp.exit())
 hl.bind(mainMod .. " + right",     hl.dsp.window.resize({ x = 10,  y = 0,   relative = true }),   { repeating = true })
 hl.bind(mainMod .. " + left",      hl.dsp.window.resize({ x = -10, y = 0,   relative = true }),   { repeating = true })
-hl.bind(mainMod .. " + up",        hl.dsp.window.resize({ x = 0,   y = -10, relative = true }), { repeating = true })
-hl.bind(mainMod .. " + down",      hl.dsp.window.resize({ x = 0,   y = 10,  relative = true }),  { repeating = true })
+hl.bind(mainMod .. " + up",        hl.dsp.window.resize({ x = 0,   y = -10, relative = true }),   { repeating = true })
+hl.bind(mainMod .. " + down",      hl.dsp.window.resize({ x = 0,   y = 10,  relative = true }),   { repeating = true })
 
 -- Binds :: Window & Navigation
 hl.bind(mainMod .. " + H",                    hl.dsp.focus({ direction = "l" }))
@@ -84,6 +82,13 @@ hl.bind("XF86AudioRaiseVolume",  hl.dsp.exec_cmd("dms ipc call audio increment 3
 hl.bind("XF86AudioLowerVolume",  hl.dsp.exec_cmd("dms ipc call audio decrement 3"),      { locked = true, repeating = true })
 hl.bind("XF86MonBrightnessUp",   hl.dsp.exec_cmd("dms ipc call brightness increment 5"), { locked = true, repeating = true })
 hl.bind("XF86MonBrightnessDown", hl.dsp.exec_cmd("dms ipc call brightness decrement 5"), { locked = true, repeating = true })
+
+-- Binds :: Gestures
+hl.gesture({
+  fingers = 3,
+  direction = "horizontal",
+  action = "workspace",
+})
 
 -- Binds :: Submaps
 hl.bind(mainMod .. " + R",  hl.dsp.submap("resize"))
