@@ -11,7 +11,7 @@ hl.bind(mainMod .. " + S",         hl.dsp.exec_cmd("spotify"))
 hl.bind(mainMod .. " + P",         hl.dsp.exec_cmd(colorpick))
 
 hl.bind("Print",                   hl.dsp.exec_cmd(screenshot_area))
-hl.bind("SHIFT + Print",             hl.dsp.exec_cmd(screenshot))
+hl.bind("SHIFT + Print",           hl.dsp.exec_cmd(screenshot))
 hl.bind(mainMod .. " + Space",     hl.dsp.exec_cmd("dms ipc call spotlight toggle"))
 hl.bind(mainMod .. " + X",         hl.dsp.exec_cmd("dms ipc call powermenu toggle"))
 hl.bind(mainMod .. " + M",         hl.dsp.exec_cmd("dms ipc call processlist toggle"))
@@ -30,10 +30,10 @@ hl.bind("ALT + F4",                hl.dsp.window.kill())
 hl.bind(mainMod .. " + F",         hl.dsp.window.float({ action = "toggle" }))
 hl.bind(mainMod .. " + CTRL + F",  hl.dsp.window.fullscreen({ action = "toggle" }))
 hl.bind(mainMod .. " + F4",        hl.dsp.exit())
-hl.bind(mainMod .. " + right",     hl.dsp.window.resize({ x = 10,  y = 0 }),   { repeating = true })
-hl.bind(mainMod .. " + left",      hl.dsp.window.resize({ x = -10, y = 0 }),   { repeating = true })
-hl.bind(mainMod .. " + up",        hl.dsp.window.resize({ x = 0,   y = -10 }), { repeating = true })
-hl.bind(mainMod .. " + down",      hl.dsp.window.resize({ x = 0,   y = 10 }),  { repeating = true })
+hl.bind(mainMod .. " + right",     hl.dsp.window.resize({ x = 10,  y = 0,   relative = true }),   { repeating = true })
+hl.bind(mainMod .. " + left",      hl.dsp.window.resize({ x = -10, y = 0,   relative = true }),   { repeating = true })
+hl.bind(mainMod .. " + up",        hl.dsp.window.resize({ x = 0,   y = -10, relative = true }), { repeating = true })
+hl.bind(mainMod .. " + down",      hl.dsp.window.resize({ x = 0,   y = 10,  relative = true }),  { repeating = true })
 
 -- Binds :: Window & Navigation
 hl.bind(mainMod .. " + H",                    hl.dsp.focus({ direction = "l" }))
@@ -88,53 +88,44 @@ hl.bind("XF86MonBrightnessDown", hl.dsp.exec_cmd("dms ipc call brightness decrem
 -- Binds :: Submaps
 hl.bind(mainMod .. " + R",  hl.dsp.submap("resize"))
 hl.define_submap("resize", function()
-  hl.bind("left",   hl.dsp.window.resize({ x = -10, y = 0 }),   { repeating = true })
-  hl.bind("right",  hl.dsp.window.resize({ x = 0,   y = -10 }), { repeating = true })
-  hl.bind("up",     hl.dsp.window.resize({ x = 0,   y = 10 }),  { repeating = true })
-  hl.bind("down",   hl.dsp.window.resize({ x = 10,  y = 0 }),   { repeating = true })
-  hl.bind("H",      hl.dsp.window.resize({ x = -10, y = 0 }),   { repeating = true })
-  hl.bind("J",      hl.dsp.window.resize({ x = 0,   y =-10 }),  { repeating = true })
-  hl.bind("K",      hl.dsp.window.resize({ x = 0,   y = 10 }),  { repeating = true })
-  hl.bind("L",      hl.dsp.window.resize({ x = 10,  y = 0 }),   { repeating = true })
-
-  hl.bind("left",   hl.dsp.submap("reset"), { release = true })
-  hl.bind("right",  hl.dsp.submap("reset"), { release = true })
-  hl.bind("up",     hl.dsp.submap("reset"), { release = true })
-  hl.bind("down",   hl.dsp.submap("reset"), { release = true })
-  hl.bind("H",      hl.dsp.submap("reset"), { release = true })
-  hl.bind("J",      hl.dsp.submap("reset"), { release = true })
-  hl.bind("K",      hl.dsp.submap("reset"), { release = true })
-  hl.bind("L",      hl.dsp.submap("reset"), { release = true })
-
+  local resize_binds = {
+    { keys = { "left",  "H" }, x = -10, y =   0 },
+    { keys = { "right", "L" }, x =  10, y =   0 },
+    { keys = { "up",    "K" }, x =   0, y = -10 },
+    { keys = { "down",  "J" }, x =   0, y =  10 },
+  }
+  for _, b in ipairs(resize_binds) do
+    for _, k in ipairs(b.keys) do
+      hl.bind(k, hl.dsp.window.resize({ x = b.x, y = b.y, relative = true }), { repeating = true })
+      hl.bind(k, hl.dsp.submap("reset"), { release = true })
+    end
+  end
   hl.bind("escape", hl.dsp.submap("reset"))
 end)
 
 hl.bind(mainMod .. " + B", hl.dsp.submap("browser"))
 hl.define_submap("browser", function()
-  hl.bind("B",      hl.dsp.exec_cmd("brave"))
-  hl.bind("F",      hl.dsp.exec_cmd("Floorp"))
-
-  hl.bind("B",      hl.dsp.submap("reset"), { release = true })
-  hl.bind("F",      hl.dsp.submap("reset"), { release = true })
-
+  local program_binds = {
+    { key = "B", cmd = "brave" },
+    { key = "F", cmd = "floorp" },
+    { key = "SHIFT + F", cmd = "firefox" },
+  }
+  for _, program in ipairs(program_binds) do
+    hl.bind(program.key, hl.dsp.exec_cmd(program.cmd))
+    hl.bind(program.key, hl.dsp.submap("reset"), { release = true })
+  end
   hl.bind("escape", hl.dsp.submap("reset"))
 end)
 
-hl.bind(mainMod .. " + V", hl.dsp.submap("video"))
+hl.bind(mainMod .. "+ SHIFT + V", hl.dsp.submap("video"))
 hl.define_submap("video", function()
-  hl.bind("O",      hl.dsp.exec_cmd("obs"))
-  hl.bind("K",      hl.dsp.exec_cmd("kdenlive"))
-
-  hl.bind("O",      hl.dsp.submap("reset"), { release = true })
-  hl.bind("K",      hl.dsp.submap("reset"), { release = true })
-
+  local program_binds = {
+    { key = "O", cmd = "obs" },
+    { key = "K", cmd = "kdenlive" },
+  }
+  for _, program in ipairs(program_binds) do
+    hl.bind(program.key, hl.dsp.exec_cmd(program.cmd))
+    hl.bind(program.key, hl.dsp.submap("reset"), { release = true })
+  end
   hl.bind("escape", hl.dsp.submap("reset"))
 end)
-
--- # Binds :: Global :: Discord
---   bind = ,             F7,                   pass,                           class:^(discord|Discord)$
---   bind = ,             F8,                   pass,                           class:^(discord|Discord)$
---   # bind = ,             T,                    pass,                           class:^(discord|Discord)$
---
--- # Binds :: Global :: OBS
---   bind = ,             F9,                   pass,                           class:^(.*obs.*)$
