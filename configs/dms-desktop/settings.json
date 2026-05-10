@@ -5,7 +5,7 @@
   "registryThemeVariants": {},
   "matugenScheme": "scheme-vibrant",
   "matugenContrast": 0,
-  "runUserMatugenTemplates": false,
+  "runUserMatugenTemplates": true,
   "matugenTargetMonitor": "DP-1",
   "popupTransparency": 1,
   "dockTransparency": 1,

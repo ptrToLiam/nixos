@@ -32,6 +32,11 @@ in
       outOfStoreSymlink = true;
       recursive = false;
     };
+    ".config/hypr/system.lua" = {
+      source = ../../configs/hypr-desktop/system.lua;
+      outOfStoreSymlink = true;
+      recursive = false;
+    };
     ".config/DankMaterialShell" = {
       source = ../../configs/dms-desktop;
       outOfStoreSymlink = true;

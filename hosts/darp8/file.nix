@@ -31,6 +31,11 @@ in
       outOfStoreSymlink = true;
       recursive = false;
     };
+    ".config/hypr/system.lua" = {
+      source = ../../configs/hypr-darp8/system.lua;
+      outOfStoreSymlink = true;
+      recursive = false;
+    };
     ".config/DankMaterialShell" = {
       source = ../../configs/dms-darp8;
       outOfStoreSymlink = true;
