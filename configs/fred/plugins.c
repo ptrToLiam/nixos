@@ -349,6 +349,7 @@ void arena_temp_end(Temp t) {
 #define push_array_no_zero_aligned(a, T, c, align) (T *)arena_push((a), sizeof(T)*(c), (align), (0))
 #define push_array_aligned(a, T, c, align) (T *)arena_push((a), sizeof(T)*(c), (align), (1))
 #define push_array_no_zero(a, T, c) push_array_no_zero_aligned(a, T, c, FRED_Max(8, FRED_AlignOf(T)))
+
 #define push_array(a, T, c) push_array_aligned(a, T, c, FRED_Max(8, FRED_AlignOf(T)))
 
 // Scratch arena creation.  You pass in a 'conflict' arena when you don't want one scratch arena to overwrite another when nested functions are involved.
