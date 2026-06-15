@@ -34,6 +34,7 @@
 
 
   services = {
+    flatpak.enable = true;
     thermald.enable = true;
     power-profiles-daemon.enable = false;
     pulseaudio.enable = false;

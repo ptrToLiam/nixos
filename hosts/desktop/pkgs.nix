@@ -14,9 +14,9 @@
     genymotion
     hexchat
     krita
+    nvtopPackages.nvidia
     paper-icon-theme
     shotcut
-    nvtopPackages.nvidia
   ];
 }
 
