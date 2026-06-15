@@ -20,7 +20,7 @@ hl.config({
     gaps_in = gaps_in,
     gaps_out = gaps_out,
     border_size = 2,
-    resize_on_border = true,
+    resize_on_border = false,
     allow_tearing = true,
     layout = "scrolling",
     col = {
@@ -46,7 +46,7 @@ hl.config({
   },
   input = {
     touchpad = {
-      disable_while_typing = true,
+      disable_while_typing = false,
       drag_lock = false,
       middle_button_emulation = true,
       natural_scroll = true,

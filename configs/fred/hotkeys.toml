@@ -386,3 +386,9 @@ group = 'ED'
 fn = 'cursor_down'
 key = 'J'
 mods = ['Ctrl']
+
+[[binding.custom]]
+group = 'ED'
+fn = ''
+key = 'Null'
+mods = []
