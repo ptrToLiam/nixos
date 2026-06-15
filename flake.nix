@@ -27,10 +27,6 @@
       inputs.hyprutils.follows = "hyprland/hyprutils";
       inputs.systems.follows = "hyprland/systems";
     };
-
-    quickshell = {
-      follows = "dms/quickshell";
-    };
   };
 
   outputs = { self, nixpkgs, hyprland, ... }@inputs:
@@ -48,7 +44,6 @@
               focus = inputs.focus-editor.packages.${system}.focus;
               hyprland = inputs.hyprland.packages.${system}.hyprland;
               hyprpwcenter = inputs.hyprpwcenter.packages.${system}.hyprpwcenter;
-              quickshell = inputs.quickshell.packages.${system}.quickshell;
               xdg-desktop-portal-hyprland = inputs.hyprland.packages.${system}.xdg-desktop-portal-hyprland;
             })
           ];
