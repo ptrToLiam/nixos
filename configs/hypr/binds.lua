@@ -80,8 +80,8 @@ hl.bind("XF86AudioMute",         hl.dsp.exec_cmd("dms ipc call audio mute"),    
 hl.bind("XF86AudioMicMute",      hl.dsp.exec_cmd("dms ipc call audio micmute"),          { locked = true })
 hl.bind("XF86AudioRaiseVolume",  hl.dsp.exec_cmd("dms ipc call audio increment 3"),      { locked = true, repeating = true })
 hl.bind("XF86AudioLowerVolume",  hl.dsp.exec_cmd("dms ipc call audio decrement 3"),      { locked = true, repeating = true })
-hl.bind("XF86MonBrightnessUp",   hl.dsp.exec_cmd("dms ipc call brightness increment 5"), { locked = true, repeating = true })
-hl.bind("XF86MonBrightnessDown", hl.dsp.exec_cmd("dms ipc call brightness decrement 5"), { locked = true, repeating = true })
+hl.bind("XF86MonBrightnessUp",   hl.dsp.exec_cmd("dms ipc call brightness increment 5 backlight:acpi_video0"), { locked = true, repeating = true })
+hl.bind("XF86MonBrightnessDown", hl.dsp.exec_cmd("dms ipc call brightness decrement 5 backlight:acpi_video0"), { locked = true, repeating = true })
 
 -- Binds :: Gestures
 hl.gesture({
