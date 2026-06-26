@@ -11,9 +11,7 @@
   # BEGIN PER-HOST PACKAGES
   users.users.liamm.packages = with pkgs; [
     android-studio
-    genymotion
     praat
-    mcpelauncher-ui-qt
   ];
 }
 

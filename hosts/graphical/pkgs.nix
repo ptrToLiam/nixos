@@ -9,7 +9,6 @@
     adw-gtk3
     arc-icon-theme
     ark
-    ark-cli
     audacity
     bibata-cursors
     brave
@@ -25,7 +24,6 @@
     floorp-bin
     focus
     fred
-    fuzzel
     fzf
     gimp
     gtk4
