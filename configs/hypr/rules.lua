@@ -65,3 +65,7 @@ for _, fo_inhib in ipairs(focus_inhibits) do
     idle_inhibit = "focus",
   })
 end
+
+hl.window_rule({
+  match = { class = "cs2" }, immediate = true
+})
