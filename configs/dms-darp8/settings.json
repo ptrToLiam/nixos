@@ -230,7 +230,7 @@
   "useAutoLocation": true,
   "weatherEnabled": true,
   "networkPreference": "wifi",
-  "iconTheme": "System Default",
+  "iconTheme": "Tela",
   "cursorSettings": {
     "theme": "Bibata-Modern-Amber",
     "size": 24,
