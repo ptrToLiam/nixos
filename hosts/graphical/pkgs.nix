@@ -32,7 +32,6 @@
     hyprpicker
     hyprpwcenter
     imagemagick
-    # kdePackages.kdenlive
     kdePackages.qt6ct
     keepassxc
     libsForQt5.qt5ct
@@ -41,10 +40,8 @@
     mupdf
     nwg-displays
     nwg-look
-    # obs-studio
     openvpn
     prismlauncher
-    # signal-desktop
     tela-icon-theme
     tela-circle-icon-theme
     texliveFull
@@ -52,7 +49,6 @@
     thunar-volman
     tree
     wev
-    # zoom-us
   ];
 
   programs.obs-studio = {
