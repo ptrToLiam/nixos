@@ -3,9 +3,14 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    nix-flatpak.url = "github:gmodena/nix-flatpak/?ref=v0.7.0";
 
     dms = {
       url = "github:AvengeMedia/DankMaterialShell";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    dank-greeter = {
+      url = "github:AvengeMedia/dank-greeter";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     focus-editor = {
@@ -38,9 +43,10 @@
           config.allowUnfree = true;
           overlays = [
             (final: prev: {
-              fred = inputs.lmpkgs.packages.${system}.fred;
               ark = inputs.lmpkgs.packages.${system}.ark;
               ark-cli = inputs.lmpkgs.packages.${system}.ark-cli;
+              dank-greeter = inputs.dank-greeter.nixosModules.default;
+              fred = inputs.lmpkgs.packages.${system}.fred;
               focus = inputs.focus-editor.packages.${system}.focus;
               hyprland = inputs.hyprland.packages.${system}.hyprland;
               hyprpwcenter = inputs.hyprpwcenter.packages.${system}.hyprpwcenter;

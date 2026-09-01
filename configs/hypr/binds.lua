@@ -2,7 +2,7 @@
 hl.bind("ALT + Return",            hl.dsp.exec_cmd("ghostty"))
 hl.bind("ALT + SHIFT + Return",    hl.dsp.exec_cmd("foot"))
 hl.bind(mainMod .. " + SHIFT + D", hl.dsp.exec_cmd(discord))
-hl.bind(mainMod .. " + SHIFT + S", hl.dsp.exec_cmd("signal-desktop"))
+hl.bind(mainMod .. " + SHIFT + S", hl.dsp.exec_cmd("flatpak run org.signal.Signal"))
 hl.bind(mainMod .. " + SHIFT + E", hl.dsp.exec_cmd("emacs -c -a 'emacs'"))
 hl.bind(mainMod .. " + SHIFT + F", hl.dsp.exec_cmd("focus"))
 hl.bind(mainMod .. " + E",         hl.dsp.exec_cmd("thunar"))
@@ -126,7 +126,7 @@ hl.bind(mainMod .. "+ SHIFT + V", hl.dsp.submap("video"))
 hl.define_submap("video", function()
   local program_binds = {
     { key = "O", cmd = "obs" },
-    { key = "K", cmd = "kdenlive" },
+    { key = "K", cmd = "flatpak run org.kde.kdenlive" },
   }
   for _, program in ipairs(program_binds) do
     hl.bind(program.key, hl.dsp.exec_cmd(program.cmd))

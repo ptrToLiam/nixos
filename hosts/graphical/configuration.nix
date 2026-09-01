@@ -1,8 +1,11 @@
 { cfg, config, lib, pkgs, inputs, ... }:
 {
   imports = [
-    inputs.dms.nixosModules.greeter
+    # inputs.dms.nixosModules.greeter
     inputs.dms.nixosModules.dank-material-shell
+    inputs.dank-greeter.nixosModules.default
+    inputs.nix-flatpak.nixosModules.nix-flatpak
+    ./flatpak.nix
   ];
 
   boot = {
@@ -48,13 +51,7 @@
   };
 
   services = {
-    displayManager.dms-greeter = {
-      enable = true;
-      compositor.name = "hyprland";
-      configHome = "${cfg.homeDirectory}";
-      package = inputs.dms.packages.${pkgs.stdenv.hostPlatform.system}.default;
-    };
-
+    flatpak.enable = true;
     gnome.gnome-keyring.enable = true;
 
 
@@ -125,6 +122,12 @@
           export PS1='\[\e[1;m\e[1;33m\e[1;m\] \W\[\e[m\e[m\] 🐧 \[\e[1;32m\]~> \[\e[m\e[m\]'
         fi
       '';
+    };
+
+    dms-greeter = {
+      enable = true;
+      compositor.name = "hyprland";
+      configHome = "/home/liamm";
     };
 
     gamemode = {
@@ -201,7 +204,7 @@
     spotify
     unzip
     vim
-    waypipe
+    # waypipe -- temporarily broken
     wget
     wl-clipboard
     xdg-user-dirs

@@ -5,16 +5,16 @@ local float_classes = {
   "^(LmDev-.*)$", "^(notification)$", "^(Genymotion Player)$", "^(launcher)$",
 }
 local workspace_rules = {
-  { class =  "^(KeePassXC)$",                                 ws = "2" },
-  { class =  "^(firefox)$",                                   ws = "3" },
-  { class =  "^(floorp)$",                                    ws = "3" },
-  { class =  "^(brave-browser)$",                             ws = "3" },
-  { class =  "^(Spotify)$",                                   ws = "4" },
-  { class =  "^(discord)$",                                   ws = "6" },
-  { class =  "^(.*obs.*)$",                                   ws = "8" },
-  { title = "^(Minecraft)$",                                  ws = "name:extra" },
-  { class = "^(signal)$",         title = "^(Signal)$",       ws = "6" },
-  { class = "^(.*)$",             title = "^(.*WhatsApp.*)$", ws = "6" },
+  { class =  "^(KeePassXC)$",                                    ws = "2" },
+  { class =  "^(firefox)$",                                      ws = "3" },
+  { class =  "^(floorp)$",                                       ws = "3" },
+  { class =  "^(brave-browser)$",                                ws = "3" },
+  { class =  "^(Spotify)$",                                      ws = "4" },
+  { class =  "^(discord)$",                                      ws = "6" },
+  { class =  "^(.*obs.*)$",                                      ws = "8" },
+  { title = "^(Minecraft)$",                                     ws = "name:extra" },
+  { class = "^(org.signal.Signal)$", title = "^(Signal)$",       ws = "6" },
+  { class = "^(.*)$",                title = "^(.*WhatsApp.*)$", ws = "6" },
 }
 local fullscreen_inhibits = {
  "^(floorp)$", "^(firefox)$", "^(ghostty)$", "^(brave-browser)$",

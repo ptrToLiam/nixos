@@ -32,20 +32,19 @@
     hyprpicker
     hyprpwcenter
     imagemagick
-    kdePackages.kdenlive
+    # kdePackages.kdenlive
     kdePackages.qt6ct
     keepassxc
     libsForQt5.qt5ct
     localsend
-    materia-theme
     mpv
     mupdf
     nwg-displays
     nwg-look
-    obs-studio
+    # obs-studio
     openvpn
     prismlauncher
-    signal-desktop
+    # signal-desktop
     tela-icon-theme
     tela-circle-icon-theme
     texliveFull
@@ -53,7 +52,17 @@
     thunar-volman
     tree
     wev
-    zoom-us
+    # zoom-us
   ];
+
+  programs.obs-studio = {
+    enable = true;
+    enableVirtualCamera = true;
+    plugins = with pkgs.obs-studio-plugins; [
+      obs-pipewire-audio-capture
+      obs-vaapi
+      obs-vkcapture
+    ];
+  };
 }
 
