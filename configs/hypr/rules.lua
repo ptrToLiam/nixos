@@ -1,5 +1,5 @@
 local float_classes = {
-  "^(.*Emulator.*)$", "^(.*desktop-portal.*)$", "^(org.quickshell)$",
+  "^(.*Emulator.*)$", "^(.*desktop-portal.*)$", "^(com.danklinux.dms)$",
   "^(polkit.*agent.*)$", "^(praat)$", "^(network)$", "^(nm-)$", "^(Network)$",
   "^(Rofi)$",  "^(Gimp)$", "^(thunar)$", "^(Nautilus)$",
   "^(LmDev-.*)$", "^(notification)$", "^(Genymotion Player)$", "^(launcher)$",
@@ -68,4 +68,12 @@ end
 
 hl.window_rule({
   match = { class = "cs2" }, immediate = true
+})
+
+hl.window_rule({
+  match = { class = "zoom", title = "^(annotate_.*)$" },
+  float = true
+})
+hl.window_rule({
+  match = { class = "zoom", title = "^(menu)$" }
 })
