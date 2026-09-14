@@ -617,11 +617,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1784410038,
-        "narHash": "sha256-QUg6YTWwkQjiq256Dv5CtkcMyQPfsQjvae9rIyE/mHk=",
+        "lastModified": 1789380901,
+        "narHash": "sha256-ak3ZL2SlmaU6CUEnAlC8mpJ3/V6FBTYgB82u4YwsXG8=",
         "ref": "refs/heads/master",
-        "rev": "dc2542e1ea465ca12c689d923a4352186d5ba4ba",
-        "revCount": 7,
+        "rev": "226a1eb807fefea2fb77e53e347bb8df4fc0e68f",
+        "revCount": 8,
         "type": "git",
         "url": "ssh://git@ssh.git.ptrtoliam.dev:2222/liam/nix-pkgs.git"
       },
