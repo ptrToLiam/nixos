@@ -115,7 +115,7 @@
         if [[ -z $ORIG_SHLVL ]]; then
           export ORIG_SHLVL=$SHLVL
         fi
-        
+
         if [[ $SHLVL -gt $ORIG_SHLVL ]]; then
           export PS1='\[\e[1;m\e[1;33m\e[1;m\] ($(($SHLVL - $ORIG_SHLVL))) \W\[\e[m\e[m\] 🐧 \[\e[1;32m\]~> \[\e[m\e[m\]'
         else
@@ -146,6 +146,11 @@
       capSysNice = true;
     };
 
+    git = {
+      enable = true;
+      lfs.enable = true;
+    };
+    
     steam = {
       enable = true;
       gamescopeSession.enable = true;
@@ -193,7 +198,6 @@
     fd
     file
     ghostty
-    git
     glib
     gnome-keyring
     libdrm
@@ -217,7 +221,7 @@
     NIX_SHELL_PRESERVE_PROMPT = "1";
     NIX_CONFIG_DIR = "/home/liamm/nixos";
   };
- 
+
   zramSwap = {
     enable = true;
     algorithm = "zstd";
@@ -228,8 +232,8 @@
     portal = {
       enable = true;
       # wlr.enable = true;
-      extraPortals = with pkgs;[ 
-        xdg-desktop-portal-gtk 
+      extraPortals = with pkgs;[
+        xdg-desktop-portal-gtk
         # xdg-desktop-portal-wlr
       ];
       config = {
