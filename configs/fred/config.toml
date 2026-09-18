@@ -243,5 +243,5 @@ subpixel_font_aa = false
 hotkeys = '/home/liamm/.cadacama/fred/hotkeys.toml'
 
 [plugins.core]
-plugins_source_file = '/home/liamm/Workspace/fred-plugins.c'
+plugins_source_file = '/home/liamm/.config/fred/plugins.c'
 gen_base_template_only = false
