@@ -12,7 +12,7 @@ hl.monitor({
 -- secondary (vertical) display
 hl.monitor({
   output = "HDMI-A-2",
-  mode = "2560x1440",
+  mode = "2560x1440@60",
   position = "0x0",
   scale = 1,
   supports_hdr = -1,
