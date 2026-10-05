@@ -3,6 +3,7 @@ local float_classes = {
   "^(polkit.*agent.*)$", "^(praat)$", "^(network)$", "^(nm-)$", "^(Network)$",
   "^(Rofi)$",  "^(Gimp)$", "^(thunar)$", "^(Nautilus)$",
   "^(LmDev-.*)$", "^(notification)$", "^(Genymotion Player)$", "^(launcher)$",
+  "^(Ark-Vcs)$",
 }
 local workspace_rules = {
   { class =  "^(KeePassXC)$",                                    ws = "2" },
