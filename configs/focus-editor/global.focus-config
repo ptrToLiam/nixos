@@ -1,4 +1,4 @@
-[16]  # Version number. Do not delete.
+[25]  # Version number. Do not delete.
 
 [[workspace]]
 # These directories and files will be scanned when a workspace is opened so that search etc. works.
@@ -40,7 +40,6 @@ highlight_selection_occurrences:                    true
 highlight_line_with_cursor:                         false
 highlight_matching_brackets:                        true
 show_paste_effect:                                  true
-disable_file_open_close_animations:                 false
 double_shift_to_search_in_workspace:                false
 strip_trailing_whitespace_on_save:                  except_lines_with_cursor  # options: all, except_lines_with_cursor, disabled
 smooth_scrolling:                                   true
@@ -49,7 +48,6 @@ line_height_scale_percent:                          120
 max_editor_width:                                   -1
 can_cancel_go_to_line:                              true
 copy_whole_line_without_selection:                  false
-editor_history_size:                                1024
 line_wrap_is_on_by_default:                         true
 show_line_numbers:                                  false
 show_ruler_at_column:                               0
@@ -91,6 +89,21 @@ scrollbar_min_opacity:                              0.0   # if you want the scro
 scrollbar_max_opacity:                              1.0
 scrollbar_fade_in_sensitivity:                      10.0  # controls when the scrollbar appears as the mouse pointer gets close
 scrollbar_fade_out_delay_seconds:                   2.0   # how long the scrollbar stays visible after scrolling
+
+# Added after migration to version [25]
+active_pane_border_width:                        1.0   # set the width to 0.0 to disable
+inactive_pane_dim_overlay_opacity:               0.0   # controls how dim the inactive panes should be
+comment_highlight_words1:                        TODO, TODO:, NOTE, NOTE:  # a comma-separated list of words to highlight within comments using the color `code_comment_highlight1`
+comment_highlight_words2:                        # words to highlight using `code_comment_highlight2`
+comment_highlight_words3:                        # words to highlight using `code_comment_highlight3`
+comment_highlight_words4:                        # words to highlight using `code_comment_highlight4`
+enable_temporary_editors:                        true  # when enabled, any editors are opened temporarily until an edit, a save, or a keep_editor command is used. Any newly opened editor will replace the existing temporary editor
+cursor_position_after_jump:                      0.45  # controls where the cursor ends up relatively to the viewport after jumping to a search result or an error. 0.0 is top of the screen, 1.0 - bottom, 0.5 - center
+closing_last_editor_in_pane_should_close_pane:   true
+closing_last_editor_should_exit_program:         false
+show_pane_numbers:                               false
+show_tab_characters_in_selection:                true
+line_endings:                                    preserve  # options: lf, crlf, preserve
 
 # NOTE: some settings can be specified for a subset of files, based on their language or a wildcard,
 # for example:
@@ -194,11 +207,11 @@ Ctrl-[                      unindent
 Ctrl-S                      save
 Ctrl-Shift-S                save_as
 
-Alt-Minus                   move_to_previous_editor_history
-Alt-Plus                    move_to_next_editor_history
+Alt-Minus                   cursor_go_back
+Alt-Plus                    cursor_go_forward
 
-Ctrl-PageUp                 move_to_previous_buffer
-Ctrl-PageDown               move_to_next_buffer
+Ctrl-PageUp                 go_to_previous_buffer
+Ctrl-PageDown               go_to_next_buffer
 
 Ctrl-/                      toggle_comment
 Alt-Shift-R                 select_line
@@ -233,16 +246,12 @@ NumpadEnter                 break_line
 Ctrl-NumpadEnter            new_line_below_without_breaking
 Ctrl-Shift-NumpadEnter      new_line_above_without_breaking
 
-Ctrl-1                      switch_to_left_editor
-Ctrl-2                      switch_to_right_editor
-Ctrl-,                      switch_to_other_editor
+Ctrl-,                      switch_to_side_pane
 Ctrl-Shift-,                duplicate_editor
 
-Ctrl-Alt-Shift-ArrowLeft    move_editor_to_the_left
-Ctrl-Alt-Shift-ArrowRight   move_editor_to_the_right
 
 Ctrl-N                      create_new_file
-Ctrl-Shift-N                create_new_file_on_the_side
+Ctrl-Shift-N                create_new_file_in_side_pane
 
 Alt-Shift-ArrowUp           create_cursor_above
 Alt-Shift-ArrowDown         create_cursor_below
@@ -257,11 +266,25 @@ Alt-Shift-L                 toggle_line_numbers
 
 Ctrl-Shift-Alt-N            open_another_editor_instance
 
+# Added after migration to version [25]
+Ctrl-Alt-S ArrowLeft        move_editor_left
+Ctrl-Alt-S ArrowRight       move_editor_right
+Ctrl-Alt-S ArrowUp          move_editor_top
+Ctrl-Alt-S ArrowDown        move_editor_bottom
+Ctrl-Alt-X ArrowLeft        split_left
+Ctrl-Alt-X ArrowRight       split_right
+Ctrl-Alt-X ArrowUp          split_top
+Ctrl-Alt-X ArrowDown        split_bottom
+Ctrl-Alt-D ArrowLeft        duplicate_editor_left
+Ctrl-Alt-D ArrowRight       duplicate_editor_right
+Ctrl-Alt-D ArrowUp          duplicate_editor_top
+Ctrl-Alt-D ArrowDown        duplicate_editor_bottom
+Ctrl-Shift-T                reopen_closed_editor
+Ctrl-Alt-S Enter            keep_editor
+
 [open file dialog]
 
-Ctrl-Enter                  open_entry_on_the_side
-Ctrl-1                      open_entry_on_the_left
-Ctrl-2                      open_entry_on_the_right
+Ctrl-Enter                  open_entry_in_side_pane
 Shift-Enter                 open_entry_in_explorer
 Ctrl-K                      move_up
 Ctrl-J                      move_down
@@ -273,9 +296,7 @@ Backspace                   pop_directory
 
 [search dialog]
 
-Ctrl-Enter                  open_entry_on_the_side
-Ctrl-1                      open_entry_on_the_left
-Ctrl-2                      open_entry_on_the_right
+Ctrl-Enter                  open_entry_in_side_pane
 
 Shift-Enter                 move_up  # an alternative way to move
 
@@ -323,18 +344,17 @@ Ctrl-Shift-$                cut_to_end_of_line
 Ctrl-Shift-Delete           delete_to_end_of_line
 Ctrl-Shift-Backspace        delete_to_start_of_line
 
-Ctrl-Q                      close_current_editor
-Ctrl-Shift-Q                close_other_editor
+Ctrl-Q                      close_editor
 
 Escape                      escape  # combines close_dialog and remove_additional_cursors
 
 Ctrl-Shift-E                toggle_expand
 
-Ctrl-B                      build_panel_toggle
+Ctrl-B                      toggle_build_panel
 
 F11                         toggle_fullscreen
 
-Enter                       open_entry_in_place
+Enter                       open_entry
 
 Tab                         focus_next_ui_element
 Shift-Tab                   focus_previous_ui_element
@@ -383,9 +403,32 @@ Ctrl-0                      reset_font_size_to_default
 Ctrl-MouseMiddle            reset_font_size_to_default
 
 F8                          go_to_next_build_error
-Ctrl-F8                     go_to_next_build_error_on_the_side
+Ctrl-F8                     go_to_next_build_error_in_side_pane
 Shift-F8                    go_to_previous_build_error
-Shift-Ctrl-F8               go_to_previous_build_error_on_the_side
+Shift-Ctrl-F8               go_to_previous_build_error_in_side_pane
+
+# Added after migration to version [25]
+Ctrl-Shift-W                close_pane
+Ctrl-Alt-W ArrowLeft        close_left_pane
+Ctrl-Alt-W ArrowRight       close_right_pane
+Ctrl-Alt-W ArrowUp          close_top_pane
+Ctrl-Alt-W ArrowDown        close_bottom_pane
+Ctrl-Shift-Alt-W            close_other_panes
+Ctrl-Shift-1                switch_to_top_pane
+Ctrl-Shift-2                switch_to_bottom_pane
+Ctrl-Alt-Shift-ArrowLeft    switch_to_left_pane
+Ctrl-Alt-Shift-ArrowRight   switch_to_right_pane
+Ctrl-Alt-Shift-ArrowUp      switch_to_top_pane
+Ctrl-Alt-Shift-ArrowDown    switch_to_bottom_pane
+Ctrl-1                      switch_to_pane_1
+Ctrl-2                      switch_to_pane_2
+Ctrl-3                      switch_to_pane_3
+Ctrl-4                      switch_to_pane_4
+Ctrl-5                      switch_to_pane_5
+Ctrl-6                      switch_to_pane_6
+Ctrl-7                      switch_to_pane_7
+Ctrl-8                      switch_to_pane_8
+Ctrl-9                      switch_to_pane_9
 
 
 [[style]]
@@ -430,7 +473,7 @@ scrollbar_background:                   10191F4C
 cursor:                                 26B2B2FF
 cursor_inactive:                        196666FF
 paste_animation:                        1C4449FF
-splitter:                               21333FFF
+splitter:                               10191FFF
 splitter_hover:                         1C4449FF
 ruler:                                  FCEDFC26
 indent_guide:                           FCEDFC26
@@ -496,9 +539,23 @@ code_builtin_exception:                 E0AD82FF
 code_directive:                         E67D74FF
 code_directive_modifier:                E67D74FF
 
-code_header:                            E67D74FF
+code_header1:                           E67D74FF
 code_header2:                           E0AD82FF
 code_header3:                           E0AD82FF
 code_header4:                           E0AD82FF
 code_header5:                           E0AD82FF
 code_header6:                           E0AD82FF
+
+# Added after migration to version [25]
+active_pane_border:                     196666FF
+inactive_pane_dim_overlay:              050505FF
+code_comment_highlight1:                E0AD82FF
+code_comment_highlight2:                FF0000FF
+code_comment_highlight3:                E67D74FF
+code_comment_highlight4:                D699B5FF
+cursor_line_highlight:                  21333FFF
+color_preview_title_bar:                21333FFF
+code_addition:                          33B333FF
+code_deletion:                          E64D4DFF
+region_addition:                        2260224C
+region_deletion:                        7722224C

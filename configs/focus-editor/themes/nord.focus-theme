@@ -1,4 +1,4 @@
-[16]  # Version number. Do not delete.
+[25]  # Version number. Do not delete.
 
 [colors]
 background0:                            2E3440FF
@@ -79,7 +79,7 @@ code_builtin_function:                  E0AD82FF
 code_builtin_exception:                 E0AD82FF
 code_directive:                         E67D74FF
 code_directive_modifier:                E67D74FF
-code_header:                            E67D74FF
+code_header1:                           E67D74FF
 code_header2:                           E0AD82FF
 code_header3:                           E0AD82FF
 code_header4:                           E0AD82FF
@@ -90,3 +90,17 @@ code_header6:                           E0AD82FF
 ruler:                                  D8DEE9FF
 bracket_highlight:                      434C5EFF
 indent_guide:                           434C5EFF
+
+# Added after migration to version [25]
+active_pane_border:                     D8DEE9FF
+inactive_pane_dim_overlay:              050505FF
+code_comment_highlight1:                E0AD82FF
+code_comment_highlight2:                BF616AFF
+code_comment_highlight3:                81A1C1FF
+code_comment_highlight4:                B48EADFF
+cursor_line_highlight:                  3B4252FF
+color_preview_title_bar:                3B4252FF
+code_addition:                          33B333FF
+code_deletion:                          E64D4DFF
+region_addition:                        2260224C
+region_deletion:                        7722224C

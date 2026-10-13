@@ -72,6 +72,11 @@ in
       outOfStoreSymlink = true;
       recursive = true;
     };
+    ".config/fred" = {
+      source = ../../configs/fred;
+      outOfStoreSymlink = true;
+      recursive = true;
+    };
     ".cadacama/fred" = {
       source = ../../configs/fred;
       outOfStoreSymlink = true;

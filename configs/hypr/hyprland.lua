@@ -6,3 +6,6 @@ require("rules")
 
 -- desktop vs laptop
 require("system")
+
+-- DMS Include Configs
+require("dms.cursor")

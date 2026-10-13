@@ -47,7 +47,7 @@
               ark-cli = inputs.lmpkgs.packages.${system}.ark-cli;
               dank-greeter = inputs.dank-greeter.nixosModules.default;
               fred = inputs.lmpkgs.packages.${system}.fred;
-              focus = inputs.focus-editor.packages.${system}.focus;
+              focus = inputs.focus-editor.packages.${system}.focus-nightly;
               hyprland = inputs.hyprland.packages.${system}.hyprland;
               hyprpwcenter = inputs.hyprpwcenter.packages.${system}.hyprpwcenter;
               xdg-desktop-portal-hyprland = inputs.hyprland.packages.${system}.xdg-desktop-portal-hyprland;

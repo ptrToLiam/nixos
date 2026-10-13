@@ -10,6 +10,7 @@ inactive_line_number = 0x444248ff
 line_number_sep = 0x8a8592ff
 line_ruler = 0x8a8592ff
 cursor = 0xffffffff
+prim_cursor = 0xff0000ff
 tray = 0xffffffff
 need_save = 0xff0000ff
 background = 0x1f1f1fff
@@ -23,11 +24,14 @@ line_guides = 0xadd6ff26
 active_line_guide = 0xadd6ffff
 highlight_line_copy = 0x9a02ff
 highlight_line_edit = 0x9fffff
+cursor_line_outline = 0x44424850
+cursor_line_fill = 0x44424850
 
 [editor.state]
 show_line_numbers = false
 auto_syntax_highlighting = true
 auto_line_endings = true
+save_on_cmd_launch = false
 render_whitespace = false
 tabs_as_spaces = true
 spellcheck_by_default = false
@@ -45,6 +49,8 @@ relative_numbering = false
 clear_find = false
 return_accept_suggestion = true
 show_line_rulers = false
+enable_active_line_fill = false
+enable_prim_cursor_fill = false
 noisy_parse = false
 noisy_search = false
 noisy_events = false
@@ -186,6 +192,7 @@ feed_font_size = 14
 
 [widget.colors]
 window_border = 0xadd6ff26
+window_background = 0x1f1f1fcb
 window_title_background = 0xadd6ff26
 window_title_font_color = 0xd4d4d4ff
 window_close_button_hover = 0xf44747ff
@@ -198,6 +205,7 @@ drag_drop_zone = 0xadd6ffff
 outline_selection = 0x9fffff
 warning = 0xe3811cff
 error = 0xff0000ff
+good = 0xff00ff
 active_button = 0x98ffff
 loading_bar_progress = 0x98ff80
 loading_bar_complete = 0x9a0280
@@ -211,12 +219,14 @@ scrollbar_min_size = 20
 
 [system.core]
 preferred_file_explorer = ''
-core_window_rect = [947, 6, 930, 1048]
+core_window_rect = [943, 6, 927, 1048]
 async_update_frequency_ms = 1000
 editor_theme = 'ColorTheme_Fred'
+error_match_strat = 'ErrorMatcher_None'
 fullscreen = false
 maximized = false
 disable_sessions = false
+disable_plugins = false
 noisy_session_info = false
 
 [system.fonts]
@@ -240,8 +250,9 @@ highlight_line_edit = true
 subpixel_font_aa = false
 
 [hotkey.state]
-hotkeys = '/home/liamm/.cadacama/fred/hotkeys.toml'
+hotkeys = '/home/liamm/.config/fred/hotkeys.toml'
 
 [plugins.core]
 plugins_source_file = '/home/liamm/.config/fred/plugins.c'
 gen_base_template_only = false
+exclude_examples = false

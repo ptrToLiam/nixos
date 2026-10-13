@@ -40,6 +40,213 @@ int memcmp(const void* _Buf1, const void* _Buf2, size_t _Size);
 void* memcpy(void* _Dst, const void* _Src, size_t _Size);
 void* memset(void* _Dst, int _Val, size_t _Size);
 
+// Primitive types.
+typedef struct Vec4i {
+  union {
+    struct {
+      int32_t x;
+      int32_t y;
+      int32_t z;
+      int32_t w;
+    };
+    struct {
+      int32_t r;
+      int32_t g;
+      int32_t b;
+      int32_t a;
+    };
+    struct {
+      int32_t p0[2];
+      int32_t p1[2];
+    };
+    int32_t xyzw[4];
+    int32_t rgba[4];
+  };
+} Vec4i;
+
+typedef struct Vec4f {
+  union {
+    struct {
+      float x;
+      float y;
+      float z;
+      float w;
+    };
+    struct {
+      float r;
+      float g;
+      float b;
+      float a;
+    };
+    struct {
+      float p0[2];
+      float p1[2];
+    };
+    float xyzw[4];
+    float rgba[4];
+  };
+} Vec4f;
+
+// OS event structures.
+typedef enum OSKeyMod {
+  OS_KEY_MOD_None = 0,
+  OS_KEY_MOD_Shift = 0x1,
+  OS_KEY_MOD_Alt = 0x2,
+  OS_KEY_MOD_Opt = 0x2,
+  OS_KEY_MOD_Ctrl = 0x4,
+  OS_KEY_MOD_Cmd = 0x8,
+  OS_KEY_MOD_AnyDown = 0xf,
+} OSKeyMod;
+
+typedef enum OSKey {
+  OS_KEY_Null = 0,
+  OS_KEY_Esc = 1,
+  OS_KEY_F1 = 2,
+  OS_KEY_F2 = 3,
+  OS_KEY_F3 = 4,
+  OS_KEY_F4 = 5,
+  OS_KEY_F5 = 6,
+  OS_KEY_F6 = 7,
+  OS_KEY_F7 = 8,
+  OS_KEY_F8 = 9,
+  OS_KEY_F9 = 10,
+  OS_KEY_F10 = 11,
+  OS_KEY_F11 = 12,
+  OS_KEY_F12 = 13,
+  OS_KEY_F13 = 14,
+  OS_KEY_F14 = 15,
+  OS_KEY_F15 = 16,
+  OS_KEY_F16 = 17,
+  OS_KEY_F17 = 18,
+  OS_KEY_F18 = 19,
+  OS_KEY_F19 = 20,
+  OS_KEY_F20 = 21,
+  OS_KEY_F21 = 22,
+  OS_KEY_F22 = 23,
+  OS_KEY_F23 = 24,
+  OS_KEY_F24 = 25,
+  OS_KEY_Tick = 26,
+  OS_KEY_Minus = 27,
+  OS_KEY_Equal = 28,
+  OS_KEY_Backspace = 29,
+  OS_KEY_Tab = 30,
+  OS_KEY_LeftBracket = 31,
+  OS_KEY_RightBracket = 32,
+  OS_KEY_BackSlash = 33,
+  OS_KEY_CapsLock = 34,
+  OS_KEY_Semicolon = 35,
+  OS_KEY_Quote = 36,
+  OS_KEY_Return = 37,
+  OS_KEY_Shift = 38,
+  OS_KEY_Comma = 39,
+  OS_KEY_Period = 40,
+  OS_KEY_Slash = 41,
+  OS_KEY_Ctrl = 42,
+  OS_KEY_Alt = 43,
+  OS_KEY_Space = 44,
+  OS_KEY_Menu = 45,
+  OS_KEY_ScrollLock = 46,
+  OS_KEY_Pause = 47,
+  OS_KEY__0 = 48,
+  OS_KEY__1 = 49,
+  OS_KEY__2 = 50,
+  OS_KEY__3 = 51,
+  OS_KEY__4 = 52,
+  OS_KEY__5 = 53,
+  OS_KEY__6 = 54,
+  OS_KEY__7 = 55,
+  OS_KEY__8 = 56,
+  OS_KEY__9 = 57,
+  OS_KEY_Insert = 58,
+  OS_KEY_Home = 59,
+  OS_KEY_PageUp = 60,
+  OS_KEY_Delete = 61,
+  OS_KEY_End = 62,
+  OS_KEY_PageDown = 63,
+  OS_KEY_Up = 64,
+  OS_KEY_Left = 65,
+  OS_KEY_Down = 66,
+  OS_KEY_Right = 67,
+  OS_KEY_Ex0 = 68,
+  OS_KEY_Ex1 = 69,
+  OS_KEY_Ex2 = 70,
+  OS_KEY_Ex3 = 71,
+  OS_KEY_Ex4 = 72,
+  OS_KEY_Ex5 = 73,
+  OS_KEY_Ex6 = 74,
+  OS_KEY_Ex7 = 75,
+  OS_KEY_Ex8 = 76,
+  OS_KEY_Ex9 = 77,
+  OS_KEY_Ex10 = 78,
+  OS_KEY_Ex11 = 79,
+  OS_KEY_Ex12 = 80,
+  OS_KEY_Ex13 = 81,
+  OS_KEY_Ex14 = 82,
+  OS_KEY_Ex15 = 83,
+  OS_KEY_Ex16 = 84,
+  OS_KEY_Ex17 = 85,
+  OS_KEY_Ex18 = 86,
+  OS_KEY_Ex19 = 87,
+  OS_KEY_Ex20 = 88,
+  OS_KEY_Ex21 = 89,
+  OS_KEY_Ex22 = 90,
+  OS_KEY_Ex23 = 91,
+  OS_KEY_Ex24 = 92,
+  OS_KEY_Ex25 = 93,
+  OS_KEY_Ex26 = 94,
+  OS_KEY_Ex27 = 95,
+  OS_KEY_Ex28 = 96,
+  OS_KEY_A = 97,
+  OS_KEY_B = 98,
+  OS_KEY_C = 99,
+  OS_KEY_D = 100,
+  OS_KEY_E = 101,
+  OS_KEY_F = 102,
+  OS_KEY_G = 103,
+  OS_KEY_H = 104,
+  OS_KEY_I = 105,
+  OS_KEY_J = 106,
+  OS_KEY_K = 107,
+  OS_KEY_L = 108,
+  OS_KEY_M = 109,
+  OS_KEY_N = 110,
+  OS_KEY_O = 111,
+  OS_KEY_P = 112,
+  OS_KEY_Q = 113,
+  OS_KEY_R = 114,
+  OS_KEY_S = 115,
+  OS_KEY_T = 116,
+  OS_KEY_U = 117,
+  OS_KEY_V = 118,
+  OS_KEY_W = 119,
+  OS_KEY_X = 120,
+  OS_KEY_Y = 121,
+  OS_KEY_Z = 122,
+  OS_KEY_Ex29 = 123,
+  OS_KEY_NumLock = 124,
+  OS_KEY_NumSlash = 125,
+  OS_KEY_NumStar = 126,
+  OS_KEY_NumMinus = 127,
+  OS_KEY_NumPlus = 128,
+  OS_KEY_NumPeriod = 129,
+  OS_KEY_Num0 = 130,
+  OS_KEY_Num1 = 131,
+  OS_KEY_Num2 = 132,
+  OS_KEY_Num3 = 133,
+  OS_KEY_Num4 = 134,
+  OS_KEY_Num5 = 135,
+  OS_KEY_Num6 = 136,
+  OS_KEY_Num7 = 137,
+  OS_KEY_Num8 = 138,
+  OS_KEY_Num9 = 139,
+  OS_KEY_LeftMouseButton = 140,
+  OS_KEY_MiddleMouseButton = 141,
+  OS_KEY_RightMouseButton = 142,
+  OS_KEY_Command = 143,
+  OS_KEY_IgnoreKey = 144,
+} OSKey;
+
+// Editor command types/flags.
 typedef enum EditorCommands {
   ED_SaveRequestSave, // (.cmd) Saves the current buffer if there are changes.
   ED_SaveRequest_END = 0xF,
@@ -82,6 +289,11 @@ typedef enum EditorCommands {
   ED_NavCursorHistoryBack, // (.cmd,.flags) Moves cursor to its previous position.
   ED_NavCursorHistoryForward, // (.cmd,.flags) Moves cursor to its next future position.
   ED_NavMoveCursorTo, // (.cmd,.flags,.byte_offsets) Moves cursor to a specific byte position in the buffer.
+  ED_NavLeftNoNLAdvance, // (.cmd,.flags) Moves cursor to the left.
+  ED_NavWordStart, // (.cmd,.flags) Moves cursor to the beginning of the word under it.
+  ED_NavWordEnd, // (.cmd,.flags) Moves cursor to the end of the word under it.
+  ED_NavLineContentJumpLeft, // (.cmd,.flags) Moves cursor to the beginning of the line content or to the absolute beginning if already there.
+  ED_NavLineContentJumpRight, // (.cmd,.flags) Moves cursor to the end of the line content or to the absolute end if already there.
   ED_Nav_END = 0x4FF,
   ED_MCDupCursorDown, // (.cmd) Creates a new multi-cursor one line below.
   ED_MCDupCursorUp, // (.cmd) Creates a new multi-cursor one line above.
@@ -95,7 +307,8 @@ typedef enum EditorCommands {
   ED_InsOverwriteInsertBuf, // (.cmd,.buf) Inserts a buffer at cursor, overwriting characters overlapping the buffer.
   ED_InsOpenLineBelow, // (.cmd) Opens a new content line below cursor.
   ED_InsOpenLineAbove, // (.cmd) Opens a new content line above cursor.
-  ED_InsTab, // (.cmd) Inserts a tap (may be expanded to spaces).
+  ED_InsTab, // (.cmd) Inserts a tab (may be expanded to spaces).
+  ED_InsNewline, // (.cmd) Inserts a newline and attempts to indent the next line appropriately.
   ED_Ins_END = 0x90F,
   ED_SpecJoinLineBelow, // (.cmd) Joins the content line below with the current line at cursor.
   ED_SpecTrimLineEndings, // (.cmd) Trims trailing spaces at all lines.
@@ -108,6 +321,7 @@ typedef enum EditorCommands {
   ED_DelDeleteChunk, // (.cmd) Deletes a word chunk at cursor.  If a selection is active, the selection is deleted.
   ED_DelBackspaceWord, // (.cmd) Deletes a word before the cursor.  If a selection is active, the selection is deleted.
   ED_DelBackspaceChunk, // (.cmd) Deletes a word chunk before the cursor.  If a selection is active, the selection is deleted.
+  ED_DelBackspaceChar, // (.cmd) Deletes a char before the cursor.  If a selection is active, the selection is deleted.
   ED_Del_END = 0xF0F,
   ED_URTryUndo, // (.cmd) Attemps an undo operation.
   ED_URTryRedo, // (.cmd) Attemps a redo operation.
@@ -118,7 +332,35 @@ typedef enum EditorCommandFlags {
   ED_FLG_None = 0, // No options.
   ED_FLG_UpdateSelection = 1 << 0, // If the cursor moves, add to the selection.
   ED_FLG_ResetCamera = 1 << 1, // Make the camera follow the cursor after command.
+  ED_FLG_SuppressHistory = 1 << 2, // Suppress undo graph node for edit.
 } EditorCommandFlags;
+
+typedef enum EditorCursorStyleFlags {
+  ED_CURSOR_FLG_None = 0,
+  ED_CURSOR_FLG_Embolden = 0x1,
+  ED_CURSOR_FLG_MarkPrimaryCursor = 0x2,
+} EditorCursorStyleFlags;
+
+typedef enum SMCLIMatcherCategory {
+  SMCLI_MATCHER_CAT_Error = 0,
+  SMCLI_MATCHER_CAT_Warning = 0x1,
+  SMCLI_MATCHER_CAT_Note = 0x2,
+} SMCLIMatcherCategory;
+
+typedef enum ConfigValueSort {
+  CFG_SORT_StrPath, // System path type
+  CFG_SORT_StrFile, // File path type
+  CFG_SORT_StrString, // Generic string type
+  CFG_SORT_StrEnum, // Enumeration as string type
+  CFG_SORT_Vec4fColor, // Color type
+  CFG_SORT_Vec4iRect, // Rectangle type
+  CFG_SORT_B32Toggle, // Toggle type
+  CFG_SORT_S32FontSize, // Font size type
+  CFG_SORT_S32Pixel, // Pixel type
+  CFG_SORT_S32, // Signed integral type
+  CFG_SORT_Int32Array, // Array of int32 types
+  CFG_SORT_Invalid = 0xFFFFFFFF, // Invalid value
+} ConfigValueSort;
 
 // --- fred plugin API ---
 // --- Infra structures ---
@@ -137,6 +379,32 @@ typedef struct String8Array {
   // Size of array.
   uint64_t size;
 } String8Array;
+
+// An offset into an existing string.
+typedef struct String8Offset {
+  // Offset into a String8.
+  uint64_t off;
+  // Size of substring.
+  uint64_t size;
+} String8Offset;
+
+
+// Structure storing a key combo for testing input.
+typedef struct OSKeyCombo {
+  // Key to be tested.
+  uint32_t key;
+  // Modifiers added to key.
+  uint32_t mods;
+} OSKeyCombo;
+
+
+// Collection of int32 types.
+typedef struct Int32Array {
+  // Pointer to sequence.
+  int32_t* array;
+  // Size of array.
+  uint64_t size;
+} Int32Array;
 
 // Structure storing a collection of offsets into the buffer.
 typedef struct EditorOffsetArray {
@@ -177,6 +445,57 @@ typedef struct EditorFindResults {
   // Size of array.
   uint64_t size;
 } EditorFindResults;
+
+// Structure storing an instance of a text run for the UI.
+typedef struct EditorEquippedText {
+  // The text to be rendered.
+  String8 text;
+  // The color of the text.
+  Vec4f color;
+  // Style flags applied to the text.
+  uint32_t flags;
+} EditorEquippedText;
+
+// Structure storing a collection of UI text runs.
+typedef struct EditorTextRun {
+  // Pointer to text runs.
+  EditorEquippedText* array;
+  // Size of array.
+  uint64_t size;
+} EditorTextRun;
+
+// Structure storing a manipulation of the editor cursor.
+typedef struct EditorCursorStyle {
+  // Color of the cursor.
+  Vec4f color;
+  // Flags applied to the cursor.
+  uint32_t flags;
+} EditorCursorStyle;
+
+// Opaque: Structure storing the result of a custom CLI output matcher.
+typedef struct SMCLIMatcherResult SMCLIMatcherResult;
+
+// Structure storing a reference to the output text that contains a path for navigation.
+typedef struct SMCLIMatcherClickablePath {
+  // The string offset containing the path for navigation.
+  String8Offset path;
+  // A string offset to a diagnostic accompanying this path location.
+  String8Offset diag;
+  // The specific line in the file where 'diag' occurs.
+  uint64_t line;
+  // The severity level of the diagnositc (SMCLIMatcherCategory).
+  uint32_t sev_cat;
+} SMCLIMatcherClickablePath;
+
+// Structure storing a reference to the output text which needs to be stylized in a certain way.
+typedef struct SMCLIMatcherDecoration {
+  // The string offset containing the text to be decorated.
+  String8Offset string;
+  // The severity level of the diagnositc (SMCLIMatcherCategory).
+  uint32_t sev_cat;
+  // Flags indicating additional style options (unused).
+  uint32_t flags;
+} SMCLIMatcherDecoration;
 
 // --- Editor batching API ---
 // Structure for working with batch edits.
@@ -230,8 +549,12 @@ typedef struct EditorBatchReplace {
 typedef struct Arena Arena;
 // Opaque: Pointer to plugin manager instance.
 typedef struct PluginManager PluginManager;
+// Opaque: Pointer to UI state instance.
+typedef struct UIState UIState;
 // Opaque: Pointer to editor instance.
 typedef struct Editor Editor;
+// Opaque: Pointer simple system command instance.
+typedef struct SMCLICtx SMCLICtx;
 // Context structure for editor interactions.
 typedef struct EditorCtx {
   // Plugin manager.
@@ -239,6 +562,14 @@ typedef struct EditorCtx {
   // Calling editor.
   Editor* editor;
 } EditorCtx;
+
+// Holds persistent arena and data per-editor.
+typedef struct EditorData {
+  // Arena used to allocate/release data in data pointer.
+  Arena* arena;
+  // Persistent data point held in the editor.
+  void** data;
+} EditorData;
 
 // --- Command structures ---
 // Structure for queuing editor commands.
@@ -255,6 +586,33 @@ typedef struct EditorCmd {
   EditorOffsetArray byte_offsets;
 } EditorCmd;
 
+// --- Config structures ---
+// Union for holding config values.
+typedef union ConfigValue {
+  // Strings.
+  String8 string;
+  // 4 float vector.
+  Vec4f vec4f;
+  // 4 S32 vector.
+  Vec4i vec4i;
+  // Booleans.
+  uint32_t b32;
+  // Signed 32-bit int.
+  int32_t s32;
+  // Signed 32-bit int array.
+  Int32Array s32array;
+  // Extra padding.
+  char extra[32];
+} ConfigValue;
+
+// Structure for getting/setting keyed config values.
+typedef struct KeyedConfigValue {
+  // Value.
+  ConfigValue value;
+  // Value kind.
+  ConfigValueSort sort;
+} KeyedConfigValue;
+
 // --- Arenas ---
 // Fetches a scratch arena that does not conflict with 'conflict'.
 Arena* arena_pull_scratch(PluginManager* mgr, Arena* conflict);
@@ -264,6 +622,18 @@ void* arena_push(Arena* a, uint64_t size, uint64_t align, uint32_t zero);
 uint64_t arena_pos(Arena* a);
 // Pops arena to specific position.
 void arena_pop_to(Arena* a, uint64_t pos);
+
+// --- OS ---
+// Attempts to check if a key combo is down.  If it is, the key down event is consumed and 1 is returned, otherwise 0.
+uint32_t os_key_match_internal(UIState*, OSKeyCombo*);
+// If the desired key modifier is active, 1 is returned, otherwise 0.
+uint32_t os_mod_active_internal(UIState*, uint32_t);
+// Gets the current text event buffer.
+void os_text_event_internal(UIState*, String8*);
+// Eats the input text buffer event.  This is separate from key matching as keys can be a text event buffer like 'h' and have a keydown event for OS_KEY_H.
+void os_eat_text_event_internal(UIState*);
+// Sets the input text buffer event to a specific value.  This is useful if you only want to consume some of the input text buffer.
+void os_populate_text_event_internal(UIState*, String8*);
 
 // --- Message feed ---
 // Emit an info message.
@@ -291,6 +661,8 @@ void ed_byte_range_at_line_with_newline(EditorCtx* ctx, uint64_t line, EditorOff
 uint64_t ed_line_count(EditorCtx* ctx);
 // Gets the total content length for the buffer.
 uint64_t ed_content_byte_count(EditorCtx* ctx);
+// Returns 1 if the editor has CRLF line endings.
+int32_t ed_has_crlf_endings(EditorCtx* ctx);
 // Performs an immediate incremental search for 'str' over the current buffer.
 void ed_find_all(Arena* a, EditorCtx* ctx, String8* str, uint32_t ignore_case, EditorFindResults* result);
 // Batching.
@@ -307,11 +679,33 @@ void ed_edit_batch_replace(EditorBatchEdit* batch, EditorBatchReplace* ops);
 // Commands.
 // Pushes a new editor command.
 void ed_push_command(EditorCtx* ctx, EditorCmd* cmd);
+// Persistent data management.
+// Creates a new persistent data context.  Any old persistent data is released.
+void ed_new_persistent_data(EditorCtx* ctx, EditorData* data);
+// Gets existing persistent data context.  If there is no persistent data, one is created as if 'ed_new_persistent_data' were called.
+void ed_fetch_persistent_data(EditorCtx* ctx, EditorData* data);
+// UI elements.
+// Sets a user-defined tray.  If 'hide_default_tray' is != 0, then the usual tray content is cleared.
+void ed_populate_user_defined_tray_text(EditorCtx* ctx, EditorTextRun* run, uint32_t hide_default_tray);
+// Sets a user-defined cursor style.
+void ed_apply_cursor_style(EditorCtx* ctx, EditorCursorStyle* style);
+
+// --- Simple system commands ---
+// Adds a path destination which can be clickable from the output text of the CLI window.
+void smcli_add_clickable_path(SMCLICtx* ctx, SMCLIMatcherResult* results, SMCLIMatcherClickablePath* path);
+// Decorates specific slices of the output text.  Note: Decorated pieces of text should NOT overlap.
+void smcli_add_text_decoration(SMCLICtx* ctx, SMCLIMatcherResult* results, SMCLIMatcherDecoration* decoration);
+
+// --- Config ---
+// Queries the config for a specific key.  If the key does not exist, the type will be 'CFG_SORT_Invalid'.
+void config_query_config_value(Arena* a, String8* key, KeyedConfigValue* result);
+// Attempts to set an existing config value by key.  Will return 0 if the config value was not set.
+uint32_t config_try_update_config_value(String8* key, KeyedConfigValue* val);
 
 // --- Utility ---
 // Formats a string printf-style and allocates result to specified arena.  There is a unique specifier '%S' for String8.
 void str8_fmt_internal(Arena* a, String8* result, const char* fmt, va_list vlst);
-// Performs a lexicographic comparison on input strings.
+// Returns -1 for 'a' < 'b', 0 for 'a' == 'b', and 1 for 'a' > 'b'.  Performs a lexicographic comparison on input strings.
 int32_t str8_compare_internal(String8* a, String8* b);
 // Returns 1 if the input string is an integral value of the specified radix.
 uint32_t str8_is_integer_internal(String8* str, uint32_t radix);
@@ -349,12 +743,29 @@ void arena_temp_end(Temp t) {
 #define push_array_no_zero_aligned(a, T, c, align) (T *)arena_push((a), sizeof(T)*(c), (align), (0))
 #define push_array_aligned(a, T, c, align) (T *)arena_push((a), sizeof(T)*(c), (align), (1))
 #define push_array_no_zero(a, T, c) push_array_no_zero_aligned(a, T, c, FRED_Max(8, FRED_AlignOf(T)))
-
 #define push_array(a, T, c) push_array_aligned(a, T, c, FRED_Max(8, FRED_AlignOf(T)))
 
 // Scratch arena creation.  You pass in a 'conflict' arena when you don't want one scratch arena to overwrite another when nested functions are involved.
 #define scratch_begin(conflict) arena_temp_begin(arena_pull_scratch(ctx->mgr, (conflict)))
 #define scratch_end(scratch) arena_temp_end(scratch)
+
+// OS event processing.
+#define key_match(k, ...) os_key_match_internal(state, &(OSKeyCombo){ .key = k, .mods = 0, __VA_ARGS__ })
+#define mod_active(m) os_mod_active_internal(state, m)
+#define os_text_event() os_text_event_(state)
+#define os_eat_text_event() os_eat_text_event_internal(state)
+#define os_populate_text_event(str) os_populate_text_event_(state, str)
+
+String8 os_text_event_(UIState* state) {
+  String8 result = {0};
+  os_text_event_internal(state, &result);
+  return result;
+}
+
+void os_populate_text_event_(UIState* state, String8 str) {
+  os_populate_text_event_internal(state, &str);
+}
+
 
 // Feed.
 void feed_queue_info(String8 msg) {
@@ -438,11 +849,32 @@ typedef struct HotkeyPluginEditorHook {
 } HotkeyPluginEditorHook;
 
 // This is the 'ED' group.
+// This is invoked when the corresponding key combo is hit or if selected through the command palette.
 #define DEF_PLUGIN_EDITOR_HOOK(ui_name, desc, fn_name)                                                                 \
   void ED_ ## fn_name ## _impl_fn(EditorCtx*);                                                                         \
   HotkeyPluginEditorHook ED_ ## fn_name = { .name = ui_name, .description = desc, .fn = &ED_ ## fn_name ## _impl_fn }; \
   void ED_ ## fn_name ## _impl_fn(EditorCtx* ctx)
 
+// General input handlers.
+
+// This is called on each frame.  You can scan the state object for inputs, queue editor commands and consume the events.
+// Note: This will not be invoked if the editor is not focused.
+#define DEF_PLUGIN_EDITOR_INPUT_HOOK() \
+  void INPUT_ED_impl_fn(EditorCtx* ctx, UIState* state)
+
+// General plugin notifications.
+// Invoked when a new editor is opened or the plugins are recompiled, the latter is true when 'from_recompile' is true.
+// Note: You cannot queue commands from here.  This is meant for data setup.
+#define DEF_PLUGIN_EDITOR_INIT_HOOK() \
+  void INIT_ED_impl_fn(EditorCtx* ctx, uint32_t from_recompile)
+
+// Simple Command CLI handlers.
+// For defining custom matcher hooks.
+#define DEF_SMCLI_OUTPUT_MATCHER_HOOK() \
+  void OUTPUT_MATCHER_SMCLI_impl_local_fn(SMCLICtx* ctx, SMCLIMatcherResult* result, String8 output);  \
+  void OUTPUT_MATCHER_SMCLI_impl_fn(SMCLICtx* ctx, SMCLIMatcherResult* result, String8* output)        \
+  { OUTPUT_MATCHER_SMCLI_impl_local_fn(ctx, result, *output); }                                        \
+  void OUTPUT_MATCHER_SMCLI_impl_local_fn(SMCLICtx* ctx, SMCLIMatcherResult* result, String8 output)
 // Example plugins.
 DEF_PLUGIN_EDITOR_HOOK("Says hello", "Says hello in each feed.", say_hello) {
   String8 str = str8_lit("Hello, world!");
@@ -750,3 +1182,31 @@ DEF_PLUGIN_EDITOR_HOOK("Toggle C-style comment line(s)", "Adds a C-style comment
   }
   scratch_end(scratch);
 }
+
+//-----------------------------------------------------------------------------
+// Custom Plugins
+//-----------------------------------------------------------------------------
+
+
+#define CURSOR_MOVE_DIRS(X) \
+  X(Left) \
+  X(Right) \
+  X(LineUp) \
+  X(LineDown) 
+  
+#define CURSOR_MOVE_DIR_HOOKS(dir) \
+  DEF_PLUGIN_EDITOR_HOOK("Move Cursor " #dir, "Move Cursor " #dir, CursorMove##dir) \
+  { \
+  EditorCmd cmd = {0};\
+  cmd.cmd = ED_Nav##dir; \
+  ed_push_command(ctx, &cmd); }
+
+CURSOR_MOVE_DIRS(CURSOR_MOVE_DIR_HOOKS)
+// DEF_PLUGIN_EDITOR_HOOK("Move Cursor Left", 
+//                        "cursor_left", 
+//                        cursor_move_left) 
+// {
+//   EditorCmd cmd = {0};
+//   cmd.cmd = ED_NavLeft;
+//   ed_push_command(ctx, &cmd);
+// }

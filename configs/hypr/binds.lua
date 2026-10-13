@@ -1,26 +1,39 @@
+local launch_signal = "flatpak run org.signal.Signal"
+local function dms(s)
+  return "dms ipc call " .. s
+end
 -- Binds :: General
-hl.bind("ALT + Return",            hl.dsp.exec_cmd("ghostty"))
-hl.bind("ALT + SHIFT + Return",    hl.dsp.exec_cmd("foot"))
-hl.bind(mainMod .. " + SHIFT + D", hl.dsp.exec_cmd(discord))
-hl.bind(mainMod .. " + SHIFT + S", hl.dsp.exec_cmd("flatpak run org.signal.Signal"))
-hl.bind(mainMod .. " + SHIFT + E", hl.dsp.exec_cmd("emacs -c -a 'emacs'"))
-hl.bind(mainMod .. " + SHIFT + F", hl.dsp.exec_cmd("focus"))
-hl.bind(mainMod .. " + E",         hl.dsp.exec_cmd("thunar"))
-hl.bind(mainMod .. " + S",         hl.dsp.exec_cmd("spotify"))
-hl.bind(mainMod .. " + P",         hl.dsp.exec_cmd(colorpick))
+local function bind(keys, cmd)
+  return { mod = table.concat(keys, " + "), cmd = cmd }
+end
+
+local keybinds = {
+  bind({ "ALT", "SHIFT", "Return" }, hl.dsp.exec_cmd("foot")),
+  bind({ mainMod, "SHIFT", "S" },    hl.dsp.exec_cmd(launch_signal)),
+  bind({ mainMod, "SHIFT", "D" },    hl.dsp.exec_cmd(discord)),
+  bind({ mainMod, "SHIFT", "E" },    hl.dsp.exec_cmd("emacs -c -a 'emacs'")),
+  bind({ mainMod, "SHIFT", "F" },    hl.dsp.exec_cmd("focus")),
+  bind({ "ALT", "Return" },          hl.dsp.exec_cmd("ghostty")),
+  bind({ mainMod, "P" },             hl.dsp.exec_cmd(colorpick)),
+  bind({ mainMod, "S" },             hl.dsp.exec_cmd("spotify")),
+  bind({ mainMod, "E" },             hl.dsp.exec_cmd("thunar")),
+}
+for _, b in ipairs(keybinds) do
+  hl.bind(b.mod, b.cmd)
+end
 
 hl.bind("Print",                   hl.dsp.exec_cmd(screenshot_area))
 hl.bind("SHIFT + Print",           hl.dsp.exec_cmd(screenshot))
-hl.bind(mainMod .. " + Space",     hl.dsp.exec_cmd("dms ipc call spotlight toggle"))
-hl.bind(mainMod .. " + X",         hl.dsp.exec_cmd("dms ipc call powermenu toggle"))
-hl.bind(mainMod .. " + M",         hl.dsp.exec_cmd("dms ipc call processlist toggle"))
-hl.bind(mainMod .. " + I",         hl.dsp.exec_cmd("dms ipc call settings toggle"))
-hl.bind(mainMod .. " + V",         hl.dsp.exec_cmd("dms ipc call clipboard toggle"))
-hl.bind(mainMod .. " + CTRL + P",  hl.dsp.exec_cmd("dms ipc call notepad toggle"))
-hl.bind(mainMod .. " + CTRL + C",  hl.dsp.exec_cmd("dms ipc call control-center toggle"))
-hl.bind(mainMod .. " + N",         hl.dsp.exec_cmd("dms ipc call notifications toggle"))
-hl.bind(mainMod .. " + SHIFT + N", hl.dsp.exec_cmd("dms ipc call night toggle"))
-hl.bind(mainMod .. " + CTRL + B",  hl.dsp.exec_cmd("dms ipc call bar toggle"))
+hl.bind(mainMod .. " + Space",     hl.dsp.exec_cmd(dms("spotlight toggle")))
+hl.bind(mainMod .. " + X",         hl.dsp.exec_cmd(dms("powermenu toggle")))
+hl.bind(mainMod .. " + M",         hl.dsp.exec_cmd(dms("processlist toggle")))
+hl.bind(mainMod .. " + I",         hl.dsp.exec_cmd(dms("settings toggle")))
+hl.bind(mainMod .. " + V",         hl.dsp.exec_cmd(dms("clipboard toggle")))
+hl.bind(mainMod .. " + CTRL + P",  hl.dsp.exec_cmd(dms("notepad toggle")))
+hl.bind(mainMod .. " + CTRL + C",  hl.dsp.exec_cmd(dms("control-center toggle")))
+hl.bind(mainMod .. " + N",         hl.dsp.exec_cmd(dms("notifications toggle")))
+hl.bind(mainMod .. " + SHIFT + N", hl.dsp.exec_cmd(dms("night toggle")))
+hl.bind(mainMod .. " + CTRL + B",  hl.dsp.exec_cmd(dms("bar toggle")))
 hl.bind(mainMod .. " + CTRL + Q",  hl.dsp.exec_cmd(lock))
 
 hl.bind(mainMod .. " + C",         hl.dsp.window.close())
@@ -76,19 +89,27 @@ end
 hl.bind("XF86AudioPlay",         hl.dsp.exec_cmd("playerctl play-pause"),                { locked = true })
 hl.bind("XF86AudioNext",         hl.dsp.exec_cmd("playerctl next"),                      { locked = true })
 hl.bind("XF86AudioPrev",         hl.dsp.exec_cmd("playerctl previous"),                  { locked = true })
-hl.bind("XF86AudioMute",         hl.dsp.exec_cmd("dms ipc call audio mute"),             { locked = true })
-hl.bind("XF86AudioMicMute",      hl.dsp.exec_cmd("dms ipc call audio micmute"),          { locked = true })
-hl.bind("XF86AudioRaiseVolume",  hl.dsp.exec_cmd("dms ipc call audio increment 3"),      { locked = true, repeating = true })
-hl.bind("XF86AudioLowerVolume",  hl.dsp.exec_cmd("dms ipc call audio decrement 3"),      { locked = true, repeating = true })
-hl.bind("XF86MonBrightnessUp",   hl.dsp.exec_cmd("dms ipc call brightness increment 5 backlight:acpi_video0"), { locked = true, repeating = true })
-hl.bind("XF86MonBrightnessDown", hl.dsp.exec_cmd("dms ipc call brightness decrement 5 backlight:acpi_video0"), { locked = true, repeating = true })
+hl.bind("XF86AudioMute",         hl.dsp.exec_cmd(dms("audio mute")),             { locked = true })
+hl.bind("XF86AudioMicMute",      hl.dsp.exec_cmd(dms("audio micmute")),          { locked = true })
+hl.bind("XF86AudioRaiseVolume",  hl.dsp.exec_cmd(dms("audio increment 3")),      { locked = true, repeating = true })
+hl.bind("XF86AudioLowerVolume",  hl.dsp.exec_cmd(dms("audio decrement 3")),      { locked = true, repeating = true })
+hl.bind("XF86MonBrightnessUp",   hl.dsp.exec_cmd(dms("brightness increment 5 backlight:acpi_video0")), { locked = true, repeating = true })
+hl.bind("XF86MonBrightnessDown", hl.dsp.exec_cmd(dms("brightness decrement 5 backlight:acpi_video0")), { locked = true, repeating = true })
 
 -- Binds :: Gestures
-hl.gesture({
-  fingers = 3,
-  direction = "horizontal",
-  action = "workspace",
-})
+local gestures = {
+  { fingers = 3, mods = "",
+    direction = "horizontal", action = "workspace" },
+  { fingers = 3, mods = mainMod,
+    direction = "horizontal", action = "scroll_move"},
+  { fingers = 2, mods = mainMod,
+    direction = "pinch", action = "cursor_zoom",
+      zoom_level = 1, mode = "live" },
+}
+
+for _, g in ipairs(gestures) do
+  hl.gesture(g)
+end
 
 -- Binds :: Submaps
 hl.bind(mainMod .. " + R",  hl.dsp.submap("resize"))
