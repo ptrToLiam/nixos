@@ -5,48 +5,90 @@
   "matugenTargetMonitor": "DP-1",
   "widgetColorMode": "colorful",
   "buttonColorMode": "primaryContainer",
-  "cornerRadius": 10,
   "clockFormat": "24h",
-  "animationSpeed": 4,
-  "customAnimationDuration": 275,
   "barElevationEnabled": false,
   "blurBorderOpacity": 1,
-  "controlCenterShowVpnIcon": false,
   "controlCenterWidgets": [
+    {
+      "id": "user",
+      "enabled": true,
+      "w": 5,
+      "h": 1
+    },
+    {
+      "id": "settings",
+      "enabled": true,
+      "w": 1,
+      "h": 1,
+      "small": true
+    },
+    {
+      "id": "lock",
+      "enabled": true,
+      "w": 1,
+      "h": 1,
+      "small": true
+    },
+    {
+      "id": "power",
+      "enabled": true,
+      "w": 1,
+      "h": 1,
+      "small": true
+    },
     {
       "id": "volumeSlider",
       "enabled": true,
-      "width": 50
+      "w": 4,
+      "h": 1
     },
     {
       "id": "brightnessSlider",
       "enabled": true,
-      "width": 50
+      "w": 4,
+      "h": 1
     },
     {
       "id": "nightMode",
       "enabled": true,
-      "width": 50
+      "w": 4,
+      "h": 1
     },
     {
       "id": "bluetooth",
       "enabled": true,
-      "width": 50
+      "w": 4,
+      "h": 1
     },
     {
       "id": "audioInput",
       "enabled": true,
-      "width": 50
+      "w": 4,
+      "h": 1
     },
     {
       "id": "audioOutput",
       "enabled": true,
-      "width": 50
+      "w": 4,
+      "h": 1
+    },
+    {
+      "id": "edit",
+      "enabled": true,
+      "w": 1,
+      "h": 1,
+      "small": true
+    },
+    {
+      "id": "runningApps",
+      "enabled": true,
+      "w": 4,
+      "h": 1,
+      "small": true,
+      "col": 0,
+      "row": 5
     }
   ],
-  "showWorkspaceApps": true,
-  "appLauncherViewMode": "grid",
-  "spotlightModalViewMode": "grid",
   "dankLauncherV2Size": "micro",
   "dankLauncherV2BorderEnabled": true,
   "useAutoLocation": true,
@@ -66,8 +108,6 @@
       "cursorHideTimeout": 0
     }
   },
-  "launcherLogoMode": "compositor",
-  "launcherLogoColorOverride": "surface",
   "fontFamily": "M PLUS Code Latin 60 Medium",
   "monoFontFamily": "M PLUS Code Latin 60 SemiBold",
   "notepadShowLineNumbers": true,
@@ -89,7 +129,6 @@
   "matugenTemplateWezterm": false,
   "matugenTemplateVscode": false,
   "matugenTemplateEmacs": false,
-  "dockPosition": 2,
   "maxFprintTries": 3,
   "osdMediaPlaybackEnabled": true,
   "screenPreferences": {
@@ -103,9 +142,6 @@
       "all"
     ],
     "dankBar": [
-      "DP-1"
-    ],
-    "dock": [
       "DP-1"
     ]
   },
@@ -126,8 +162,17 @@
       ],
       "showOnLastDisplay": true,
       "leftWidgets": [
-        "launcherButton",
-        "workspaceSwitcher",
+        {
+          "id": "launcherButton",
+          "enabled": true,
+          "launcherLogoMode": "compositor",
+          "launcherLogoColorOverride": "surface"
+        },
+        {
+          "id": "workspaceSwitcher",
+          "enabled": true,
+          "showWorkspaceApps": true
+        },
         {
           "id": "focusedWindow",
           "enabled": true
@@ -149,7 +194,8 @@
         },
         {
           "id": "controlCenterButton",
-          "enabled": true
+          "enabled": true,
+          "showVpnIcon": false
         }
       ],
       "spacing": 1,
@@ -173,39 +219,94 @@
       "visible": true,
       "popupGapsAuto": true,
       "popupGapsManual": 4,
-      "widgetOutlineEnabled": false
+      "widgetOutlineEnabled": false,
+      "followInterfaceStyle": false,
+      "widgetFollowInterfaceStyle": true
     }
   ],
-  "desktopClockCustomColor": {
-    "r": 1,
-    "g": 1,
-    "b": 1,
-    "a": 1,
-    "hsvHue": -1,
-    "hsvSaturation": 0,
-    "hsvValue": 1,
-    "hslHue": -1,
-    "hslSaturation": 0,
-    "hslLightness": 1,
-    "valid": true
-  },
-  "systemMonitorCustomColor": {
-    "r": 1,
-    "g": 1,
-    "b": 1,
-    "a": 1,
-    "hsvHue": -1,
-    "hsvSaturation": 0,
-    "hsvValue": 1,
-    "hslHue": -1,
-    "hslSaturation": 0,
-    "hslLightness": 1,
-    "valid": true
-  },
   "builtInPluginSettings": {
     "dms_settings_search": {
       "trigger": "?"
     }
   },
-  "configVersion": 16
+  "configVersion": 41,
+  "radiusStrength": 31,
+  "animationDuration": 275,
+  "dockConfigs": [
+    {
+      "id": "dock",
+      "name": "Dock",
+      "enabled": false,
+      "screenPreferences": [
+        "DP-1"
+      ],
+      "showOnLastDisplay": true,
+      "position": 2,
+      "mode": "compact",
+      "taskbarAlign": "center",
+      "widgetExpansion": "popout",
+      "iconSize": 40,
+      "spacing": 4,
+      "itemSpacing": 4,
+      "margin": 0,
+      "bottomGap": 0,
+      "transparency": 1,
+      "followInterfaceStyle": true,
+      "autoHide": false,
+      "smartAutoHide": false,
+      "useOverlayLayer": false,
+      "editOnRightClick": false,
+      "showOnFullscreen": false,
+      "openOnOverview": false,
+      "groupByApp": false,
+      "separatePinnedAndRunningApps": false,
+      "restoreSpecialWorkspaceOnClick": false,
+      "isolateDisplays": false,
+      "indicatorStyle": "circle",
+      "borderEnabled": false,
+      "borderColor": "surfaceText",
+      "borderOpacity": 1,
+      "borderThickness": 1,
+      "launcherEnabled": false,
+      "launcherLogoMode": "apps",
+      "launcherLogoCustomPath": "",
+      "launcherLogoColorOverride": "",
+      "launcherLogoSizeOffset": 0,
+      "launcherLogoBrightness": 0.5,
+      "launcherLogoContrast": 1,
+      "maxVisibleApps": 0,
+      "maxVisibleRunningApps": 0,
+      "showOverflowBadge": true,
+      "showTrash": false,
+      "trashFileManager": "default",
+      "trashCustomCommand": "",
+      "magnification": false,
+      "magnificationScale": 130,
+      "magnificationProfile": "parabolic",
+      "magnificationExpand": false,
+      "order": [],
+      "widgets": [
+        {
+          "id": "dock_launcher",
+          "widgetId": "dockLauncher",
+          "enabled": true
+        },
+        {
+          "id": "dock_apps",
+          "widgetId": "appsDock",
+          "enabled": true
+        },
+        {
+          "id": "dock_trash",
+          "widgetId": "dockTrash",
+          "enabled": true
+        }
+      ]
+    }
+  ],
+  "dmsWindowsFloatingSeeded": [
+    "hyprland"
+  ],
+  "wellbeingAppLimits": {},
+  "wellbeingEnabled": true
 }
